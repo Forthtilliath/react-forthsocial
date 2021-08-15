@@ -1,18 +1,11 @@
 import express from 'express';
 const router = express.Router();
-import User from '../models/User';
+import User, { IUser } from '../models/User';
 import { v4 as uuidv4 } from 'uuid';
-interface IUser {
-    id?: string;
-    username: string;
-    email: string;
-    password: string;
-}
-router.post('/register', (req, res) => {
-    let n = Math.floor(Math.random() * 10000);
-    const oneUser: IUser = req.body;
-    console.log(oneUser);
 
+router.post('/register', (req, res) => {
+
+    // let n = Math.floor(Math.random() * 10000);
     // const user = new User({
     //     id: uuidv4().replace(/-/g, ''),
     //     username: 'johon' + n,
@@ -20,7 +13,8 @@ router.post('/register', (req, res) => {
     //     password: 'test',
     // });
 
-    const user = new User(oneUser);
+    const newUser: IUser = req.body;
+    const user = new User(newUser);
 
     user.createUser()
         .then((_results) => {
@@ -29,11 +23,6 @@ router.post('/register', (req, res) => {
         .catch((error) => {
             res.status(404).json({ error: error.sqlMessage });
         });
-
-    // user.getUsers().then((results) => {
-    // console.log(results);
-    // res.type('application/json').send(results);
-    // });
 });
 
 export default router;

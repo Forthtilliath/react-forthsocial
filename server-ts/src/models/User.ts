@@ -2,7 +2,7 @@
 import pool from '../config/database-promise';
 import { v4 as uuidv4 } from 'uuid';
 
-interface IUser {
+export interface IUser {
     id?: string;
     username: string;
     email: string;
@@ -41,19 +41,6 @@ class User {
         return this._email;
     }
 
-    public async createUser() {
-        this._id = uuidv4().replace(/-/g, '');
-
-        let query =
-            '   INSERT INTO `' +
-            User._table +
-            '` (`id`, `username`, `email`, `password`) \
-                        VALUES ( ?, ?, ?, ?)';
-        let datas = [this._id, this._username, this._email, this._password];
-
-        return await pool.query(query, datas);
-    }
-
     public getUser() {
         return {
             id: this._id,
@@ -62,27 +49,28 @@ class User {
         };
     }
 
+    public async createUser() {
+        this._id = uuidv4().replace(/-/g, '');
+
+        let query = `   INSERT INTO ${User._table} (id, username, email, password)
+                        VALUES ( ?, ?, ?, ?)`;
+        let datas = [this._id, this._username, this._email, this._password];
+
+        return await pool.query(query, datas);
+    }
+
     static async getUser(id: string) {
-        let query =
-            '   SELECT id, username, email, profilePicture, coverPicture, isAdmin, createdAt, updatedAt \
-                FROM `' +
-            User._table +
-            '` \
-        WHERE id = ?';
+        let query = `   SELECT id, username, email, profilePicture, coverPicture, isAdmin, createdAt, updatedAt
+                        FROM ${User._table}
+                        WHERE id = ?`;
         let datas = [id];
-        console.log('datas', datas);
-        
-        console.log(await pool.query(query, datas));
 
         return await pool.query(query, datas).then((res) => res[0]);
     }
 
     static async getUsers() {
-        let query =
-            '   SELECT id, username, email, profilePicture, coverPicture, isAdmin, createdAt, updatedAt \
-                FROM `' +
-            User._table +
-            '`';
+        let query = `   SELECT id, username, email, profilePicture, coverPicture, isAdmin, createdAt, updatedAt
+                        FROM ${User._table}`;
 
         return await pool.query(query).then((res) => res[0]);
     }

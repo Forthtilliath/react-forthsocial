@@ -3,7 +3,9 @@ const router = express.Router();
 import User from '../models/User';
 
 router.get('/', (_req, res) => {
-    res.send('user');
+    User.getUsers()
+        .then((results) => res.status(200).json(results))
+        .catch((err) => res.status(404).json(err.sqlMessage));
 });
 
 router.get('/:id', (req, res) => {
