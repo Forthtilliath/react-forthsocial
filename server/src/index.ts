@@ -10,7 +10,6 @@ import connection from './config/database';
 const app = express();
 
 import usersRoutes from './routes/users-routes';
-import authRoutes from './routes/auth-routes';
 
 // middleware
 app.use(express.json());
@@ -26,8 +25,7 @@ app.use(cors());
 //     }
 // });
 
-app.use('/api/user', authRoutes);
-app.use('/api/users', usersRoutes);
+app.use('/api/user', usersRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

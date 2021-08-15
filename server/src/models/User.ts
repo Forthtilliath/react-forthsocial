@@ -63,8 +63,12 @@ class User {
         };
     }
 
+    static generateUuid(): string {
+        return uuidv4().replace(/-/g, '');
+    }
+
     public async createUser() {
-        this._id = uuidv4().replace(/-/g, '');
+        this._id = User.generateUuid();
 
         let query = `   INSERT INTO ${User._table} (id, username, email, password)
                         VALUES ( ?, ?, ?, ?)`;
