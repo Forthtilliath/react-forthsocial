@@ -10,8 +10,8 @@ export interface IUser {
     profilePicture?: string;
     coverPicture?: string;
     isAdmin?: boolean;
-    createAt?: number;
-    updateAt?: number;
+    createdAt?: number;
+    updatedAt?: number;
 }
 
 class User {
@@ -22,13 +22,22 @@ class User {
     private _username: string;
     private _email: string;
     private _password: string;
+    private _profilePicture?: string;
+    private _coverPicture?: string;
+    private _isAdmin?: boolean;
+    private _createdAt?: number;
+    private _updatedAt?: number;
 
     constructor(aUser: IUser) {
-        console.log(aUser);
         this._id = aUser.id;
         this._username = aUser.username;
         this._email = aUser.email;
         this._password = aUser.password;
+        this._profilePicture = aUser.profilePicture;
+        this._coverPicture = aUser.coverPicture;
+        this._isAdmin = aUser.isAdmin;
+        this._createdAt = aUser.createdAt;
+        this._updatedAt = aUser.updatedAt;
 
         return this;
     }
@@ -46,6 +55,11 @@ class User {
             id: this._id,
             username: this._username,
             email: this._email,
+            profilePicture: this._profilePicture,
+            coverPicture: this._coverPicture,
+            isAdmin: this._isAdmin,
+            createdAt: this._createdAt,
+            updatedAt: this._updatedAt,
         };
     }
 
