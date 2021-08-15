@@ -7,6 +7,6 @@
   "license": "MIT",
   "scripts": {
     "start-client":"cd client && yarn run start",
-    "start-server":"cd server-ts && yarn run start"
+    "start-server":"cd server && yarn run start"
   }
 }
