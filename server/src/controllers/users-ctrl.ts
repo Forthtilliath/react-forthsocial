@@ -59,8 +59,7 @@ export const editUser = (req: Request, res: Response) => {
         const dataUser: IUser = req.body;
         const updatedDataUser: IUser = Object.assign(result[0], dataUser);
 
-        const user = new User(updatedDataUser);
-        user.setUser().then((result) => console.log(result));
+        new User(updatedDataUser).setUser();
 
         res.status(200).json(result);
     });
@@ -73,7 +72,19 @@ export const deleteUser = (req: Request, res: Response) => {
 };
 
 export const followUser = (req: Request, res: Response) => {
-    //
+    User.getUserById(req.params.id).then((result) => {
+        if (!result) return res.status(404).json({ error: 'Id not valid !' });
+
+        
+
+        const dataUser: IUser = req.body;
+        const updatedDataUser: IUser = Object.assign(result[0], dataUser);
+
+        const user = new User(updatedDataUser);
+        user.setUser().then((result) => console.log(result));
+
+        res.status(200).json(result);
+    });
 };
 
 export const unfollowUser = (req: Request, res: Response) => {
