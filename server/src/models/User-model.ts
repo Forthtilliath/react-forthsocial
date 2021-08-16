@@ -2,9 +2,8 @@
 import pool from '../config/database-promise';
 import { v4 as uuidv4 } from 'uuid';
 import { argon2id, argon2Verify, IArgon2Options } from 'hash-wasm';
-import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
-import { RowDataPacket } from 'mysql2/promise';
+import { FieldPacket, RowDataPacket } from 'mysql2/promise';
 
 export interface IUser {
     id?: string;
@@ -59,13 +58,13 @@ class User {
         return this._id;
     }
 
-    get username() {
-        return this._username;
-    }
+    // get username() {
+    //     return this._username;
+    // }
 
-    get email() {
-        return this._email;
-    }
+    // get email() {
+    //     return this._email;
+    // }
 
     public getUser() {
         return {
@@ -148,25 +147,13 @@ class User {
     }
 
     /** Récupère l'ensemble des utilisateurs */
-    static async getUsers() {
+    static async getUsers():Promise<RowDataPacket[]> {
         const query = ` SELECT id, username, email, profilePicture, coverPicture, isAdmin, createdAt, updatedAt
                         FROM ${User._table}`;
 
-        return await pool.query(query).then((res) => res[0]);
+        return await pool.query<RowDataPacket[]>(query).then((res) => res[0]);
+        // return await pool.query(query).then((res) => res[0]);
     }
-
-    // /** Vérifie si le username et l'email sont disponibles */
-    // static async isAvailableUsernameAndEmail(username: string, email: string): Promise<boolean> {
-    //     const query = `   SELECT id, username, email, profilePicture, coverPicture, isAdmin, createdAt, updatedAt
-    //                     FROM ${User._table}
-    //                     WHERE username = ?
-    //                     OR email = ?`;
-    //     const datas = [username, email];
-
-    //     let rows = await pool.query<RowDataPacket[]>(query, datas).then((res) => res[0]);
-
-    //     return rows.length === 0;
-    // }
 
     /** Vérifie si le username est disponible */
     public async isAvailableUsername(): Promise<boolean> {
@@ -192,7 +179,9 @@ class User {
         return rows.length === 0;
     }
 
-    // public async getUser
+    public async setUser(id: string) {
+        
+    }
 }
 
 export default User;

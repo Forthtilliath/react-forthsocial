@@ -3,15 +3,16 @@ const router = express.Router();
 import * as usersCtrl from '../controllers/users-ctrl';
 
 // auth
-router.post('/register', usersCtrl.createUser);
 router.post('/login', usersCtrl.connectUser);
 
 // users
 router.get('/', usersCtrl.getUsers);
 
+// crud
+router.post('/register', usersCtrl.createUser);
 router.get('/:id', usersCtrl.getUser);
-router.post('/:id', usersCtrl.editUser);
-router.delete('/:id', usersCtrl.editUser);
+router.patch('/:id', usersCtrl.editUser);
+router.delete('/:id', usersCtrl.deleteUser);
 
 // follows
 router.post('/follow/:id', usersCtrl.followUser);

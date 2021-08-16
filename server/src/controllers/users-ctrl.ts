@@ -1,18 +1,10 @@
 import { Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
 import User, { IUser } from '../models/User-model';
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
 
 export const createUser = (req: Request, res: Response) => {
-    // let n = Math.floor(Math.random() * 10000);
-    // const newUser = new User({
-    //     id: User.generateUuid(),
-    //     username: 'johon' + n,
-    //     email: 'johon@prout.Fr' + n,
-    //     password: 'test',
-    // });
-
     const dataNewUser: IUser = req.body;
     const newUser = new User(dataNewUser);
 
@@ -39,7 +31,7 @@ export const connectUser = (req: Request, res: Response) => {
     const user = new User(dataUser);
 
     user.isValidPassword(dataUser.username, dataUser.password).then((result) => {
-        if (!result) return res.status(401).json({ error: 'Username or password not valid !' });
+        if (!result) return res.status(404).json({ error: 'Username or password not valid !' });
 
         res.status(200).json({
             userId: user.id,
@@ -58,11 +50,25 @@ export const getUsers = (_req: Request, res: Response) => {
 
 export const getUser = (req: Request, res: Response) => {
     User.getUserById(req.params.id)
-        .then((results) => res.status(200).json(results))
+        .then((result) => res.status(200).json(result))
         .catch((err) => res.status(404).json(err.sqlMessage));
 };
 
 export const editUser = (req: Request, res: Response) => {
+    User.getUserById(req.params.id).then((result) => {
+        console.log('result',result);
+        const dataUser: IUser = req.body;
+        const user = new User(dataUser);
+        console.log('user', user);
+        res.status(200).json({result,user:user.getUser()})
+
+        // user.setUser();
+        // .then((result) => res.status(200).json(result))
+        // .catch((err) => res.status(404).json(err.sqlMessage));
+    });
+};
+
+export const deleteUser = (req: Request, res: Response) => {
     //
 };
 

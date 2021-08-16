@@ -10,6 +10,7 @@ import connection from './config/database';
 const app = express();
 
 import usersRoutes from './routes/users-routes';
+import postsRoutes from './routes/posts-routes';
 
 // middleware
 app.use(express.json());
