@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
 import User, { IUser } from '../models/User-model';
+import dotenv from 'dotenv';
+dotenv.config();
 
 export const createUser = (req: Request, res: Response) => {
     // let n = Math.floor(Math.random() * 10000);
@@ -19,7 +22,8 @@ export const createUser = (req: Request, res: Response) => {
         newUser.isAvailableEmail().then((availableEmail) => {
             if (!availableEmail) return res.status(400).json({ message: 'Email already exists.' });
 
-            newUser.createUser()
+            newUser
+                .createUser()
                 .then((_results) => {
                     return res.status(201).json({ message: 'User created !', user: newUser.getUser() });
                 })
@@ -31,7 +35,19 @@ export const createUser = (req: Request, res: Response) => {
 };
 
 export const connectUser = (req: Request, res: Response) => {
-    //
+    const dataUser: IUser = req.body;
+    const user = new User(dataUser);
+
+    user.isValidPassword(dataUser.username, dataUser.password).then((result) => {
+        if (!result) return res.status(401).json({ error: 'Username or password not valid !' });
+
+        res.status(200).json({
+            userId: user.id,
+            token: jwt.sign({ userId: user.id }, process.env.TOKEN as string, {
+                expiresIn: '1h',
+            }),
+        });
+    });
 };
 
 export const getUsers = (_req: Request, res: Response) => {
@@ -41,7 +57,7 @@ export const getUsers = (_req: Request, res: Response) => {
 };
 
 export const getUser = (req: Request, res: Response) => {
-    User.getUser(req.params.id)
+    User.getUserById(req.params.id)
         .then((results) => res.status(200).json(results))
         .catch((err) => res.status(404).json(err.sqlMessage));
 };

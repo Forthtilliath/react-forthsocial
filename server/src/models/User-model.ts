@@ -2,7 +2,7 @@
 import pool from '../config/database-promise';
 import { v4 as uuidv4 } from 'uuid';
 import { argon2id, argon2Verify, IArgon2Options } from 'hash-wasm';
-import jwp from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import { RowDataPacket } from 'mysql2/promise';
 
@@ -28,7 +28,7 @@ class User {
         iterations: 8, // t
         memorySize: 1024 * 35, // m / in Kb
         hashLength: 32, // output size = 32 bytes
-        // outputType: 'encoded', // return standard encoded string containing parameters needed to verify the key
+        outputType: 'encoded' as 'encoded', // return standard encoded string containing parameters needed to verify the key
     };
 
     private _id?: string;
@@ -53,6 +53,10 @@ class User {
         this._updatedAt = aUser.updatedAt;
 
         return this;
+    }
+
+    get id() {
+        return this._id;
     }
 
     get username() {
@@ -102,26 +106,50 @@ class User {
         this._id = User.generateUuid();
         this._password = await this.encryptPassword();
 
-        let query = `   INSERT INTO ${User._table} (id, username, email, password)
+        const query = ` INSERT INTO ${User._table} (id, username, email, password)
                         VALUES ( ?, ?, ?, ?)`;
-        let datas = [this._id, this._username, this._email, this._password];
+        const datas = [this._id, this._username, this._email, this._password];
 
         return await pool.query(query, datas);
     }
 
-    /** Récupère un utilisateur */
-    static async getUser(id: string) {
-        let query = `   SELECT id, username, email, profilePicture, coverPicture, isAdmin, createdAt, updatedAt
+    /** Récupère les données d'un utilisateur */
+    static async getUserById(id: string) {
+        const query = ` SELECT id, username, email, profilePicture, coverPicture, isAdmin, createdAt, updatedAt
                         FROM ${User._table}
                         WHERE id = ?`;
-        let datas = [id];
+        const datas = [id];
 
         return await pool.query(query, datas).then((res) => res[0]);
     }
 
+    /** Récupère un utilisateur pour vérifier les identifiants */
+    public async isValidPassword(username: string, password: string): Promise<boolean> {
+        const query = ` SELECT id, password
+                        FROM ${User._table}
+                        WHERE username = ?`;
+        const datas = [username];
+
+        const user = await pool.query<RowDataPacket[]>(query, datas).then((res) => res[0]);
+
+        if (user.length === 1) {
+            const isValid = await argon2Verify({
+                password: password,
+                hash: user[0].password,
+            });
+
+            if (isValid) {
+                this._id = user[0].id;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /** Récupère l'ensemble des utilisateurs */
     static async getUsers() {
-        let query = `   SELECT id, username, email, profilePicture, coverPicture, isAdmin, createdAt, updatedAt
+        const query = ` SELECT id, username, email, profilePicture, coverPicture, isAdmin, createdAt, updatedAt
                         FROM ${User._table}`;
 
         return await pool.query(query).then((res) => res[0]);
@@ -129,11 +157,11 @@ class User {
 
     // /** Vérifie si le username et l'email sont disponibles */
     // static async isAvailableUsernameAndEmail(username: string, email: string): Promise<boolean> {
-    //     let query = `   SELECT id, username, email, profilePicture, coverPicture, isAdmin, createdAt, updatedAt
+    //     const query = `   SELECT id, username, email, profilePicture, coverPicture, isAdmin, createdAt, updatedAt
     //                     FROM ${User._table}
     //                     WHERE username = ?
     //                     OR email = ?`;
-    //     let datas = [username, email];
+    //     const datas = [username, email];
 
     //     let rows = await pool.query<RowDataPacket[]>(query, datas).then((res) => res[0]);
 
@@ -142,10 +170,10 @@ class User {
 
     /** Vérifie si le username est disponible */
     public async isAvailableUsername(): Promise<boolean> {
-        let query = `   SELECT username
+        const query = ` SELECT username
                         FROM ${User._table}
                         WHERE username = ?`;
-        let datas = [this._username];
+        const datas = [this._username];
 
         let rows = await pool.query<RowDataPacket[]>(query, datas).then((res) => res[0]);
 
@@ -154,15 +182,17 @@ class User {
 
     /** Vérifie si l'email est disponible */
     public async isAvailableEmail(): Promise<boolean> {
-        let query = `   SELECT email
+        const query = ` SELECT email
                         FROM ${User._table}
                         WHERE email = ?`;
-        let datas = [ this._email];
+        const datas = [this._email];
 
         let rows = await pool.query<RowDataPacket[]>(query, datas).then((res) => res[0]);
 
         return rows.length === 0;
     }
+
+    // public async getUser
 }
 
 export default User;
