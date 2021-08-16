@@ -5,6 +5,7 @@ import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import cors from 'cors';
+import chalk from 'chalk';
 import connection from './config/database';
 
 const app = express();
@@ -23,5 +24,5 @@ app.use('/api/post', postsRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Backend server is running on http://localhost:${PORT}`);
+    console.log(chalk.blue(`=> Backend server is running on http://localhost:${PORT}`));
 });

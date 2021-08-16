@@ -119,7 +119,7 @@ class User {
                         WHERE id = ?`;
         const datas = [id];
 
-        return await pool.query(query, datas).then((res) => res[0]);
+        return await pool.query<RowDataPacket[]>(query, datas).then((res) => res[0]);
     }
 
     /** Récupère un utilisateur pour vérifier les identifiants */
@@ -147,7 +147,7 @@ class User {
     }
 
     /** Récupère l'ensemble des utilisateurs */
-    static async getUsers():Promise<RowDataPacket[]> {
+    static async getUsers(): Promise<RowDataPacket[]> {
         const query = ` SELECT id, username, email, profilePicture, coverPicture, isAdmin, createdAt, updatedAt
                         FROM ${User._table}`;
 
@@ -179,8 +179,15 @@ class User {
         return rows.length === 0;
     }
 
-    public async setUser(id: string) {
-        
+    public async setUser() {
+        console.log(this._profilePicture, this._coverPicture, this._id);
+        const query = ` UPDATE ${User._table}
+                        SET profilePicture = ?,
+                            coverPicture = ?
+                        WHERE id = ?`;
+        const datas = [this._profilePicture, this._coverPicture, this._id];
+
+        return await pool.query<RowDataPacket[]>(query, datas);
     }
 }
 

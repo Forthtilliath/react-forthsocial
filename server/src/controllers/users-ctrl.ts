@@ -56,11 +56,13 @@ export const getUser = (req: Request, res: Response) => {
 
 export const editUser = (req: Request, res: Response) => {
     User.getUserById(req.params.id).then((result) => {
-        console.log('result',result);
         const dataUser: IUser = req.body;
-        const user = new User(dataUser);
-        console.log('user', user);
-        res.status(200).json({result,user:user.getUser()})
+        const updatedDataUser: IUser = Object.assign(result[0], dataUser);
+
+        const user = new User(updatedDataUser);
+        user.setUser().then(result => console.log(result));
+
+        res.status(200).json({result:result,user:dataUser,new:Object.assign(result[0],dataUser)})
 
         // user.setUser();
         // .then((result) => res.status(200).json(result))
