@@ -18,15 +18,8 @@ app.use(helmet());
 app.use(morgan('common'));
 app.use(cors());
 
-// connection.query('SELECT * FROM `table` WHERE `age` > ?', [30], function (_err, results) {
-//     if (typeof results === 'undefined') {
-//         console.log('Erreur avec la base de données !!!');
-//     } else {
-//         console.log(results);
-//     }
-// });
-
 app.use('/api/user', usersRoutes);
+app.use('/api/post', postsRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
