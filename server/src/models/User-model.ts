@@ -3,7 +3,7 @@ import pool from '../config/database-promise';
 import { v4 as uuidv4 } from 'uuid';
 import { argon2id, argon2Verify, IArgon2Options } from 'hash-wasm';
 import crypto from 'crypto';
-import { FieldPacket, RowDataPacket } from 'mysql2/promise';
+import { RowDataPacket } from 'mysql2/promise';
 
 export interface IUser {
     id?: string;
@@ -179,8 +179,10 @@ class User {
         return rows.length === 0;
     }
 
+    /** Modifie un utilisateur */
     public async setUser() {
-        console.log(this._profilePicture, this._coverPicture, this._id);
+        this._updatedAt = Date.now();
+
         const query = ` UPDATE ${User._table}
                         SET profilePicture = ?,
                             coverPicture = ?
@@ -188,6 +190,15 @@ class User {
         const datas = [this._profilePicture, this._coverPicture, this._id];
 
         return await pool.query<RowDataPacket[]>(query, datas);
+    }
+
+    /** Supprime un utilisateur */
+    static async deleteUser(id: string) {
+        const query = ` DELETE FROM ${User._table}
+                        WHERE id = ?`;
+        const datas = [id];
+
+        return await pool.query<RowDataPacket[]>(query, datas).then((res) => res[0]);
     }
 }
 

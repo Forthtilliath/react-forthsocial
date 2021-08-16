@@ -60,18 +60,16 @@ export const editUser = (req: Request, res: Response) => {
         const updatedDataUser: IUser = Object.assign(result[0], dataUser);
 
         const user = new User(updatedDataUser);
-        user.setUser().then(result => console.log(result));
+        user.setUser().then((result) => console.log(result));
 
-        res.status(200).json({result:result,user:dataUser,new:Object.assign(result[0],dataUser)})
-
-        // user.setUser();
-        // .then((result) => res.status(200).json(result))
-        // .catch((err) => res.status(404).json(err.sqlMessage));
+        res.status(200).json(result);
     });
 };
 
 export const deleteUser = (req: Request, res: Response) => {
-    //
+    User.deleteUser(req.params.id)
+        .then((result) => res.status(200).json(result))
+        .catch((err) => res.status(404).json(err.sqlMessage));
 };
 
 export const followUser = (req: Request, res: Response) => {
