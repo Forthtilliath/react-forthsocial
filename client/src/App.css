@@ -1,5 +1,22 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --base-blue: rgb(24, 119, 242);
+    --base-white: rgb(242, 242, 242);
+
+    --always-white: white;
+
+    --hover-overlay: rgba(255, 255, 255, 0.1);
+    --focus-input: var(--base-white);
+}
+
+.focus {
+    --T68779821: 0 0 0 2px var(--always-white), 0 0 0 4px var(--base-blue);
+    -webkit-box-shadow: var(--T68779821);
+    box-shadow: var(--T68779821);
+    background-color: var(--hover-overlay);
 }

@@ -1,6 +1,7 @@
 import express from 'express';
 const router = express.Router();
 import * as usersCtrl from '../controllers/users-ctrl';
+import auth from '../middleware/auth';
 
 // auth
 router.post('/login', usersCtrl.connectUser);
@@ -11,7 +12,7 @@ router.get('/', usersCtrl.getUsers);
 // crud
 router.post('/register', usersCtrl.createUser);
 router.get('/:id', usersCtrl.getUser);
-router.patch('/:id', usersCtrl.editUser);
+router.put('/:id', auth, usersCtrl.editUser);
 router.delete('/:id', usersCtrl.deleteUser);
 
 // follows

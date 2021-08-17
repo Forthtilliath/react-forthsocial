@@ -8,7 +8,7 @@ router.get('/', postsCtrl.getPosts);
 // crud
 router.post('/', postsCtrl.createPost);
 router.get('/:id', postsCtrl.getPost);
-router.patch('/:id', postsCtrl.editPost);
+router.put('/:id', postsCtrl.editPost);
 router.delete('/:id', postsCtrl.deletePost);
 
 // likes

@@ -35,7 +35,7 @@ export const connectUser = (req: Request, res: Response) => {
 
         res.status(200).json({
             userId: user.id,
-            token: jwt.sign({ userId: user.id }, process.env.TOKEN as string, {
+            token: jwt.sign({ userId: user.id }, process.env.SECRET_TOKEN as string, {
                 expiresIn: '1h',
             }),
         });

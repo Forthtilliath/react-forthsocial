@@ -1,6 +1,4 @@
 import dotenv from 'dotenv';
-dotenv.config();
-
 import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
@@ -9,6 +7,7 @@ import chalk from 'chalk';
 import connection from './config/database';
 
 const app = express();
+dotenv.config();
 
 import usersRoutes from './routes/users-routes';
 import postsRoutes from './routes/posts-routes';
