@@ -1,3 +1,65 @@
+@import '../../sass/mixins';
+
 .rightbar {
-    flex:3.5;
+    flex: 3.5;
+
+    .rightbarWrapper {
+        padding: 20px 20px 0 0;
+
+        .birthdayContainer {
+            @include center;
+
+            .birthdayImg {
+                width: 40px;
+                height: 40px;
+                margin-right: 10px;
+            }
+
+            .birthdayText {
+                font-weight: 300;
+                font-size: 15px;
+            }
+        }
+
+        .rightbarTitle {
+            margin-bottom: 20px;
+        }
+
+        .rightbarAd {
+            width: 100%;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .rightbarFriendList {
+            list-style: none;
+
+            .rightbarFriend {
+                @include center;
+                margin-bottom: 15px;
+
+                .rightbarProfileImgContainer {
+                    margin-right: 10px;
+                    position: relative;
+
+                    .rightbarProfileImg {
+                        @include avatar(40);
+                    }
+
+                    .rightbarOnline {
+                        @include avatar(12);
+                        background-color: limegreen;
+                        position: absolute;
+                        top: -2px;
+                        right: 0;
+                        border: 2px solid white;
+                    }
+                }
+
+                .rightbarUsername {
+                    font-weight: 500;
+                }
+            }
+        }
+    }
 }

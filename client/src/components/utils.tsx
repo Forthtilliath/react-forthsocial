@@ -1,0 +1,1 @@
+export const loadImage = (fileName: string) => require(`../images/${fileName}`).default;

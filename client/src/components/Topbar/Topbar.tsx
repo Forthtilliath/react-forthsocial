@@ -1,5 +1,5 @@
 import { Search, Person, Chat, Notifications } from '@material-ui/icons';
-import Avatar from '../../images/person/1.jpeg';
+import { loadImage } from '../utils';
 import './topbar.scss';
 
 const Topbar = () => {
@@ -33,7 +33,7 @@ const Topbar = () => {
                         <span className="topbarIconBadge">5</span>
                     </div>
                 </div>
-                <img src={Avatar} alt="avatar" className="topbarImg" />
+                <img src={loadImage('person/1.jpeg')} alt="avatar" className="topbarImg" />
             </div>
         </div>
     );

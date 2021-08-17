@@ -1,20 +1,21 @@
+import { loadImage } from '../utils';
 import sidebarData from './sidebarData';
-import './sidebar.scss';
+import './Sidebar.scss';
 
 const Sidebar = () => {
     const listFriends = [
-        { image: '2.jpeg', name: 'John Doe' },
-        { image: '3.jpeg', name: 'Jane Doe' },
-        { image: '4.jpeg', name: 'Rondou Doe' },
-        { image: '5.jpeg', name: 'Tout Doe' },
-        { image: '6.jpeg', name: 'Tusor Doe' },
-        { image: '7.jpeg', name: 'Pa Doe' },
-        { image: '7.jpeg', name: 'Pa Doe' },
-        { image: '7.jpeg', name: 'Pa Doe' },
-        { image: '7.jpeg', name: 'Pa Doe' },
+        { image: 'person/2.jpeg', name: 'John Doe' },
+        { image: 'person/3.jpeg', name: 'Jane Doe' },
+        { image: 'person/4.jpeg', name: 'Rondou Doe' },
+        { image: 'person/5.jpeg', name: 'Tout Doe' },
+        { image: 'person/6.jpeg', name: 'Tusor Doe' },
+        { image: 'person/7.jpeg', name: 'Pa Doe' },
+        { image: 'person/7.jpeg', name: 'Pa Doe' },
+        { image: 'person/7.jpeg', name: 'Pa Doe' },
+        { image: 'person/7.jpeg', name: 'Pa Doe' },
     ];
 
-    const loadImage = (fileName: string) => require(`../../images/person/${fileName}`).default;
+    // const loadImage = (fileName: string) => require(`../../images/person/${fileName}`).default;
 
     return (
         <div className="sidebar">

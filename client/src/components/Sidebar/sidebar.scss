@@ -1,3 +1,5 @@
+@import '../../sass/mixins';
+
 ::-webkit-scrollbar {
     width: 5px;
 }
@@ -24,8 +26,7 @@
             list-style: none;
 
             .sidebarListItem {
-                display: flex;
-                align-items: center;
+                @include center();
                 margin-bottom: 20px;
 
                 .sidebarIcon {
@@ -50,19 +51,12 @@
             list-style: none;
 
             .sidebarFriend {
-                display: flex;
-                align-items: center;
+                @include center();
                 margin-bottom: 15px;
 
                 .sidebarFriendImg {
-                    width: 32px;
-                    height: 32px;
-                    border-radius: 50%;
-                    object-fit: cover;
+                    @include avatar(32);
                     margin-right: 10px;
-                }
-
-                sidebarFriendName {
                 }
             }
         }

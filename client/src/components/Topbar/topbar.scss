@@ -1,9 +1,10 @@
+@import '../../sass/mixins';
+
 .topbarContainer {
     height: 50px;
     width: 100%;
     background-color: #1877f2;
-    display: flex;
-    align-items: center;
+    @include center();
     position: sticky;
     top: 0;
 
@@ -27,8 +28,7 @@
             height: 30px;
             background-color: var(--always-white);
             border-radius: 30px;
-            display: flex;
-            align-items: center;
+            @include center();
 
             &:focus-within {
                 box-shadow: 0 0 0 2px var(--always-white), 0 0 0 4px var(--base-blue);
@@ -54,9 +54,7 @@
 
     .topbarRight {
         flex: 4;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
+        @include center(space-around);
         color: var(--base-white);
 
         .topbarLink {
@@ -82,19 +80,14 @@
                     position: absolute;
                     top: -5px;
                     right: -5px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    @include center(center);
                     font-size: 12px;
                 }
             }
         }
     
         .topbarImg {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            object-fit: cover;
+            @include avatar(32);
             cursor: pointer;
         }
     }
