@@ -38,10 +38,10 @@
             .searchIcon {
                 margin-left: 10px;
             }
-        
+
             .searchInput {
                 border: none;
-                width: 100%;
+                width: calc(100% - 40px);
                 background-color: var(--always-white);
 
                 &:focus {
@@ -75,8 +75,8 @@
                     width: 15px;
                     height: 15px;
                     border-radius: 50%;
-                    color:var(--base-white);
-                    background-color:red; 
+                    color: var(--base-white);
+                    background-color: red;
                     position: absolute;
                     top: -5px;
                     right: -5px;
@@ -85,7 +85,7 @@
                 }
             }
         }
-    
+
         .topbarImg {
             @include avatar(32);
             cursor: pointer;
