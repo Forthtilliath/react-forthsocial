@@ -17,7 +17,7 @@
                 @include center();
 
                 .postProfileImg {
-                    @include avatar(32);
+                    @include circle(32);
                 }
 
                 .postUsername {

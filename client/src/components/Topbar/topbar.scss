@@ -72,9 +72,7 @@
                 position: relative;
 
                 .topbarIconBadge {
-                    width: 15px;
-                    height: 15px;
-                    border-radius: 50%;
+                    @include circle(15);
                     color: var(--base-white);
                     background-color: red;
                     position: absolute;
@@ -87,7 +85,7 @@
         }
 
         .topbarImg {
-            @include avatar(32);
+            @include circle(32);
             cursor: pointer;
         }
     }

@@ -14,7 +14,7 @@
             @include center();
 
             .shareProfileImg {
-                @include avatar(50);
+                @include circle(50);
                 margin-right: 10px;
             }
 

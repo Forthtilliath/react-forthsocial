@@ -43,11 +43,11 @@
                     position: relative;
 
                     .rightbarProfileImg {
-                        @include avatar(40);
+                        @include circle(40);
                     }
 
                     .rightbarOnline {
-                        @include avatar(12);
+                        @include circle(12);
                         background-color: limegreen;
                         position: absolute;
                         top: -2px;

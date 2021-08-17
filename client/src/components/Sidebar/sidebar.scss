@@ -55,7 +55,7 @@
                 margin-bottom: 15px;
 
                 .sidebarFriendImg {
-                    @include avatar(32);
+                    @include circle(32);
                     margin-right: 10px;
                 }
             }

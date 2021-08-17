@@ -1,6 +1,6 @@
 import { Search, Person, Chat, Notifications } from '@material-ui/icons';
 import { loadImage } from '../utils';
-import './topbar.scss';
+import './Topbar.scss';
 
 const Topbar = () => {
     return (
