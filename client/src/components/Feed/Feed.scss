@@ -1,7 +1,10 @@
 .feed {
     flex: 5.5;
+    width: 100%;
 
     .feedWrapper {
         padding: 20px;
+        max-width: 680px;
+        margin: 0 auto;
     }
 }

@@ -17,6 +17,20 @@
     --focus-input: var(--base-white);
 }
 
+*:not(html,body)::-webkit-scrollbar {
+    width: 5px;
+}
+*:not(html,body)::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+*:not(html,body)::-webkit-scrollbar-thumb {
+    background-color: rgb(179, 179, 179);
+    border-radius: 50px;
+}
+*:not(html,body)::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(128, 128, 128);
+}
+
 .focus {
     --T68779821: 0 0 0 2px var(--always-white), 0 0 0 4px var(--base-blue);
     -webkit-box-shadow: var(--T68779821);

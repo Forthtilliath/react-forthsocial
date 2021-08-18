@@ -10,3 +10,11 @@
     border-radius: 50%;
     object-fit: cover;
 }
+
+@mixin scroll-divFix($top) {
+    max-width: 360px;
+    overflow-y: scroll;
+    height: calc(100vh - #{$top});
+    position: sticky;
+    top: $top;
+}

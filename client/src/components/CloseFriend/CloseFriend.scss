@@ -1,0 +1,11 @@
+@import '../../sass';
+
+.sidebarFriend {
+    @include center();
+    margin-bottom: 15px;
+
+    .sidebarFriendImg {
+        @include circle(32);
+        margin-right: 10px;
+    }
+}

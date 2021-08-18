@@ -1,23 +1,8 @@
-@import '../../sass/mixins';
-
-::-webkit-scrollbar {
-    width: 5px;
-}
-::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-}
-::-webkit-scrollbar-thumb {
-    background-color: rgb(179, 179, 179);
-    border-radius: 50px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(128, 128, 128);
-}
+@import '../../sass';
 
 .sidebar {
     flex: 3;
-    height: calc(100vh - 50px);
-    overflow-y: scroll;
+    @include scroll-divFix(50px);
 
     .sidebarWrapper {
         padding: 20px;
@@ -49,16 +34,6 @@
 
         .sidebarFriendList {
             list-style: none;
-
-            .sidebarFriend {
-                @include center();
-                margin-bottom: 15px;
-
-                .sidebarFriendImg {
-                    @include circle(32);
-                    margin-right: 10px;
-                }
-            }
         }
     }
 }
