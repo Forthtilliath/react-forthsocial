@@ -1,12 +1,16 @@
 import { Search, Person, Chat, Notifications } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 import { loadImage } from '../utils';
+
 import './Topbar.scss';
 
 const Topbar = () => {
     return (
         <div className="topbarContainer">
             <div className="topbarLeft">
-                <span className="logo">Forthsocial</span>
+                <Link to="/" style={{textDecoration:'none'}}>
+                    <span className="logo">Forthsocial</span>
+                </Link>
             </div>
             <div className="topbarCenter">
                 <div className="searchBar">

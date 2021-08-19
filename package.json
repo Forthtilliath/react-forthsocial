@@ -6,8 +6,8 @@
   "author": "Forth <33458877+Forthtilliath@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
-    "start-client":"cd client && yarn run start",
-    "start-server":"cd server && yarn run start",
+    "start-client": "cd client && yarn run start",
+    "start-server": "cd server && yarn run start",
     "start-cli": "yarn run start-client",
     "start-serv": "yarn run start-server"
   }
