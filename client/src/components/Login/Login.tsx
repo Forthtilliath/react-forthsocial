@@ -1,6 +1,27 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { signin } from '../../actions/users.actions';
 import './Login.scss';
 
 const Login = () => {
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const [formData, setFormData] = useState({ username: 'Jean', password: 'test33' });
+    const handleChange = (e: { target: { name: string; value: string } }) =>
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    /**
+     * Cheminement de l'action
+     *  1 : dispatch
+     */
+    /** */
+    const login = () => {
+        dispatch(signin(formData));
+        console.log('redirection');
+        history.push('/');
+    };
+
     return (
         <div className="loginContainer">
             <div className="loginWrapper">
@@ -10,17 +31,32 @@ const Login = () => {
                 </div>
                 <div className="loginRight">
                     <div className="loginBox">
-                        <input className="loginInput" placeholder="Email" type="email" name="email" id="email" />
                         <input
                             className="loginInput"
+                            value={formData.username}
+                            onChange={handleChange}
+                            placeholder="Username"
+                            type="username"
+                            name="username"
+                            id="username"
+                        />
+                        <input
+                            className="loginInput"
+                            value={formData.password}
+                            onChange={handleChange}
                             placeholder="Password"
                             type="password"
                             name="password"
                             id="password"
                         />
-                        <button className="loginButton">Log In</button>
+                        <button className="loginButton" onClick={login}>
+                            Log In
+                        </button>
                         <span className="loginForgot">Forgot Password?</span>
-                        <button className="loginRegisterButton">Create a New Account</button>
+
+                        <Link to="register" className="loginRegisterLink">
+                            <button className="loginRegisterButton">Create a New Account</button>
+                        </Link>
                     </div>
                 </div>
             </div>

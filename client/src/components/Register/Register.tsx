@@ -1,33 +1,48 @@
+import { Link } from 'react-router-dom';
 import './Register.scss';
 
 const Register = () => {
+
+    const register = async() => {
+        
+    };
+
     return (
-        <div className="loginContainer">
-            <div className="loginWrapper">
-                <div className="loginLeft">
-                    <h3 className="loginLogo">Forthsocial</h3>
-                    <span className="loginDesc">Connect with friends and the world around you on Forthsocial.</span>
+        <div className="registerContainer">
+            <div className="registerWrapper">
+                <div className="registerLeft">
+                    <h3 className="registerLogo">Forthsocial</h3>
+                    <span className="registerDesc">Connect with friends and the world around you on Forthsocial.</span>
                 </div>
-                <div className="loginRight">
-                    <div className="loginBox">
-                        <input className="loginInput" placeholder="Username" type="text" name="username" id="username" />
-                        <input className="loginInput" placeholder="Email" type="email" name="email" id="email" />
+                <div className="registerRight">
+                    <div className="registerBox">
                         <input
-                            className="loginInput"
+                            className="registerInput"
+                            placeholder="Username"
+                            type="text"
+                            name="username"
+                            id="username"
+                        />
+                        <input className="registerInput" placeholder="Email" type="email" name="email" id="email" />
+                        <input
+                            className="registerInput"
                             placeholder="Password"
                             type="password"
                             name="password"
                             id="password"
                         />
                         <input
-                            className="loginInput"
+                            className="registerInput"
                             placeholder="Password Again"
                             type="password"
                             name="password"
                             id="password"
                         />
-                        <button className="loginButton">Sign Up</button>
-                        <button className="loginRegisterButton">Log into Account</button>
+                        <button className="registerButton" onClick={register}>Sign Up</button>
+
+                        <Link to="login" className="registerLoginLink">
+                            <button className="registerLoginButton">Log into Account</button>
+                        </Link>
                     </div>
                 </div>
             </div>

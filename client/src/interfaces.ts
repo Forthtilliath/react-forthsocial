@@ -19,3 +19,15 @@ export interface IUser {
     // createdAt?: number;
     // updatedAt?: number;
 }
+
+export interface IRegister {}
+
+export interface ILogin {
+    username: string;
+    password: string;
+}
+
+export interface IPayloadLogin {
+    userId: string;
+    token: string;
+}
