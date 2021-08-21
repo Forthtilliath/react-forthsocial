@@ -11,7 +11,7 @@ router.get('/', usersCtrl.getUsers);
 
 // crud
 router.post('/register', usersCtrl.createUser);
-router.get('/:id', usersCtrl.getUser);
+router.get('/:id', auth, usersCtrl.getUser);
 router.put('/:id', auth, usersCtrl.editUser);
 router.delete('/:id', usersCtrl.deleteUser);
 

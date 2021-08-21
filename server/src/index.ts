@@ -11,6 +11,7 @@ dotenv.config();
 
 import usersRoutes from './routes/users-routes';
 import postsRoutes from './routes/posts-routes';
+import * as auth from './middleware/auth.mdw';
 
 // middleware
 app.use(express.json());
@@ -18,8 +19,11 @@ app.use(helmet());
 app.use(morgan('common'));
 app.use(cors());
 
+// jwt
+app.get('*', auth.checkUser);
+
 app.use('/api/user', usersRoutes);
-app.use('/api/post', postsRoutes);
+app.use('/api/posts', postsRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

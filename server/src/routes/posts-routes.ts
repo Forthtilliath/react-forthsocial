@@ -5,6 +5,8 @@ import * as postsCtrl from '../controllers/posts-ctrl';
 // posts
 router.get('/', postsCtrl.getPosts);
 
+router.get('/timeline/:id', postsCtrl.getPosts);
+
 // crud
 router.post('/', postsCtrl.createPost);
 router.get('/:id', postsCtrl.getPost);
@@ -12,7 +14,7 @@ router.put('/:id', postsCtrl.editPost);
 router.delete('/:id', postsCtrl.deletePost);
 
 // likes
-router.post('/like/:id', postsCtrl.likePost);
-router.delete('/unlike/:id', postsCtrl.unlikePost);
+router.post('/:id/like', postsCtrl.likePost);
+router.delete('/:id/unlike', postsCtrl.unlikePost); // NOTE ??? Faire dans like ?
 
 export default router;

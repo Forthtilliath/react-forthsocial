@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import { signin } from '../../actions/users.actions';
+import { signin } from '../../_actions/users.actions';
 import './Login.scss';
 
 const Login = () => {
@@ -11,15 +11,8 @@ const Login = () => {
     const handleChange = (e: { target: { name: string; value: string } }) =>
         setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    /**
-     * Cheminement de l'action
-     *  1 : dispatch
-     */
-    /** */
     const login = () => {
-        dispatch(signin(formData));
-        console.log('redirection');
-        history.push('/');
+        dispatch(signin(formData, history));
     };
 
     return (

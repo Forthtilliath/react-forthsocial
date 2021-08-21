@@ -1,25 +1,24 @@
+import { useEffect, useState } from 'react';
 import Post from '../Post/Post';
 import Share from '../Share/Share';
-import './Feed.scss';
-import { Posts } from '../../dummyData';
+// import { Posts } from '../../dummyData';
 import { IPost } from '../../interfaces';
-import { useEffect, useState } from 'react';
-import * as api from '../../api';
+import * as api from '../../_api';
+import './Feed.scss';
 
 const Feed = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [posts, setPosts] = useState([]);
 
-    const getPosts = () => async () => {
-        try {
-            const { data } = await api.fetchPosts('b79aece63a764fd79b9e300982bcbd73'); // Posts de Jean
-            console.log(data);
-            setPosts(data);
-        } catch (error) {
-            console.log(error);
-        }
+    const getPosts = () => {
+        // Posts de Jean
+        api.fetchPosts('b79aece63a764fd79b9e300982bcbd73')
+            .then(({data}) => setPosts(data))
+            .catch((err) => console.log(err));
     };
 
     useEffect(() => {
+        console.log('FEED')
         getPosts();
     }, []);
 
@@ -27,7 +26,7 @@ const Feed = () => {
         <div className="feed">
             <div className="feedWrapper">
                 <Share />
-                {Posts.map((post: IPost) => (
+                {posts.map((post: IPost) => (
                     <Post key={post.id} post={post as IPost} />
                 ))}
             </div>

@@ -1,11 +1,13 @@
 export interface IPost {
     id: number;
-    photo: string;
+    description:string,
+    image: string;
     date: string;
     userId: string;
     like: number;
-    comment: number;
-    desc?: string;
+    comment?: number;
+    createdAt?: number;
+    updatedAt?: number;
 }
 
 export interface IUser {

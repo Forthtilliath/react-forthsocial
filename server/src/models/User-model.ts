@@ -1,4 +1,3 @@
-// import Connection from '../config/database';
 import pool from '../config/database-promise';
 import { v4 as uuidv4 } from 'uuid';
 import { argon2id, argon2Verify, IArgon2Options } from 'hash-wasm';
@@ -57,14 +56,6 @@ class User {
     get id() {
         return this._id;
     }
-
-    // get username() {
-    //     return this._username;
-    // }
-
-    // get email() {
-    //     return this._email;
-    // }
 
     public getUser() {
         return {

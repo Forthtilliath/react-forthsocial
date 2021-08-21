@@ -29,7 +29,6 @@ export const createUser = (req: Request, res: Response) => {
 export const connectUser = (req: Request, res: Response) => {
     const dataUser: IUser = req.body;
     const user = new User(dataUser);
-    console.log('login ?');
 
     user.isValidPassword(dataUser.username, dataUser.password).then((result) => {
         if (!result) return res.status(404).json({ error: 'Username or password not valid !' });

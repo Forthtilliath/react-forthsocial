@@ -1,14 +1,17 @@
+import { useState } from 'react';
 import { MoreVert } from '@material-ui/icons';
+import Moment from 'react-moment';
 import { loadImage } from '../utils';
 import Heart from '../../images/heart.png';
 import Like from '../../images/like.png';
 import { IPost } from '../../interfaces';
 import { Users } from '../../dummyData';
+import 'moment/locale/fr';
 import './Post.scss';
-import { useState } from 'react';
 
 const Post = (props: { post: IPost }) => {
-    const { photo, date, userId, comment, desc } = props.post;
+    const { userId, description, image, comment = 0, createdAt } = props.post;
+    console.log(props.post);
     const user = Users.find((User) => User.id === userId);
 
     const [like, setLike] = useState(props.post.like);
@@ -30,15 +33,16 @@ const Post = (props: { post: IPost }) => {
                             alt="avatar"
                         />
                         <span className="postUsername">{user?.username}</span>
-                        <span className="postDate">{date}</span>
+                        {/* <span className="postDate">{createdAt}</span> */}
+                        <span className="postDate"><Moment fromNow>{createdAt}</Moment></span>
                     </div>
                     <div className="postTopRight">
                         <MoreVert />
                     </div>
                 </div>
                 <div className="postCenter">
-                    <span className="postText">{desc}</span>
-                    <img className="postImg" src={loadImage(photo)} alt="post" />
+                    <span className="postText">{description}</span>
+                    {image && <img className="postImg" src={loadImage(image)} alt="post" />}
                 </div>
                 <div className="postBottom">
                     <div className="postBottomLeft">

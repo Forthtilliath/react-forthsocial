@@ -1,8 +1,12 @@
 import { Request, Response } from 'express';
-// import Post, { IPost } from '../models/Post-model';
+import Post, { IPost } from '../models/Post-model';
 
-export const getPosts = (req: Request, res: Response) => {
+export const getPosts = (_req: Request, res: Response) => {
     //
+    console.log('get');
+    Post.getPosts()
+        .then((results) => res.status(200).json(results))
+        .catch((err) => res.status(404).json(err.sqlMessage));
 };
 
 export const createPost = (req: Request, res: Response) => {

@@ -1,14 +1,12 @@
 import axios from 'axios';
-import { SERVER_URL } from '../constants/server';
 import { ILogin, IPost, IRegister } from '../interfaces';
+import { COOKIE_NAME } from '../_constants/app.const';
 
-// NOTE Attention quand on fera une requete axios avec proxy du package.json
 const API = axios.create();
-// const API = axios.create({ baseURL: SERVER_URL });
 
 API.interceptors.request.use((req) => {
-    if (localStorage.getItem('profile')) {
-        req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile') as string).token}`;
+    if (localStorage.getItem(COOKIE_NAME) !== null) {
+        req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem(COOKIE_NAME) as string).token}`;
     }
 
     return req;

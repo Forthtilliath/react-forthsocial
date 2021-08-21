@@ -9,6 +9,10 @@
     "start-client": "cd client && yarn run start",
     "start-server": "cd server && yarn run start",
     "start-cli": "yarn run start-client",
-    "start-serv": "yarn run start-server"
+    "start-serv": "yarn run start-server",
+    "start": "concurrently -k -n \"Server,Client\" -p \"[{name}]\" -c \"green,blue\" \"yarn run start-server\" \"yarn run start-client\""
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.1"
   }
 }
