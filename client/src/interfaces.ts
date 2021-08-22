@@ -8,6 +8,10 @@ export interface IPost {
     comment?: number;
     createdAt?: number;
     updatedAt?: number;
+    // user
+    username?: string;
+    profilePicture?: string;
+    nbComments: number;
 }
 
 export interface IUser {

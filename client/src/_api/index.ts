@@ -12,9 +12,9 @@ API.interceptors.request.use((req) => {
     return req;
 });
 
-export const fetchPost  = (id:string)              => API.get(`/posts/${id}`);
-export const fetchPosts = (id:string)            => API.get(`/posts/timeline/${id}`);
-// export const fetchPosts         = (page)            => API.get(`/posts?page=${page}`);
+export const fetchPost     = (id:string)              => API.get(`/posts/${id}`);
+export const fetchPosts    = (id:string)            => API.get(`/posts/timeline/${id}`);
+export const fetchPostsAll = ()            => API.get(`/posts/timeline}`);
 // export const fetchPostsBySearch = (searchQuery)     =>
     // API.get(`/posts/search?${searchQuery.search && `searchQuery=${searchQuery.search}&`}tags=${searchQuery.tags}`);
 export const createPost         = (newPost:IPost)         => API.post('/posts', newPost);

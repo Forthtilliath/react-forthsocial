@@ -5,14 +5,14 @@ import { loadImage } from '../utils';
 import Heart from '../../images/heart.png';
 import Like from '../../images/like.png';
 import { IPost } from '../../interfaces';
-import { Users } from '../../dummyData';
+// import { Users } from '../../dummyData';
 import 'moment/locale/fr';
 import './Post.scss';
 
 const Post = (props: { post: IPost }) => {
-    const { userId, description, image, comment = 0, createdAt } = props.post;
     console.log(props.post);
-    const user = Users.find((User) => User.id === userId);
+    const { description, image, createdAt, username, profilePicture, nbComments } = props.post;
+    // const user = Users.find((User) => User.id === userId);
 
     const [like, setLike] = useState(props.post.like);
     const [isLiked, setIsLiked] = useState(false);
@@ -29,11 +29,10 @@ const Post = (props: { post: IPost }) => {
                     <div className="postTopLeft">
                         <img
                             className="postProfileImg"
-                            src={user?.profilePicture && loadImage(user.profilePicture)}
+                            src={profilePicture && loadImage(profilePicture)}
                             alt="avatar"
                         />
-                        <span className="postUsername">{user?.username}</span>
-                        {/* <span className="postDate">{createdAt}</span> */}
+                        <span className="postUsername">{username}</span>
                         <span className="postDate"><Moment fromNow>{createdAt}</Moment></span>
                     </div>
                     <div className="postTopRight">
@@ -52,7 +51,7 @@ const Post = (props: { post: IPost }) => {
                     </div>
                     <div className="postBottomRight">
                         <span className="postCommentText">
-                            {comment} comment{comment < 2 ? '' : 's'}
+                            {nbComments} comment{nbComments < 2 ? '' : 's'}
                         </span>
                     </div>
                 </div>

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import Post from '../Post/Post';
 import Share from '../Share/Share';
-// import { Posts } from '../../dummyData';
 import { IPost } from '../../interfaces';
 import * as api from '../../_api';
 import './Feed.scss';
@@ -18,7 +17,6 @@ const Feed = () => {
     };
 
     useEffect(() => {
-        console.log('FEED')
         getPosts();
     }, []);
 

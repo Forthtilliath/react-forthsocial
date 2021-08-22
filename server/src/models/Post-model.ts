@@ -1,6 +1,7 @@
 import pool from '../config/database-promise';
 import { v4 as uuidv4 } from 'uuid';
 import { RowDataPacket } from 'mysql2/promise';
+import User from './User-model';
 
 export interface IPost {
     id?: string;
@@ -44,8 +45,12 @@ class Post {
 
     /** Récupère l'ensemble des posts */
     static async getPosts(): Promise<RowDataPacket[]> {
-        const query = ` SELECT *
-                        FROM ${Post._table}`;
+        const query = ` SELECT p.*, u.username, u.profilePicture, COUNT(c.postId) AS nbComments
+                        FROM ${Post._table} p
+                            INNER JOIN ${User._table} u ON u.id = p.userId
+                            LEFT JOIN comment c ON p.id = c.postId
+                        GROUP BY p.id`;
+        console.log(query);
 
         return await pool.query<RowDataPacket[]>(query).then((res) => res[0]);
     }
