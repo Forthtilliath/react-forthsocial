@@ -45,10 +45,11 @@ class Post {
 
     /** Récupère l'ensemble des posts */
     static async getPosts(): Promise<RowDataPacket[]> {
-        const query = ` SELECT p.*, u.username, u.profilePicture, COUNT(c.postId) AS nbComments
+        const query = ` SELECT p.*, u.username, u.profilePicture, COUNT(c.postId) AS nbComments, COUNT(lp.postId) AS nbLikes
                         FROM ${Post._table} p
                             INNER JOIN ${User._table} u ON u.id = p.userId
                             LEFT JOIN comment c ON p.id = c.postId
+                            LEFT JOIN likepost lp ON p.id = lp.postId
                         GROUP BY p.id`;
         console.log(query);
 

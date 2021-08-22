@@ -12,6 +12,7 @@ export interface IPost {
     username?: string;
     profilePicture?: string;
     nbComments: number;
+    nbLikes: number;
 }
 
 export interface IUser {
