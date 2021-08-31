@@ -75,7 +75,7 @@ class User {
      * existe déjà ou pas, mais la probabilité d'avoir un doublon est énormement faible.
      * */
     // TODO Modifier en private plus tard
-    static generateUuid(): string {
+    private generateUuid(): string {
         return uuidv4().replace(/-/g, '');
     }
 
@@ -93,7 +93,7 @@ class User {
 
     /** Crée un nouveau compte */
     public async createUser() {
-        this._id = User.generateUuid();
+        this._id = this.generateUuid();
         this._password = await this.encryptPassword();
 
         const query = ` INSERT INTO ${User._table} (id, username, email, password)
@@ -115,7 +115,7 @@ class User {
 
     /** Récupère un utilisateur pour vérifier les identifiants */
     public async isValidPassword(username: string, password: string): Promise<boolean> {
-        const query = ` SELECT id, password
+        const query = ` SELECT id, password, username, profilePicture, coverPicture, isAdmin
                         FROM ${User._table}
                         WHERE username = ?`;
         const datas = [username];
@@ -130,6 +130,11 @@ class User {
 
             if (isValid) {
                 this._id = user[0].id;
+                this._username = user[0].username;
+                this._profilePicture = user[0].profilePicture;
+                this._coverPicture = user[0].coverPicture;
+                this._isAdmin = user[0].isAdmin;
+                this._password = '';
                 return true;
             }
         }

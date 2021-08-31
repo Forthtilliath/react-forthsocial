@@ -38,8 +38,7 @@ class Post {
      * Génère un id aléatoire de 32 caractères. Aucune vérification pour savoir si l'id généré
      * existe déjà ou pas, mais la probabilité d'avoir un doublon est énormement faible.
      * */
-    // TODO Modifier en private plus tard
-    static generateUuid(): string {
+    private generateUuid(): string {
         return uuidv4().replace(/-/g, '');
     }
 
@@ -51,7 +50,6 @@ class Post {
                             LEFT JOIN comment c ON p.id = c.postId
                             LEFT JOIN likepost lp ON p.id = lp.postId
                         GROUP BY p.id`;
-        console.log(query);
 
         return await pool.query<RowDataPacket[]>(query).then((res) => res[0]);
     }

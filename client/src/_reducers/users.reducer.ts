@@ -4,7 +4,7 @@ import { COOKIE_NAME } from '../_constants/app.const';
 const authReducer = (state = { authData: null }, action: { type: string; data: any;payload:any }) => {
     switch (action.type) {
         case actionType.AUTH:
-            localStorage.setItem(COOKIE_NAME, JSON.stringify(action.payload));
+            // localStorage.setItem(COOKIE_NAME, JSON.stringify(action.payload));
 
             return { ...state, authData: action.payload };
         case actionType.LOGOUT:

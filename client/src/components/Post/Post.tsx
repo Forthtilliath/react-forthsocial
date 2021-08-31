@@ -10,7 +10,6 @@ import 'moment/locale/fr';
 import './Post.scss';
 
 const Post = (props: { post: IPost }) => {
-    console.log(props.post);
     const { description, image, createdAt, username, profilePicture, nbComments, nbLikes } = props.post;
     // const user = Users.find((User) => User.id === userId);
 

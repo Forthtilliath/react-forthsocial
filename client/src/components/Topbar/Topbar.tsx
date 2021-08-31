@@ -1,10 +1,15 @@
 import { Search, Person, Chat, Notifications } from '@material-ui/icons';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import UidContext from '../AppContext/index.context';
 import { loadImage } from '../utils';
 
 import './Topbar.scss';
 
 const Topbar = () => {
+    const uid = useContext(UidContext);
+    console.log('uid',uid);
+
     return (
         <div className="topbarContainer">
             <div className="topbarLeft">

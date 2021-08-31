@@ -12,9 +12,9 @@ API.interceptors.request.use((req) => {
     return req;
 });
 
-export const fetchPost     = (id:string)              => API.get(`/posts/${id}`);
-export const fetchPosts    = (id:string)            => API.get(`/posts/timeline/${id}`);
-export const fetchPostsAll = ()            => API.get(`/posts/timeline}`);
+export const fetchPost     = (id:string)                => API.get(`/posts/${id}`);
+export const fetchPosts    = (id:string)                => API.get(`/posts/timeline/${id}`);
+export const fetchPostsAll = ()                         => API.get(`/posts/timeline`);
 // export const fetchPostsBySearch = (searchQuery)     =>
     // API.get(`/posts/search?${searchQuery.search && `searchQuery=${searchQuery.search}&`}tags=${searchQuery.tags}`);
 export const createPost         = (newPost:IPost)         => API.post('/posts', newPost);
@@ -23,5 +23,8 @@ export const deletePost         = (id:IPost)              => API.delete(`/posts/
 export const likePost           = (id:IPost)              => API.patch(`/posts/${id}/likePost`);
 export const commentPost        = (value:string, id:IPost)       => API.post(`/posts/${id}/commentPost`, { value });
 
-export const register           = (formData:IRegister)        => API.post('/user/register', formData);
-export const login              = (formData:ILogin)        => API.post('/user/login', formData);
+export const register = (formData:IRegister)        => API.post('/user/register', formData);
+export const login    = (formData: ILogin)          => API.post('/user/login', formData);
+
+export const getUser              = (id:string) => API.get(`/user/${id}`);
+export const getJwt              = ()           => API.get(`/login`);

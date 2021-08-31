@@ -69,7 +69,12 @@
 
         /* Advanced Options */
         "skipLibCheck": true /* Skip type checking of declaration files. */,
-        "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
+        "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
+        // "typeRoots": [
+        //     "./types",
+        //     "./@types",
+        //     "./node_modules/@types" //this where npm packages containing types are located
+        // ]
     },
-    "include": ["src/*", "types/*"]
+    "include": ["./src/*", "./types/*"]
 }

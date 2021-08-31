@@ -32,7 +32,10 @@ export const connectUser = (req: Request, res: Response) => {
 
     user.isValidPassword(dataUser.username, dataUser.password).then((result) => {
         if (!result) return res.status(404).json({ error: 'Username or password not valid !' });
-
+        
+        // req.session.user = user.id;
+        req.session.user = user.getUser();
+        // TODO Check si utile après sessions
         res.status(200).json({
             userId: user.id,
             token: jwt.sign({ userId: user.id }, process.env.SECRET_TOKEN as string, {
