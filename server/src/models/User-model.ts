@@ -134,7 +134,7 @@ class User {
                 this._profilePicture = user[0].profilePicture;
                 this._coverPicture = user[0].coverPicture;
                 this._isAdmin = user[0].isAdmin;
-                this._password = '';
+                // this._password = ''; //TODO Check
                 return true;
             }
         }

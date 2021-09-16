@@ -3,6 +3,7 @@
 .sidebar {
     flex: 3;
     @include scroll-divFix(50px);
+    display: none;
 
     .sidebarWrapper {
         padding: 20px;

@@ -1,18 +1,21 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { signin } from '../../_actions/users.actions';
+import AuthContext from '../AppContext/Auth.context';
 import './Login.scss';
 
 const Login = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const { getConnexion } = useContext(AuthContext);
     const [formData, setFormData] = useState({ username: 'Jean', password: 'test33' });
+
     const handleChange = (e: { target: { name: string; value: string } }) =>
         setFormData({ ...formData, [e.target.name]: e.target.value });
 
     const login = () => {
-        dispatch(signin(formData, history));
+        dispatch(signin(formData, getConnexion, history));
     };
 
     return (

@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-const UidContext = createContext('');
+const UidContext = createContext({});
 
 export default UidContext;

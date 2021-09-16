@@ -1,18 +1,19 @@
 import express from 'express';
 const router = express.Router();
 import * as usersCtrl from '../controllers/users-ctrl';
-import auth from '../middleware/auth';
+// import auth from '../middleware/auth';
+import * as authMdw from '../middleware/auth-mdw';
 
 // auth
-router.post('/login', usersCtrl.connectUser);
+// router.post('/login', usersCtrl.connectUser);
 
 // users
 router.get('/', usersCtrl.getUsers);
 
 // crud
 router.post('/register', usersCtrl.createUser);
-router.get('/:id', auth, usersCtrl.getUser);
-router.put('/:id', auth, usersCtrl.editUser);
+router.get('/:id', authMdw.checkAuth, usersCtrl.getUser);
+router.put('/:id', authMdw.checkAuth, usersCtrl.editUser);
 router.delete('/:id', usersCtrl.deleteUser);
 
 // follows
