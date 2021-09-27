@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import AuthContext from '../AppContext/Auth.context';
 import Logout from '../Logout/Logout';
 import { loadImage } from '../utils';
+import Logo from '../../images/logo/logo.png';
 
 import './Topbar.scss';
 
@@ -30,8 +31,10 @@ const Topbar = () => {
     return (
         <div className="topbarContainer">
             <div className="topbarLeft">
-                <Link to="/" style={{ textDecoration: 'none' }}>
-                    <span className="logo">Forthsocial</span>
+                <Link to="/" className="logo">
+                    {/* <span className="logo">Forthsocial</span> */}
+                    <img src={Logo} alt="logo" className="logoImg" />
+                    <span className="logoTitle">FS</span>
                 </Link>
             </div>
             <div className="topbarCenter">
