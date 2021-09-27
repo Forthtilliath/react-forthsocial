@@ -5,7 +5,8 @@ interface IConnexionContext {
   loggedIn: boolean | undefined,
   user?: {
     userId: string,
-    username: string
+    username: string,
+    profilePicture: string
   }
 }
 

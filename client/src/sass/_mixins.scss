@@ -11,6 +11,13 @@
     object-fit: cover;
 }
 
+@mixin circle2($width) {
+    width: $width;
+    height: $width;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 @mixin scroll-divFix($top) {
     max-width: 360px;
     overflow-y: scroll;

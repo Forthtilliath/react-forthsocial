@@ -3,7 +3,13 @@
 .sidebar {
     flex: 3;
     @include scroll-divFix(50px);
-    display: none;
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    &:hover::-webkit-scrollbar {
+        display: block;
+    }
 
     .sidebarWrapper {
         padding: 20px;
