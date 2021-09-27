@@ -1,6 +1,6 @@
 import { Search, Chat, Notifications, Home, Group, KeyboardArrowDownRounded, Settings } from '@material-ui/icons';
 import { ImExit } from 'react-icons/all';
-import { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../AppContext/Auth.context';
 import Logout from '../Logout/Logout';

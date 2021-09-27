@@ -103,9 +103,8 @@
                 }
             }
 
-            // Second menu : Chat, Notifications, Account
+            // Second menu : Profile, Chat, Notifications, Account
             &.second {
-                // gap: 1rem;
                 & > * {
                     margin-right: 10px;
                 }
@@ -208,6 +207,7 @@
                                 }
                             }
 
+                            // Adapt some icons size
                             .s40 {
                                 width: 40px;
                                 height: 40px;
@@ -242,9 +242,6 @@
             gap: 5px;
 
             & > a {
-                // height: 36px;
-                // display: flex;
-                // align-items: center;
                 @include center();
             }
 
