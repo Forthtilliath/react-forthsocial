@@ -1,7 +1,7 @@
 import { Search, Chat, Notifications, Home, Group, KeyboardArrowDownRounded, Settings } from '@material-ui/icons';
 import { ImExit } from 'react-icons/all';
 import { useCallback, useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink  } from 'react-router-dom';
 import AuthContext from '../AppContext/Auth.context';
 import Logout from '../Logout/Logout';
 import { loadImage } from '../utils';
@@ -42,12 +42,12 @@ const Topbar = () => {
 
             <div className="topbarCenter">
                 <div className="topbarIcons main">
-                    <Link to="home" className="topbarIconItem" data-name="Accueil">
+                    <NavLink to="home" className="topbarIconItem" activeClassName="active" data-name="Accueil">
                         <Home />
-                    </Link>
-                    <Link to="friends" className="topbarIconItem" data-name="Amis">
+                    </NavLink>
+                    <NavLink to="friends" className="topbarIconItem" activeClassName="active" data-name="Amis">
                         <Group />
-                    </Link>
+                    </NavLink>
                 </div>
             </div>
 

@@ -124,24 +124,29 @@
                 position: relative;
                 cursor: pointer;
 
-                &:hover {
+                &:hover, &.active {
                     background-color: #0005;
                     padding-bottom: 0;
                     border-bottom: 3px inset white;
                     border-radius: 5px 5px 0 0;
                     position: relative;
+                }
 
-                    &::after {
-                        background-color: #000a;
-                        color: #f2f2f2;
-                        position: absolute;
-                        @include center(center);
-                        content: attr(data-name);
-                        width: 100%;
-                        height: 2em;
-                        top: calc(100% + 3px);
-                        border-radius: 0 0 5px 5px;
-                    }
+                &.active {
+                    border-bottom: 3px inset rgb(254, 255, 172);
+                    color: rgb(254, 255, 172);
+                }
+
+                &:hover::after {
+                    background-color: #000a;
+                    color: #f2f2f2;
+                    position: absolute;
+                    @include center(center);
+                    content: attr(data-name);
+                    width: 100%;
+                    height: 2em;
+                    top: calc(100% + 3px);
+                    border-radius: 0 0 5px 5px;
                 }
 
                 svg {
