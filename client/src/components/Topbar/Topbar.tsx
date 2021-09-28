@@ -19,8 +19,7 @@ const Topbar = () => {
     const toggleAccountMenu = () => setIsOpenAccountMenu(!isOpenAccountMenu);
 
     const checkElement = useCallback((e) => {
-        if (!e.target.closest('.topbarIconItem'))
-            setIsOpenAccountMenu(false);
+        if (!e.target.closest('.topbarIconItem')) setIsOpenAccountMenu(false);
     }, []);
 
     useEffect(() => {
@@ -32,18 +31,16 @@ const Topbar = () => {
         <div className="topbarContainer">
             <div className="topbarLeft">
                 <Link to="/" className="logo">
-                    {/* <span className="logo">Forthsocial</span> */}
                     <img src={Logo} alt="logo" className="logoImg" />
                     <span className="logoTitle">FS</span>
                 </Link>
-            </div>
-            <div className="topbarCenter">
                 <div className="searchBar">
                     <Search className="searchIcon" fontSize="small" />
                     <input type="text" placeholder="Search for friend, post or video" className="searchInput" />
                 </div>
             </div>
-            <div className="topbarRight">
+
+            <div className="topbarCenter">
                 <div className="topbarIcons main">
                     <Link to="home" className="topbarIconItem" data-name="Accueil">
                         <Home />
@@ -52,6 +49,9 @@ const Topbar = () => {
                         <Group />
                     </Link>
                 </div>
+            </div>
+
+            <div className="topbarRight">
                 <div className="topbarIcons second">
                     <Link to="profile" className="topbarProfileItem">
                         <img src={loadImage(user ? user.profilePicture : '')} alt="avatar" className="topbarImg" />
@@ -65,8 +65,11 @@ const Topbar = () => {
                         <Notifications />
                         <span className="topbarIconBadge">5</span>
                     </div>
-                    {/* <div className="topbarIconItem r0" data-name="Compte" onClick={toggleAccountMenu}> */}
-                    <div className={isOpenAccountMenu ? "topbarIconItem r0 open" : "topbarIconItem r0"} data-name="Compte" onClick={toggleAccountMenu}>
+                    <div
+                        className={isOpenAccountMenu ? 'topbarIconItem r0 open' : 'topbarIconItem r0'}
+                        data-name="Compte"
+                        onClick={toggleAccountMenu}
+                    >
                         <KeyboardArrowDownRounded />
                         {isOpenAccountMenu && (
                             <div className="topbarAccountMenu">
@@ -101,25 +104,6 @@ const Topbar = () => {
                         )}
                     </div>
                 </div>
-                {/* <div className="topbarConnection">
-                    {loggedIn === true && (
-                        <>
-                            <Link to="profile">
-                                <img
-                                    src={loadImage(user ? user.profilePicture : '')}
-                                    alt="avatar"
-                                    className="topbarImg"
-                                />
-                            </Link>
-                            
-                        </>
-                    )}
-                    {loggedIn === false && (
-                        <Link to="login">
-                            <LoginIcon color="white" />
-                        </Link>
-                    )}
-                </div> */}
             </div>
         </div>
     );

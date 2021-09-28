@@ -4,31 +4,22 @@
     height: 50px;
     width: 100%;
     background-color: #1877f2;
-    @include center();
+    @include center(space-between);
     position: sticky;
     top: 0;
     z-index: 999;
 
     .topbarLeft {
-        flex: 2;
-
-        // .logo {
-        //     font-size: 24px;
-        //     margin-left: 20px;
-        //     font-weight: bold;
-        //     color: #f2f2f2;
-        //     cursor: pointer;
-        //     height:40px;
-        // }
+        flex: 3;
+        max-width: 360px;
+        @include center();
 
         .logo {
-            margin-left: 20px;
+            margin: 0 20px;
             cursor: pointer;
             text-decoration: none;
-            display: flex;
+            @include center(center);
             flex-direction: column;
-            align-content: center;
-            align-items: center;
             width: 40px;
 
             .logoImg {
@@ -56,43 +47,17 @@
     }
 
     .topbarCenter {
-        flex: 3;
+        flex: 5.5;
+        max-width: 680px;
         margin-right: 10px;
-
-        .searchBar {
-            width: 100%;
-            height: 30px;
-            background-color: var(--always-white);
-            border-radius: 30px;
-            @include center();
-
-            &:focus-within {
-                box-shadow: 0 0 0 2px var(--always-white), 0 0 0 4px var(--base-blue);
-                background-color: var(--focus-input);
-            }
-
-            .searchIcon {
-                margin-left: 10px;
-            }
-
-            .searchInput {
-                border: none;
-                width: calc(100% - 40px);
-                background-color: var(--always-white);
-
-                &:focus {
-                    outline: none;
-                    background-color: var(--focus-input);
-                }
-            }
-        }
     }
 
     .topbarRight {
-        flex: 4;
-        @include center(space-between);
+        flex: 3.5;
+        max-width: 360px;
+        // @include center(space-between);
+        @include center(flex-end);
         color: var(--base-white);
-        gap: 10px;
 
         .topbarLink {
             margin-right: 10px;
@@ -100,11 +65,59 @@
             cursor: pointer;
         }
 
-        .topbarIcons {
-            @include center;
+        .topbarConnection {
+            display: flex;
+            gap: 5px;
 
-            // Main menu : Home, Friends
-            &.main .topbarIconItem {
+            & > a {
+                @include center();
+            }
+
+            .topbarImg {
+                @include circle(32);
+                cursor: pointer;
+            }
+        }
+    }
+
+    .searchBar {
+        width: 100%;
+        height: 30px;
+        background-color: var(--always-white);
+        border-radius: 30px;
+        @include center();
+
+        &:focus-within {
+            box-shadow: 0 0 0 2px var(--always-white), 0 0 0 4px var(--base-blue);
+            background-color: var(--focus-input);
+        }
+
+        .searchIcon {
+            margin-left: 10px;
+        }
+
+        .searchInput {
+            border: none;
+            width: calc(100% - 40px);
+            background-color: var(--always-white);
+
+            &:focus {
+                outline: none;
+                background-color: var(--focus-input);
+            }
+        }
+    }
+
+    .topbarIcons {
+        @include center;
+
+        // Main menu : Home, Friends
+        &.main {
+            justify-content: center;
+            color: var(--base-white);
+            gap:10px;
+
+            .topbarIconItem {
                 height: 50px;
                 padding-bottom: 3px;
                 @include center;
@@ -134,155 +147,141 @@
                 svg {
                     width: 1.5em;
                     height: 1.5em;
-                    margin: 0 1.5em;
-                }
-            }
-
-            // Second menu : Profile, Chat, Notifications, Account
-            &.second {
-                & > * {
-                    margin-right: 10px;
-                }
-
-                .topbarIconItem {
-                    display: flex;
-                    cursor: pointer;
-                    position: relative;
-
-                    .topbarIconBadge {
-                        @include circle(15);
-                        color: var(--base-white);
-                        background-color: red;
-                        position: absolute;
-                        top: -4px;
-                        right: -4px;
-                        @include center(center);
-                        font-size: 12px;
-                    }
-                    svg {
-                        background-color: #0002;
-                        padding: 8px;
-                        @include circle2(1.5em);
-                    }
-
-                    &:hover {
-                        position: relative;
-
-                        & > svg {
-                            background-color: #0005;
-                        }
-
-                        &:not(.open)::after {
-                            background-color: #000c;
-                            color: #f2f2f2;
-                            position: absolute;
-                            @include center(center);
-                            content: attr(data-name);
-                            width: auto;
-                            height: 2em;
-                            top: 100%;
-                            right: -50%;
-                            border-radius: 5px;
-                            white-space: nowrap;
-                            padding: 2px 10px;
-                            z-index: 1;
-                        }
-
-                        &:not(.open).r0::after {
-                            right: 5px;
-                        }
-                    }
-
-                    // Menu when we click on account button
-                    .topbarAccountMenu {
-                        position: absolute;
-                        top: calc(100% + 5px);
-                        right: 0;
-                        width: 360px;
-                        height: auto;
-                        cursor: default;
-                        background: #f2f2f2;
-                        color: #2d2d2d;
-                        border-radius: 10px;
-                        box-shadow: 0px 0px 16px -8px rgb(0 0 0 / 68%);
-                        padding: 10px;
-
-                        .topbarAccountMenu--hr {
-                            margin: 8px 16px;
-                        }
-
-                        .topbarAccountMenu__item {
-                            @include center();
-                            gap: 10px;
-                            padding: 8px;
-                            border-radius: 10px;
-                            cursor: pointer;
-
-                            &:hover {
-                                background: rgba(0, 0, 0, 0.05);
-                            }
-
-                            .topbarAccountMenu__itemAvatar {
-                                @include circle(60);
-                            }
-
-                            .topbarAccountMenu__itemImg {
-                                @include circle(40);
-                            }
-
-                            .topbarAccountMenu__itemWrapper {
-                                .topbarAccountMenu__itemLabel {
-                                    font-size: 1rem;
-                                    font-weight: 600;
-                                }
-
-                                .topbarAccountMenu__itemSubLabel {
-                                    margin-top: 5px;
-                                    font-size: 0.875rem;
-                                }
-                            }
-
-                            // Adapt some icons size
-                            .s40 {
-                                width: 40px;
-                                height: 40px;
-                            }
-                        }
-                    }
-                }
-            }
-
-            .topbarProfileItem {
-                @include center();
-                cursor: pointer;
-                padding: 5px;
-
-                &:hover {
-                    background-color: #0005;
-                    border-radius: 50px;
-                }
-
-                .topbarImg {
-                    @include circle(30);
-                }
-
-                .topbarName {
-                    padding: 0 10px;
+                    margin: 0 2em;
                 }
             }
         }
 
-        .topbarConnection {
-            display: flex;
-            gap: 5px;
+        // Second menu : Profile, Chat, Notifications, Account
+        &.second {
+            & > * {
+                margin-right: 15px;
+            }
 
-            & > a {
-                @include center();
+            .topbarIconItem {
+                display: flex;
+                cursor: pointer;
+                position: relative;
+
+                .topbarIconBadge {
+                    @include circle(15);
+                    color: var(--base-white);
+                    background-color: red;
+                    position: absolute;
+                    top: -4px;
+                    right: -4px;
+                    @include center(center);
+                    font-size: 12px;
+                }
+                svg {
+                    background-color: #0002;
+                    padding: 8px;
+                    @include circle2(1.5em);
+                }
+
+                &:hover {
+                    position: relative;
+
+                    & > svg {
+                        background-color: #0005;
+                    }
+
+                    &:not(.open)::after {
+                        background-color: #000c;
+                        color: #f2f2f2;
+                        position: absolute;
+                        @include center(center);
+                        content: attr(data-name);
+                        width: auto;
+                        height: 2em;
+                        top: 100%;
+                        right: -50%;
+                        border-radius: 5px;
+                        white-space: nowrap;
+                        padding: 2px 10px;
+                        z-index: 1;
+                    }
+
+                    &:not(.open).r0::after {
+                        right: 5px;
+                    }
+                }
+
+                // Menu when we click on account button
+                .topbarAccountMenu {
+                    position: absolute;
+                    top: calc(100% + 5px);
+                    right: 0;
+                    width: 360px;
+                    height: auto;
+                    cursor: default;
+                    background: #f2f2f2;
+                    color: #2d2d2d;
+                    border-radius: 10px;
+                    box-shadow: 0px 0px 16px -8px rgb(0 0 0 / 68%);
+                    padding: 10px;
+
+                    .topbarAccountMenu--hr {
+                        margin: 8px 16px;
+                    }
+
+                    .topbarAccountMenu__item {
+                        @include center();
+                        gap: 10px;
+                        padding: 8px;
+                        border-radius: 10px;
+                        cursor: pointer;
+
+                        &:hover {
+                            background: rgba(0, 0, 0, 0.05);
+                        }
+
+                        .topbarAccountMenu__itemAvatar {
+                            @include circle(60);
+                        }
+
+                        .topbarAccountMenu__itemImg {
+                            @include circle(40);
+                        }
+
+                        .topbarAccountMenu__itemWrapper {
+                            .topbarAccountMenu__itemLabel {
+                                font-size: 1rem;
+                                font-weight: 600;
+                            }
+
+                            .topbarAccountMenu__itemSubLabel {
+                                margin-top: 5px;
+                                font-size: 0.875rem;
+                            }
+                        }
+
+                        // Adapt some icons size
+                        .s40 {
+                            width: 40px;
+                            height: 40px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .topbarProfileItem {
+            @include center();
+            cursor: pointer;
+            padding: 5px;
+
+            &:hover {
+                background-color: #0005;
+                border-radius: 50px;
             }
 
             .topbarImg {
-                @include circle(32);
-                cursor: pointer;
+                @include circle(30);
+            }
+
+            .topbarName {
+                padding: 0 10px;
             }
         }
     }
