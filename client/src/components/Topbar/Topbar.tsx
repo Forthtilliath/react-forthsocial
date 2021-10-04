@@ -1,13 +1,14 @@
 import { Search, Chat, Notifications, Home, Group, KeyboardArrowDownRounded, Settings } from '@material-ui/icons';
 import { ImExit } from 'react-icons/all';
-import { useCallback, useContext, useEffect, useState } from 'react';
-import { Link, NavLink  } from 'react-router-dom';
+import { useCallback, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import AuthContext from '../AppContext/Auth.context';
 import Logout from '../Logout/Logout';
 import { loadImage } from '../utils';
 import Logo from '../../images/logo/logo.png';
 
 import './Topbar.scss';
+import { BoxMenuAccount, BoxMenuSearch } from './BoxMenu';
 
 const Topbar = () => {
     const {
@@ -15,17 +16,16 @@ const Topbar = () => {
     } = useContext(AuthContext);
 
     const [isOpenAccountMenu, setIsOpenAccountMenu] = useState(false);
+    const [isOpenSearch, setIsOpenSearch] = useState(false);
 
-    const toggleAccountMenu = () => setIsOpenAccountMenu(!isOpenAccountMenu);
-
-    const checkElement = useCallback((e) => {
-        if (!e.target.closest('.topbarIconItem')) setIsOpenAccountMenu(false);
-    }, []);
-
-    useEffect(() => {
-        window.addEventListener('click', checkElement);
-        return () => window.removeEventListener('click', checkElement);
-    }, [checkElement]);
+    const toggleAccountMenu = () => {
+        setIsOpenSearch(false);
+        setIsOpenAccountMenu(!isOpenAccountMenu);
+    };
+    const toggleSearch = () => {
+        setIsOpenAccountMenu(false);
+        setIsOpenSearch(!isOpenSearch);
+    };
 
     return (
         <div className="topbarContainer">
@@ -37,6 +37,14 @@ const Topbar = () => {
                 <div className="searchBar">
                     <Search className="searchIcon" fontSize="small" />
                     <input type="text" placeholder="Search for friend, post or video" className="searchInput" />
+                </div>
+                <div className="topbarIcons second" style={{ position: 'relative' }}>
+                    <div
+                        className={isOpenSearch ? 'topbarIconItem l0 open' : 'topbarIconItem l0'}
+                        data-name="Rechercher" onClick={toggleSearch}>
+                        <Search />
+                    </div>
+                    {isOpenSearch && <BoxMenuSearch />}
                 </div>
             </div>
 
@@ -71,37 +79,7 @@ const Topbar = () => {
                         onClick={toggleAccountMenu}
                     >
                         <KeyboardArrowDownRounded />
-                        {isOpenAccountMenu && (
-                            <div className="topbarAccountMenu">
-                                <Link to="profile" className="topbarAccountMenu__item">
-                                    <img
-                                        src={loadImage(user ? user.profilePicture : '')}
-                                        alt="avatar"
-                                        className="topbarAccountMenu__itemAvatar"
-                                    />
-                                    <div className="topbarAccountMenu__itemWrapper">
-                                        <div className="topbarAccountMenu__itemLabel">{user?.username}</div>
-                                        <div className="topbarAccountMenu__itemSubLabel">Voir votre profil</div>
-                                    </div>
-                                </Link>
-                                <hr className="topbarAccountMenu--hr" />
-                                {/* <div className="">Changer de compte</div> */}
-                                <Link to="settings" className="topbarAccountMenu__item">
-                                    <div className="topbarAccountMenu__itemImg">
-                                        <Settings />
-                                    </div>
-                                    <div className="topbarAccountMenu__itemLabel">Affichage et accessibilité</div>
-                                </Link>
-                                <Logout>
-                                    <div className="topbarAccountMenu__item">
-                                        <div className="topbarAccountMenu__itemImg">
-                                            <ImExit className="s40" />
-                                        </div>
-                                        <div className="topbarAccountMenu__itemLabel">Se déconnecter</div>
-                                    </div>
-                                </Logout>
-                            </div>
-                        )}
+                        {isOpenAccountMenu && <BoxMenuAccount user={user} />}
                     </div>
                 </div>
             </div>

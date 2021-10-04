@@ -1,4 +1,4 @@
-export const loadImage = (fileName: string) => {
+export const loadImage = (fileName: string = '') => {
     let image_path: string;
     try {
         image_path = require(`../images/${fileName}`).default;

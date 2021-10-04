@@ -24,8 +24,8 @@ const Router = () => {
                 {loggedIn === true && (
                     <Switch>
                         <Route exact path="/home"  component={Home}></Route>
-                        <Route exact path="/profile/" component={Profile}></Route>
                         <Route exact path="/friends/" component={Profile}></Route>
+                        <Route exact path="/profile/" component={Profile}></Route>
                         <Route exact path="/profile/:username" component={Profile}></Route>
                         <Redirect to="/home" />
                     </Switch>

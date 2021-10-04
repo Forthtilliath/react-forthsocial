@@ -3,7 +3,7 @@
 .topbarContainer {
     height: 50px;
     width: 100%;
-    background-color: #1877f2;
+    background-color: var(--base-blue);
     @include center(space-between);
     position: sticky;
     top: 0;
@@ -49,7 +49,7 @@
     .topbarCenter {
         flex: 5.5;
         max-width: 680px;
-        margin-right: 10px;
+        margin: 0 10px;
     }
 
     .topbarRight {
@@ -106,6 +106,11 @@
                 background-color: var(--focus-input);
             }
         }
+
+        & + .topbarIcons {
+            display: none;
+            color: var(--base-white);
+        }
     }
 
     .topbarIcons {
@@ -115,7 +120,7 @@
         &.main {
             justify-content: center;
             color: var(--base-white);
-            gap:10px;
+            gap: 10px;
 
             .topbarIconItem {
                 height: 50px;
@@ -124,22 +129,27 @@
                 position: relative;
                 cursor: pointer;
 
-                &:hover, &.active {
-                    background-color: #0005;
+                &:hover,
+                &.active {
                     padding-bottom: 0;
-                    border-bottom: 3px inset white;
                     border-radius: 5px 5px 0 0;
                     position: relative;
                 }
 
+                &:hover {
+                    background-color: #0005;
+                    border-bottom: 3px inset var(--base-white);
+                    color: var(--base-white);
+                }
+
                 &.active {
                     border-bottom: 3px inset rgb(254, 255, 172);
+                    background-color: #0000;
                     color: rgb(254, 255, 172);
                 }
 
                 &:hover::after {
                     background-color: #000a;
-                    color: #f2f2f2;
                     position: absolute;
                     @include center(center);
                     content: attr(data-name);
@@ -147,12 +157,13 @@
                     height: 2em;
                     top: calc(100% + 3px);
                     border-radius: 0 0 5px 5px;
+                    z-index: 1;
                 }
 
                 svg {
-                    width: 1.5em;
-                    height: 1.5em;
-                    margin: 0 2em;
+                    width: 2rem;
+                    height: 2rem;
+                    margin: 0 3rem;
                 }
             }
         }
@@ -181,7 +192,7 @@
                 svg {
                     background-color: #0002;
                     padding: 8px;
-                    @include circle2(1.5em);
+                    @include circle(40);
                 }
 
                 &:hover {
@@ -199,7 +210,7 @@
                         content: attr(data-name);
                         width: auto;
                         height: 2em;
-                        top: 100%;
+                        top: calc(100% + 2px);
                         right: -50%;
                         border-radius: 5px;
                         white-space: nowrap;
@@ -210,64 +221,69 @@
                     &:not(.open).r0::after {
                         right: 5px;
                     }
+
+                    &:not(.open).l0::after {
+                        right: auto;
+                        left: -5px;
+                    }
                 }
 
                 // Menu when we click on account button
-                .topbarAccountMenu {
-                    position: absolute;
-                    top: calc(100% + 5px);
-                    right: 0;
-                    width: 360px;
-                    height: auto;
-                    cursor: default;
-                    background: #f2f2f2;
-                    color: #2d2d2d;
-                    border-radius: 10px;
-                    box-shadow: 0px 0px 16px -8px rgb(0 0 0 / 68%);
-                    padding: 10px;
+                // .topbarAccountMenu {
+                //     position: absolute;
+                //     top: calc(100% + 5px);
+                //     right: 0;
+                //     width: 360px;
+                //     height: auto;
+                //     cursor: default;
+                //     background: #f2f2f2;
+                //     color: #2d2d2d;
+                //     border-radius: 10px;
+                //     box-shadow: 0px 0px 16px -8px rgb(0 0 0 / 68%);
+                //     padding: 10px;
 
-                    .topbarAccountMenu--hr {
-                        margin: 8px 16px;
-                    }
+                //     .topbarAccountMenu--hr {
+                //         margin: 8px 16px;
+                //     }
 
-                    .topbarAccountMenu__item {
-                        @include center();
-                        gap: 10px;
-                        padding: 8px;
-                        border-radius: 10px;
-                        cursor: pointer;
+                //     .topbarAccountMenu__item {
+                //         @include center();
+                //         gap: 10px;
+                //         padding: 8px;
+                //         border-radius: 10px;
+                //         cursor: pointer;
 
-                        &:hover {
-                            background: rgba(0, 0, 0, 0.05);
-                        }
+                //         &:hover {
+                //             background: rgba(0, 0, 0, 0.05);
+                //         }
 
-                        .topbarAccountMenu__itemAvatar {
-                            @include circle(60);
-                        }
+                //         .topbarAccountMenu__itemAvatar {
+                //             @include circle(60);
+                //         }
 
-                        .topbarAccountMenu__itemImg {
-                            @include circle(40);
-                        }
+                //         .topbarAccountMenu__itemImg {
+                //             @include circle(40);
+                //         }
 
-                        .topbarAccountMenu__itemWrapper {
-                            .topbarAccountMenu__itemLabel {
-                                font-size: 1rem;
-                                font-weight: 600;
-                            }
+                //         .topbarAccountMenu__itemWrapper {
+                //             .topbarAccountMenu__itemLabel {
+                //                 font-size: 1rem;
+                //                 font-weight: 600;
+                //             }
 
-                            .topbarAccountMenu__itemSubLabel {
-                                margin-top: 5px;
-                                font-size: 0.875rem;
-                            }
-                        }
+                //             .topbarAccountMenu__itemSubLabel {
+                //                 margin-top: 5px;
+                //                 font-size: 0.875rem;
+                //             }
+                //         }
 
-                        // Adapt some icons size
-                        .s40 {
-                            width: 40px;
-                            height: 40px;
-                        }
-                    }
-                }
+                //         // Adapt some icons size
+                //         .s40 {
+                //             width: 40px;
+                //             height: 40px;
+                //         }
+                //     }
+                // }
             }
         }
 
@@ -290,4 +306,103 @@
             }
         }
     }
+}
+
+// Menu when we click on account button
+.topbarBoxMenu {
+    position: absolute;
+    top: calc(100% + 5px);
+    width: 360px;
+    height: auto;
+    cursor: default;
+    background: #f2f2f2;
+    color: #2d2d2d;
+    border-radius: 10px;
+    box-shadow: 0px 0px 16px -8px rgb(0 0 0 / 68%);
+    padding: 10px;
+
+    &.topbarSearchMenu {
+        left:0;
+    }
+
+    &.topbarAccountMenu {
+        right: 0;
+    }
+
+    .topbarBoxMenu--hr {
+        margin: 8px 16px;
+    }
+
+    .topbarBoxMenu__item {
+        @include center();
+        gap: 10px;
+        padding: 8px;
+        border-radius: 10px;
+        cursor: pointer;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .topbarBoxMenu__itemAvatar {
+            @include circle(60);
+        }
+
+        .topbarBoxMenu__itemImg {
+            @include circle(40);
+            svg {
+                background-color: #0002;
+                padding: 8px;
+                @include circle(40);
+            }
+        }
+
+        .topbarBoxMenu__itemWrapper {
+            .topbarBoxMenu__itemLabel {
+                font-size: 1rem;
+                font-weight: 600;
+            }
+
+            .topbarBoxMenu__itemSubLabel {
+                margin-top: 5px;
+                font-size: 0.875rem;
+            }
+        }
+
+        // Adapt some icons size
+        .s40 {
+            width: 40px;
+            height: 40px;
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .sidebar {
+        display: none;
+    }
+    .topbarContainer .topbarLeft,
+    .topbarContainer .topbarCenter,
+    .topbarContainer .topbarRight {
+        flex: 1;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .rightbar {
+        display: none;
+    }
+    .topbarContainer .topbarIcons.main .topbarIconItem svg {
+        margin: 0 1rem;
+    }
+    .topbarContainer .searchBar {
+        display: none;
+
+        & + .topbarIcons {
+            display: block;
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
 }
