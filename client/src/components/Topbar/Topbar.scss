@@ -1,7 +1,7 @@
 @import '../../sass';
 
 .topbarContainer {
-    height: 50px;
+    height: $headerHeight;
     width: 100%;
     background-color: var(--base-blue);
     @include center(space-between);
@@ -123,7 +123,7 @@
             gap: 10px;
 
             .topbarIconItem {
-                height: 50px;
+                height: $headerHeight;
                 padding-bottom: 3px;
                 @include center;
                 position: relative;
@@ -227,63 +227,6 @@
                         left: -5px;
                     }
                 }
-
-                // Menu when we click on account button
-                // .topbarAccountMenu {
-                //     position: absolute;
-                //     top: calc(100% + 5px);
-                //     right: 0;
-                //     width: 360px;
-                //     height: auto;
-                //     cursor: default;
-                //     background: #f2f2f2;
-                //     color: #2d2d2d;
-                //     border-radius: 10px;
-                //     box-shadow: 0px 0px 16px -8px rgb(0 0 0 / 68%);
-                //     padding: 10px;
-
-                //     .topbarAccountMenu--hr {
-                //         margin: 8px 16px;
-                //     }
-
-                //     .topbarAccountMenu__item {
-                //         @include center();
-                //         gap: 10px;
-                //         padding: 8px;
-                //         border-radius: 10px;
-                //         cursor: pointer;
-
-                //         &:hover {
-                //             background: rgba(0, 0, 0, 0.05);
-                //         }
-
-                //         .topbarAccountMenu__itemAvatar {
-                //             @include circle(60);
-                //         }
-
-                //         .topbarAccountMenu__itemImg {
-                //             @include circle(40);
-                //         }
-
-                //         .topbarAccountMenu__itemWrapper {
-                //             .topbarAccountMenu__itemLabel {
-                //                 font-size: 1rem;
-                //                 font-weight: 600;
-                //             }
-
-                //             .topbarAccountMenu__itemSubLabel {
-                //                 margin-top: 5px;
-                //                 font-size: 0.875rem;
-                //             }
-                //         }
-
-                //         // Adapt some icons size
-                //         .s40 {
-                //             width: 40px;
-                //             height: 40px;
-                //         }
-                //     }
-                // }
             }
         }
 
@@ -308,11 +251,11 @@
     }
 }
 
-// Menu when we click on account button
+// Menu when we click on a menu button
 .topbarBoxMenu {
     position: absolute;
     top: calc(100% + 5px);
-    width: 360px;
+    width: 420px;
     height: auto;
     cursor: default;
     background: #f2f2f2;
@@ -322,7 +265,21 @@
     padding: 10px;
 
     &.topbarSearchMenu {
-        left:0;
+        left: 0;
+        cursor: default;
+
+        .topbarBoxMenu__itemLabel {
+            width: 100%;
+        }
+
+        .topbarBoxMenu__inputSearch {
+            border: 0;
+            height: 40px;
+            width: 100%;
+            border-radius: 20px;
+            padding: 0 10px;
+            font-size: 1rem;
+        }
     }
 
     &.topbarAccountMenu {

@@ -1,18 +1,29 @@
 import { Search, Settings } from '@material-ui/icons';
+import {  useRef } from 'react';
 import { ImExit } from 'react-icons/im';
 import { Link } from 'react-router-dom';
 import Logout from '../Logout/Logout';
 import { loadImage } from '../utils';
 
 export const BoxMenuSearch = () => {
+    const textInput = useRef(null);
+
+    const setFocus = () => (textInput.current as unknown as HTMLInputElement).focus();
+
     return (
         <div className="topbarBoxMenu topbarSearchMenu">
-            <div className="topbarBoxMenu__item">
+            <div className="topbarBoxMenu__item" onClick={setFocus}>
                 <div className="topbarBoxMenu__itemImg">
                     <Search />
                 </div>
                 <div className="topbarBoxMenu__itemLabel">
-                    <input type="text" placeholder="Search for friend, post or video" />
+                    <input
+                        ref={textInput}
+                        autoFocus
+                        className="topbarBoxMenu__inputSearch"
+                        type="text"
+                        placeholder="Search for friend, post or video"
+                    />
                 </div>
             </div>
         </div>

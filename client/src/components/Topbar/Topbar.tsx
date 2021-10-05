@@ -1,9 +1,7 @@
-import { Search, Chat, Notifications, Home, Group, KeyboardArrowDownRounded, Settings } from '@material-ui/icons';
-import { ImExit } from 'react-icons/all';
-import { useCallback, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { Search, Chat, Notifications, Home, Group, KeyboardArrowDownRounded } from '@material-ui/icons';
+import { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import AuthContext from '../AppContext/Auth.context';
-import Logout from '../Logout/Logout';
 import { loadImage } from '../utils';
 import Logo from '../../images/logo/logo.png';
 
@@ -26,6 +24,11 @@ const Topbar = () => {
         setIsOpenAccountMenu(false);
         setIsOpenSearch(!isOpenSearch);
     };
+
+    // const closeModals = () => {
+    //     setIsOpenAccountMenu(false);
+    //     setIsOpenSearch(false);
+    // }
 
     return (
         <div className="topbarContainer">
