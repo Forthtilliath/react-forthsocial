@@ -1,15 +1,13 @@
 @import '../../sass';
 
 .rightbar {
-    // flex: 3.5;
+    flex: 3.5;
     @include scroll-divFix(50px);
-    // padding-right: 5px;
     
     &::-webkit-scrollbar {
         display: none;
     }
     &:hover {
-        // padding-right: 0;
         &::-webkit-scrollbar {
             display: block;
         }
