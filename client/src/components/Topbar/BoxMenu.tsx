@@ -1,9 +1,9 @@
 import { Search, Settings } from '@material-ui/icons';
-import {  useRef } from 'react';
+import { useRef } from 'react';
 import { ImExit } from 'react-icons/im';
 import { Link } from 'react-router-dom';
 import Logout from '../Logout/Logout';
-import { loadImage } from '../utils';
+import Avatar from '../Avatar/Avatar';
 
 export const BoxMenuSearch = () => {
     const textInput = useRef(null);
@@ -34,7 +34,7 @@ export const BoxMenuAccount = ({ user }: IProps) => {
     return (
         <div className="topbarBoxMenu topbarAccountMenu">
             <Link to="profile" className="topbarBoxMenu__item">
-                <img src={loadImage(user?.profilePicture)} alt="avatar" className="topbarBoxMenu__itemAvatar" />
+                <Avatar image={user?.profilePicture} size={60} />
                 <div className="topbarBoxMenu__itemWrapper">
                     <div className="topbarBoxMenu__itemLabel">{user?.username}</div>
                     <div className="topbarBoxMenu__itemSubLabel">Voir votre profil</div>

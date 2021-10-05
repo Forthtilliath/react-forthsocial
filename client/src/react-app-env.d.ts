@@ -2,8 +2,11 @@
 
 interface IProps {
     user?: {
-        userId: string,
-        username: string,
-        profilePicture: string,
-    }
+        userId: string;
+        username: string;
+        profilePicture: string;
+    };
+    image?: string;
+    size?: number;
+    mr?: number;
 }

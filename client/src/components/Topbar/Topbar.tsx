@@ -2,8 +2,8 @@ import { Search, Chat, Notifications, Home, Group, KeyboardArrowDownRounded } fr
 import { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import AuthContext from '../AppContext/Auth.context';
-import { loadImage } from '../utils';
 import Logo from '../../images/logo/logo.png';
+import Avatar from '../Avatar/Avatar';
 
 import './Topbar.scss';
 import { BoxMenuAccount, BoxMenuSearch } from './BoxMenu';
@@ -65,17 +65,17 @@ const Topbar = () => {
             <div className="topbarRight">
                 <div className="topbarIcons second">
                     <Link to="profile" className="topbarProfileItem">
-                        <img src={loadImage(user ? user.profilePicture : '')} alt="avatar" className="topbarImg" />
+                        <Avatar image={user?.profilePicture} />
                         <div className="topbarName">{user?.username}</div>
                     </Link>
-                    <div className="topbarIconItem" data-name="Messagerie">
+                    <Link to="chat" className="topbarIconItem" data-name="Messagerie">
                         <Chat />
                         <span className="topbarIconBadge">2</span>
-                    </div>
-                    <div className="topbarIconItem" data-name="Notifications">
+                    </Link>
+                    <Link to="notifications" className="topbarIconItem" data-name="Notifications">
                         <Notifications />
                         <span className="topbarIconBadge">5</span>
-                    </div>
+                    </Link>
                     <div
                         className={isOpenAccountMenu ? 'topbarIconItem r0 open' : 'topbarIconItem r0'}
                         data-name="Compte"

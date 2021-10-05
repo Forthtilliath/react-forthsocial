@@ -1,51 +1,14 @@
-import {
-    RssFeed,
-    Chat,
-    School,
-    WorkOutline,
-    HelpOutline,
-    Event,
-    PlayCircleFilledOutlined,
-    Bookmark,
-    Group,
-} from '@material-ui/icons';
+import { FcCamera, FcConferenceCall } from "react-icons/fc";
 
 const sidebarData = [
+    // TODO Ajouter Avatar + Username
     {
-        icon: <RssFeed />,
-        text: 'Feed',
+        icon: <FcConferenceCall size={30} />,
+        text: 'Retrouver des amis',
     },
     {
-        icon: <Chat />,
-        text: 'Chats',
-    },
-    {
-        icon: <PlayCircleFilledOutlined />,
-        text: 'Videos',
-    },
-    {
-        icon: <Group />,
-        text: 'Groups',
-    },
-    {
-        icon: <Bookmark />,
-        text: 'Bookmarks',
-    },
-    {
-        icon: <HelpOutline />,
-        text: 'Questions',
-    },
-    {
-        icon: <WorkOutline />,
-        text: 'Jobs',
-    },
-    {
-        icon: <Event />,
-        text: 'Events',
-    },
-    {
-        icon: <School />,
-        text: 'Courses',
+        icon: <FcCamera size={30} />,
+        text: 'Souvenirs',
     },
 ];
 

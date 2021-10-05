@@ -72,11 +72,6 @@
             & > a {
                 @include center();
             }
-
-            .topbarImg {
-                @include circle(32);
-                cursor: pointer;
-            }
         }
     }
 
@@ -299,10 +294,6 @@
 
         &:hover {
             background: rgba(0, 0, 0, 0.05);
-        }
-
-        .topbarBoxMenu__itemAvatar {
-            @include circle(60);
         }
 
         .topbarBoxMenu__itemImg {

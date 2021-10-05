@@ -1,0 +1,6 @@
+@import '../../sass';
+
+.avatar {
+    @include circle(32);
+    cursor: pointer;
+}

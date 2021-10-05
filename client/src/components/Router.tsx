@@ -12,6 +12,11 @@ import Profile from '../pages/Profile/Profile';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { useContext } from 'react';
 import AuthContext from '../components/AppContext/Auth.context';
+import Friends from '../pages/Friends/Friends';
+import Topbar from './Topbar/Topbar';
+import Chat from '../pages/Chat/Chat';
+import Notifications from '../pages/Notifications/Notifications';
+import Settings from '../pages/Settings/Settings';
 
 const Router = () => {
     const {
@@ -22,13 +27,22 @@ const Router = () => {
         <BrowserRouter>
             <Switch>
                 {loggedIn === true && (
-                    <Switch>
-                        <Route exact path="/home"  component={Home}></Route>
-                        <Route exact path="/friends/" component={Profile}></Route>
-                        <Route exact path="/profile/" component={Profile}></Route>
-                        <Route exact path="/profile/:username" component={Profile}></Route>
-                        <Redirect to="/home" />
-                    </Switch>
+                    <>
+                        <Topbar />
+                        <Switch>
+                            <Route exact path="/home" component={Home}></Route>
+                            <Route exact path="/friends/" component={Friends}></Route>
+
+                            <Route exact path="/profile/" component={Profile}></Route>
+                            <Route exact path="/profile/:username" component={Profile}></Route>
+
+                            <Route exact path="/chat" component={Chat}></Route>
+                            <Route exact path="/notifications" component={Notifications}></Route>
+                            <Route exact path="/settings" component={Settings}></Route>
+
+                            <Redirect to="/home" />
+                        </Switch>
+                    </>
                 )}
                 {loggedIn === false && (
                     <Switch>
