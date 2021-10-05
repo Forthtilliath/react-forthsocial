@@ -17,6 +17,8 @@ import Topbar from './Topbar/Topbar';
 import Chat from '../pages/Chat/Chat';
 import Notifications from '../pages/Notifications/Notifications';
 import Settings from '../pages/Settings/Settings';
+import FindFriends from '../pages/FindFriends/FindFriends';
+import Remember from '../pages/Remember/Remember';
 
 const Router = () => {
     const {
@@ -39,6 +41,9 @@ const Router = () => {
                             <Route exact path="/chat" component={Chat}></Route>
                             <Route exact path="/notifications" component={Notifications}></Route>
                             <Route exact path="/settings" component={Settings}></Route>
+
+                            <Route exact path="/find-friends" component={FindFriends}></Route>
+                            <Route exact path="/remember" component={Remember}></Route>
 
                             <Redirect to="/home" />
                         </Switch>
