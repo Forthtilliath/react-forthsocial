@@ -2,7 +2,7 @@
 
 .rightbar {
     flex: 3.5;
-    @include scroll-divFix(50px);
+    @include scroll-divFix($headerHeight);
     
     &::-webkit-scrollbar {
         display: none;

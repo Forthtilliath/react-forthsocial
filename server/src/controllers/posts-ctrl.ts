@@ -4,7 +4,8 @@ const publicIp = require('public-ip');
 
 export const getPosts = (_req: Request, res: Response) => {
     // console.log('getPosts', await publicIp.v4());
-    publicIp.v4().then(console.log);
+    // NOTE IP
+    // publicIp.v4().then(console.log);
 
     Post.getPosts()
         .then((results) => res.status(200).json(results))

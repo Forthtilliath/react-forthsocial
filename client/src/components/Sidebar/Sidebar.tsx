@@ -4,8 +4,14 @@ import CloseFriend from '../CloseFriend/CloseFriend';
 import { Users as Friends } from '../../dummyData';
 import Avatar from '../Avatar/Avatar';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import AuthContext from '../AppContext/Auth.context';
 
 const Sidebar = () => {
+    const {
+        connexion: { user },
+    } = useContext(AuthContext);
+
     return (
         <div className="sidebar">
             <div className="sidebarWrapper">
@@ -13,7 +19,7 @@ const Sidebar = () => {
                     <li className="sidebarListItem">
                         <Link to="profile">
                             <span className="sidebarIcon">
-                                <Avatar image={''} size={30} />
+                                <Avatar image={user?.profilePicture} size={30} />
                             </span>
                             <span className="sidebarListItemText">{'Jean'}</span>
                         </Link>
@@ -22,7 +28,7 @@ const Sidebar = () => {
                         <li className="sidebarListItem" key={i}>
                             <Link to={el.link}>
                                 <span children={el.icon} className="sidebarIcon" />
-                                <span className="sidebarListItemText">{el.text}</span>
+                                <span children={el.text} className="sidebarListItemText" />
                             </Link>
                         </li>
                     ))}

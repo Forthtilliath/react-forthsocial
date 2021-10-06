@@ -1,7 +1,13 @@
+import Sidebar from "../../components/Sidebar/Sidebar";
+import './Remember.scss';
+
 const Remember = () => {
     return (
-        <div>
-            Remember
+        <div className="rememberContainer">
+            <Sidebar />
+            <div>
+            REMEMBER
+            </div>
         </div>
     );
 };

@@ -1,7 +1,11 @@
+import Sidebar from '../../components/Sidebar/Sidebar';
+import './Friends.scss';
+
 const Friends = () => {
     return (
-        <div>
-            Friends
+        <div className="friendsContainer">
+            <Sidebar />
+            <div>FRIENDS</div>
         </div>
     );
 };

@@ -1,7 +1,11 @@
+import Sidebar from '../../components/Sidebar/Sidebar';
+import './Chat.scss';
+
 const Chat = () => {
     return (
-        <div>
-            Messagerie
+        <div className="chatContainer">
+            <Sidebar />
+            <div>Messagerie</div>
         </div>
     );
 };

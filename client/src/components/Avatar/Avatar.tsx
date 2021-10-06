@@ -7,4 +7,10 @@ const Avatar = ({ image, size, mr }: IProps) => {
     );
 };
 
+export const AvatarExterne = ({ image, size, mr }: IProps) => {
+    return (
+        <img src={image} alt="avatar" className="avatar" style={{ width: size, height: size, marginRight: mr }} />
+    );
+};
+
 export default Avatar;

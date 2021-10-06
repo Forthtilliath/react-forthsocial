@@ -1,7 +1,11 @@
+import Sidebar from '../../components/Sidebar/Sidebar';
+import './Notifications.scss';
+
 const Notifications = () => {
     return (
-        <div>
-            Notifs
+        <div className="notificationsContainer">
+            <Sidebar />
+            <div>Notifs</div>
         </div>
     );
 };

@@ -2,7 +2,7 @@
 
 .sidebar {
     flex: 3;
-    @include scroll-divFix(50px);
+    @include scroll-divFix($headerHeight);
     
     &::-webkit-scrollbar {
         display: none;
@@ -12,15 +12,14 @@
     }
 
     .sidebarWrapper {
-        padding: 20px;
+        padding: 10px 15px 20px 20px;
 
         .sidebarList {
             list-style: none;
 
             .sidebarListItem > a {
                 @include center();
-                margin-bottom: 20px;
-                padding: 5px;
+                padding: 10px 5px;
                 border-radius: 10px;
 
                 .sidebarIcon {
@@ -29,7 +28,7 @@
                 }
 
                 &:hover {
-                    background-color: #0005;
+                    background-color: #0001;
                 }
             }
         }
