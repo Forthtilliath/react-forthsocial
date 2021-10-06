@@ -9,4 +9,5 @@ interface IProps {
     image?: string;
     size?: number;
     mr?: number;
+    first?: boolean;
 }

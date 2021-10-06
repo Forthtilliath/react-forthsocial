@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar/Sidebar';
-import { AvatarExterne } from '../../components/Avatar/Avatar';
+import { AvatarExterne, AvatarExterneSVG } from '../../components/Avatar/Avatar';
 import './FindFriends.scss';
 
 const FindFriends = () => {
@@ -29,9 +29,9 @@ const FindFriends = () => {
                     <div className="findFriendsRight-content-cardcontent">
                         <h4 className="findFriendsRight-content-cardcontent_name">{user.name}</h4>
                         <div className="findFriendsRight-content-cardcontent_relations">
-                            <AvatarExterne image={user.avatars[0]} size={16} />
-                            <AvatarExterne image={user.avatars[1]} size={16} />
-                            {user.relations && user.relations + ' amis en commun'}
+                            <AvatarExterneSVG key={0} image={user.avatars[0]} size={16} first={true} />
+                            <AvatarExterneSVG key={1} image={user.avatars[1]} size={16} first={false} />
+                            {user.relations && <div>{user.relations + ' amis en commun'}</div>}
                         </div>
                         <div className="findFriendsRight-content-cardcontent_button">
                             <button>Ajouter</button>
