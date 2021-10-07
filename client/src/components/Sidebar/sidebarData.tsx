@@ -5,7 +5,7 @@ const sidebarData = [
     {
         icon: <FcConferenceCall size={30} />,
         text: 'Retrouver des amis',
-        link: 'find-friends',
+        link: 'friends',
     },
     {
         icon: <FcCamera size={30} />,

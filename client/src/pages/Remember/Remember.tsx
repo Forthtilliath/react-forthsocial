@@ -14,7 +14,7 @@ const Remember = () => {
                 ) : (
                     <div className="rememberNoMemoriesContainer">
                         <img
-                            src={loadImage('nomemories.jpg')}
+                            src={loadImage('nomemories.webp')}
                             alt="no-memories"
                             className="rememberNoMemoriesContainer-image"
                         />

@@ -1,3 +1,21 @@
 .friendsContainer {
     display: flex;
+
+    .friendsRight {
+        padding: 20px;
+        flex: 9;
+
+        .friendsRight-top {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        .friendsRight-content {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+    }
 }
