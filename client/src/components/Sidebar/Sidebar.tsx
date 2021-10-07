@@ -3,7 +3,7 @@ import './Sidebar.scss';
 import CloseFriend from '../CloseFriend/CloseFriend';
 import { Users as Friends } from '../../dummyData';
 import Avatar from '../Avatar/Avatar';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import AuthContext from '../AppContext/Auth.context';
 
@@ -17,19 +17,19 @@ const Sidebar = () => {
             <div className="sidebarWrapper">
                 <ul className="sidebarList">
                     <li className="sidebarListItem">
-                        <Link to="profile">
+                        <NavLink to="profile" activeClassName="active">
                             <span className="sidebarIcon">
                                 <Avatar image={user?.profilePicture} size={30} />
                             </span>
                             <span className="sidebarListItemText">{'Jean'}</span>
-                        </Link>
+                        </NavLink>
                     </li>
                     {sidebarData.map((el, i) => (
                         <li className="sidebarListItem" key={i}>
-                            <Link to={el.link}>
+                            <NavLink to={el.link} activeClassName="active">
                                 <span children={el.icon} className="sidebarIcon" />
                                 <span children={el.text} className="sidebarListItemText" />
-                            </Link>
+                            </NavLink>
                         </li>
                     ))}
                 </ul>

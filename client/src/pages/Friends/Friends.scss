@@ -5,13 +5,17 @@
         padding: 20px;
         flex: 9;
 
-        .friendsRight-top {
+        .friendsRight_top {
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
+
+            .friendsRight_top-link {
+                color:var(--base-blue);
+            }
         }
 
-        .friendsRight-content {
+        .friendsRight_content {
             margin-top: 10px;
             display: flex;
             flex-wrap: wrap;

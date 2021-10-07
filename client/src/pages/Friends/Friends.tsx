@@ -35,14 +35,14 @@ const Friends = () => {
         <div className="friendsContainer">
             <Sidebar />
             <div className="friendsRight">
-                <div className="friendsRight-top">
+                <div className="friendsRight_top">
                     <h2>Vous connaissez peut-être</h2>
-                    <Link to="" className="">Voir tout</Link>
+                    <Link to="" className="friendsRight_top-link">Voir tout</Link>
                 </div>
 
                 <MaskSVG />
 
-                <div className="friendsRight-content">
+                <div className="friendsRight_content">
                     {arrayFriends.map((friend, i) => (
                         <Card key={i} user={friend} />
                     ))}

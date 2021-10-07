@@ -1,9 +1,10 @@
 @import '../../sass';
 
 .sidebar {
-    flex: 3;
+    // flex: 3;
     @include scroll-divFix($headerHeight);
-    
+    box-shadow: 2px 0px 10px darkgrey;
+
     &::-webkit-scrollbar {
         display: none;
     }
@@ -27,7 +28,7 @@
                     @include center();
                 }
 
-                &:hover {
+                &:hover, &.active {
                     background-color: #0001;
                 }
             }

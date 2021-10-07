@@ -1,7 +1,7 @@
 @import '../../sass';
 
 .rightbar {
-    flex: 3.5;
+    // flex: 3.5; 
     @include scroll-divFix($headerHeight);
     
     &::-webkit-scrollbar {
