@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar/Sidebar';
-import { AvatarExterne, AvatarExterneSVG } from '../../components/Avatar/Avatar';
+import { AvatarExterneSVG } from '../../components/Avatar/Avatar';
 import './FindFriends.scss';
 
 const FindFriends = () => {
@@ -15,7 +15,7 @@ const FindFriends = () => {
     };
 
     const arrayFriends = Array.from({ length: 20 }, (_) => friend);
-    console.log(arrayFriends);
+    const arrayOf15 = Array.from({ length: 15 }, (_, k) => k + arrayFriends.length);
 
     const Card = ({ user }: { user: { image: string; name: string; relations: number; avatars: string[] } }) => {
         return (
@@ -45,6 +45,24 @@ const FindFriends = () => {
         );
     };
 
+    const CardEmpty = () => {
+        return <div className="findFriendsRight-content-cardContainer"></div>;
+    };
+
+    const MaskSVG = () => (
+        <div style={{ height: 0 }}>
+            <svg>
+                <mask id="mask_first">
+                    <circle cx="8" cy="8" fill="white" r="8"></circle>
+                </mask>
+                <mask id="mask_next">
+                    <circle cx="8" cy="8" fill="white" r="8"></circle>
+                    <circle cx="-4" cy="8" fill="black" r="10"></circle>
+                </mask>
+            </svg>
+        </div>
+    );
+
     return (
         <div className="findFriendsContainer">
             <Sidebar />
@@ -54,9 +72,14 @@ const FindFriends = () => {
                     <Link to="">Voir tout</Link>
                 </div>
 
+                <MaskSVG />
+
                 <div className="findFriendsRight-content">
                     {arrayFriends.map((friend, i) => (
                         <Card key={i} user={friend} />
+                    ))}
+                    {arrayOf15.map((v) => (
+                        <CardEmpty key={v} />
                     ))}
                 </div>
             </div>

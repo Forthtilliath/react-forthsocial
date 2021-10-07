@@ -1,3 +1,37 @@
+@import '../../sass';
+
 .rememberContainer {
     display: flex;
+
+    .rememberRight {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 20px;
+        flex: 9;
+
+        .rememberNoMemoriesContainer {
+            @include center();
+            flex-direction: column;
+            border-radius: 8px;
+            background-color: #333;
+            width: 600px;
+            color: #f2f2f2;
+
+            .rememberNoMemoriesContainer-image {
+                width: 100%;
+                border-radius: 8px 8px 0 0;
+            }
+
+            .rememberNoMemoriesContainer-title {
+                font-weight: 700;
+                font-size: 1.4rem;
+                margin-top: 10px;
+            }
+
+            .rememberNoMemoriesContainer-text {
+                margin-bottom: 15px;
+            }
+        }
+    }
 }

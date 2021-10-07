@@ -32,6 +32,9 @@ app.use(express.urlencoded({ extended: true }));
 // Récupération de la session
 app.all('*', auth.checkUser);
 
+app.get('/api/babel/parser/lib/', () => {
+    console.log('oooooooo')
+})
 app.use('/api/auth', authRoutes);
 app.use('/api/user', usersRoutes);
 app.use('/api/posts', postsRoutes);

@@ -12,15 +12,13 @@ const Avatar = ({ image, size, mr }: IProps) => {
     );
 };
 
-export const AvatarExterne = ({ image, size, mr }: IProps) => {
-    return <img src={image} alt="avatar" className="avatar" style={{ width: size, height: size, marginRight: mr }} />;
-};
+// export const AvatarExterne = ({ image, size, mr }: IProps) => {
+//     return <img src={image} alt="avatar" className="avatar" style={{ width: size, height: size, marginRight: mr }} />;
+// };
 
 export const AvatarExterneSVG = ({ image, size, first = false }: IProps) => {
-    console.log(first ? "a" : "b");
     const style = first ? {} : { marginLeft: -4 };
-    // const style = { paddingLeft: '-4px' };
-    const a = Math.random();
+    const mask = first ? "url(#mask_first)" : "url(#mask_next)";
 
     return (
         <div style={style}>
@@ -32,11 +30,7 @@ export const AvatarExterneSVG = ({ image, size, first = false }: IProps) => {
                 role="img"
                 style={{ width: size, height: size }}
             >
-                <mask id={"mask" + a}>
-                    <circle cx="8" cy="8" fill="white" r="8"></circle>
-                    {!first && <circle cx="-4" cy="8" fill="black" r="10"></circle>}
-                </mask>
-                <g mask={"url(#mask" + a+")"}>
+                <g mask={mask}>
                     <image
                         x="0"
                         y="0"
