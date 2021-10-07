@@ -9,6 +9,7 @@ const Login = () => {
     const history = useHistory();
     const { getConnexion } = useContext(AuthContext);
     const [formData, setFormData] = useState({ username: 'Jean', password: 'test33' });
+    // const [formData, setFormData] = useState({ username: '', password: '' });
 
     const handleChange = (e: { target: { name: string; value: string } }) =>
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,7 +26,7 @@ const Login = () => {
                     <span className="loginDesc">Connect with friends and the world around you on Forthsocial.</span>
                 </div>
                 <div className="loginRight">
-                    <div className="loginBox">
+                    <form className="loginBox" onSubmit={(e) => {e.preventDefault()}}>
                         <input
                             className="loginInput"
                             value={formData.username}
@@ -34,6 +35,7 @@ const Login = () => {
                             type="username"
                             name="username"
                             id="username"
+                            autoComplete="false"
                         />
                         <input
                             className="loginInput"
@@ -43,6 +45,7 @@ const Login = () => {
                             type="password"
                             name="password"
                             id="password"
+                            autoComplete="false"
                         />
                         <button className="loginButton" onClick={login}>
                             Log In
@@ -52,7 +55,7 @@ const Login = () => {
                         <Link to="register" className="loginRegisterLink">
                             <button className="loginRegisterButton">Create a New Account</button>
                         </Link>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

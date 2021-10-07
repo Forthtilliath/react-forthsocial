@@ -21,14 +21,14 @@ export const login = (req: Request, res: Response) => {
     const user = new User(dataUser);
 
     user.isValidPassword(dataUser.username, dataUser.password).then((result) => {
-        if (!result) return res.status(404).json({ error: 'Username or password not valid !' });
+        if (!result) return res.status(301).json({ error: 'Username or password not valid !' });
 
         const token = getToken(user.getUser());
 
         res.cookie(process.env.COOKIE_NAME as string, token, {
             maxAge: 15 * 60 * 1000,
             httpOnly: true,
-        }).send();
+        }).send(user.getUser());
     });
 };
 

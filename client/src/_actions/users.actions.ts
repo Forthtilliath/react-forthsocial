@@ -11,7 +11,10 @@ export const signin =
             .then(() => {
                 getConnexion();
                 history.push('/');
-                
             })
             .catch((err) => console.log(err));
     };
+
+export const signout = () => {
+    // () => a
+};
