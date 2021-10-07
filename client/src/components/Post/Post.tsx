@@ -5,9 +5,7 @@ import { loadImage } from '../utils';
 import Heart from '../../images/heart.png';
 import Like from '../../images/like.png';
 import { IPost } from '../../interfaces';
-// import { Users } from '../../dummyData';
 import 'moment/locale/fr';
-import './Post.scss';
 
 const Post = (props: { post: IPost }) => {
     const { description, image, createdAt, username, profilePicture, nbComments, nbLikes } = props.post;

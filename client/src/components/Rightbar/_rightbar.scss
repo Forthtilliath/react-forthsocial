@@ -1,5 +1,3 @@
-@import '../../sass';
-
 .rightbar {
     // flex: 3.5; 
     @include scroll-divFix($headerHeight);

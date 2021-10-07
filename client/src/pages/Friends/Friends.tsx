@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Card, CardEmpty } from '../../components/Card/Card';
 import Sidebar from '../../components/Sidebar/Sidebar';
-import './Friends.scss';
 
 const Friends = () => {
     const friend = {

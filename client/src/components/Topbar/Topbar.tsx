@@ -5,7 +5,6 @@ import AuthContext from '../AppContext/Auth.context';
 import Logo from '../../images/logo/logo.png';
 import Avatar from '../Avatar/Avatar';
 
-import './Topbar.scss';
 import { BoxMenuAccount, BoxMenuSearch } from './BoxMenu';
 
 const Topbar = () => {

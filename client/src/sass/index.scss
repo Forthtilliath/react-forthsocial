@@ -1,3 +1,24 @@
 @import './mixins';
 @import './variables';
 @import './globals';
+
+@import '../components/Avatar/avatar';
+@import '../components/Card/card';
+@import '../components/CloseFriend/closeFriend';
+@import '../components/Feed/feed';
+@import '../components/Login/login';
+@import '../components/OnlineUser/onlineUser';
+@import '../components/Post/post';
+@import '../components/Register/register';
+@import '../components/Rightbar/rightbar';
+@import '../components/Share/share';
+@import '../components/Sidebar/sidebar';
+@import '../components/Topbar/topbar';
+
+@import '../pages/Chat/chat';
+@import '../pages/Friends/friends';
+@import '../pages/Home/home';
+@import '../pages/Notifications/notifications';
+@import '../pages/Profile/profile';
+@import '../pages/Remember/remember';
+@import '../pages/Settings/settings';

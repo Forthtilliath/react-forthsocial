@@ -1,6 +1,5 @@
 import { IUser } from '../../interfaces';
 import { loadImage } from '../utils';
-import './CloseFriend.scss'
 
 const CloseFriend = (props: { friend: IUser }) => {
     const { friend } = props;

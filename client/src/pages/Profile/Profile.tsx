@@ -2,7 +2,6 @@ import Feed from '../../components/Feed/Feed';
 import Rightbar from '../../components/Rightbar/Rightbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { loadImage } from '../../components/utils';
-import './Profile.scss';
 
 const Profile = () => {
     return (

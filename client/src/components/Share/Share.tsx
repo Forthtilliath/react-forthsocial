@@ -1,6 +1,5 @@
 import { EmojiEmotions, Label, PermMedia, Room } from '@material-ui/icons';
 import { loadImage } from '../utils';
-import './Share.scss';
 
 const Share = () => {
     return (

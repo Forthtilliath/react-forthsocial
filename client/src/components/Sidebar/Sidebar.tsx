@@ -1,5 +1,4 @@
 import sidebarData from './sidebarData';
-import './Sidebar.scss';
 import CloseFriend from '../CloseFriend/CloseFriend';
 import { Users as Friends } from '../../dummyData';
 import Avatar from '../Avatar/Avatar';

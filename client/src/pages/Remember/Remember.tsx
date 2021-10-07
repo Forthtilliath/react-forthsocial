@@ -1,6 +1,5 @@
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { loadImage } from '../../components/utils';
-import './Remember.scss';
 
 const Remember = () => {
     const hasSouvenirs = false;

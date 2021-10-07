@@ -1,5 +1,4 @@
 import Sidebar from '../../components/Sidebar/Sidebar';
-import './Notifications.scss';
 
 const Notifications = () => {
     return (

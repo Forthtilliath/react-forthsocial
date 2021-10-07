@@ -1,4 +1,3 @@
-import './OnlineUser.scss';
 import { loadImage } from '../utils';
 import { IUser } from '../../interfaces';
 

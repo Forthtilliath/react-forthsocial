@@ -1,5 +1,4 @@
 import { AvatarExterneSVG } from '../../components/Avatar/Avatar';
-import './Card.scss';
 
 export const Card = ({ user }: { user: { image: string; name: string; relations: number; avatars: string[] } }) => {
     return (

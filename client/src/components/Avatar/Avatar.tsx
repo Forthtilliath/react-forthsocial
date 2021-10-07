@@ -1,5 +1,4 @@
 import { loadImage } from '../utils';
-import './Avatar.scss';
 
 const Avatar = ({ image, size, mr }: IProps) => {
     return (

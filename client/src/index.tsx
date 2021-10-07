@@ -6,6 +6,7 @@ import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 
 import rootReducer from './_reducers';
+import './sass/index.scss';
 
 // dev tools
 import { composeWithDevTools } from 'redux-devtools-extension';

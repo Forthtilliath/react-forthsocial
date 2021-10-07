@@ -1,4 +1,3 @@
-import './Rightbar.scss';
 import BirthdayImg from '../../images/gift.png';
 import Ad from '../../images/ad.png';
 import { Users } from '../../dummyData';

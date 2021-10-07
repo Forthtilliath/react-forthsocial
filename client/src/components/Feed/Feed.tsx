@@ -3,7 +3,6 @@ import Post from '../Post/Post';
 import Share from '../Share/Share';
 import { IPost } from '../../interfaces';
 import * as api from '../../_api';
-import './Feed.scss';
 
 const Feed = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

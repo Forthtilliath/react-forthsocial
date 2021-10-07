@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { signin } from '../../_actions/users.actions';
 import AuthContext from '../AppContext/Auth.context';
-import './Login.scss';
 
 const Login = () => {
     const dispatch = useDispatch();
