@@ -3,7 +3,7 @@ import './Sidebar.scss';
 import CloseFriend from '../CloseFriend/CloseFriend';
 import { Users as Friends } from '../../dummyData';
 import Avatar from '../Avatar/Avatar';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import AuthContext from '../AppContext/Auth.context';
 

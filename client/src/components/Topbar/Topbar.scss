@@ -10,8 +10,9 @@
     z-index: 999;
 
     .topbarLeft {
-        flex: 3;
-        max-width: 360px;
+        // flex: 3;
+        // max-width: 360px;
+        width: clamp(250px, 25%, 360px);
         @include center();
 
         .logo {
@@ -47,14 +48,16 @@
     }
 
     .topbarCenter {
-        flex: 5.5;
+        // flex: 5.5;
+        flex:1;
         max-width: 680px;
         margin: 0 10px;
     }
 
     .topbarRight {
-        flex: 3.5;
-        max-width: 360px;
+        // flex: 3.5;
+        // max-width: 360px;
+    width: clamp(250px, 25%, 360px);
         // @include center(space-between);
         @include center(flex-end);
         color: var(--base-white);

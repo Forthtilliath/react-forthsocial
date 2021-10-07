@@ -1,4 +1,3 @@
-import './App.scss';
 import Router from './components/Router';
 import { AuthContextProvider } from './components/AppContext/Auth.context';
 
