@@ -1,5 +1,5 @@
-import { loadImage } from '../utils';
 import { IUser } from '../../interfaces';
+import Avatar from '../Avatar/Avatar';
 
 const OnlineUser = (props: { user: IUser }) => {
     const { user } = props;
@@ -7,7 +7,7 @@ const OnlineUser = (props: { user: IUser }) => {
     return (
         <li className="rightbarFriend">
             <div className="rightbarProfileImgContainer">
-                <img src={loadImage(user?.profilePicture)} alt="profile" className="rightbarProfileImg" />
+                <Avatar image={user?.profilePicture} size={40} />
                 <span className="rightbarOnline"></span>
             </div>
             <span className="rightbarUsername">{user.username}</span>

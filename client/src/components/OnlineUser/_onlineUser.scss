@@ -1,14 +1,17 @@
 .rightbarFriend {
     @include center;
-    margin-bottom: 15px;
+    // margin-bottom: 15px;
+    padding: 5px;
+
+    &:hover {
+        background-color: #0001;
+        border-radius: 10px;
+    }
 
     .rightbarProfileImgContainer {
         margin-right: 10px;
         position: relative;
-
-        .rightbarProfileImg {
-            @include circle(40);
-        }
+        height: 40px;
 
         .rightbarOnline {
             @include circle(12);

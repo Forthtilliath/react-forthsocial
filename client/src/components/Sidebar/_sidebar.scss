@@ -26,7 +26,8 @@
                     @include center();
                 }
 
-                &:hover, &.active {
+                &:hover,
+                &.active {
                     background-color: #0001;
                 }
             }
@@ -44,8 +45,14 @@
             margin: 20px 0;
         }
 
-        .sidebarFriendList {
-            list-style: none;
+        .sidebarTitle {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 20px;
         }
+    }
+
+    .sidebarFriendList {
+        list-style: none;
     }
 }

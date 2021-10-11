@@ -1,10 +1,11 @@
 import sidebarData from './sidebarData';
 import CloseFriend from '../CloseFriend/CloseFriend';
-import { Users as Friends } from '../../dummyData';
+import { Users as Friends, Users } from '../../dummyData';
 import Avatar from '../Avatar/Avatar';
 import { NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import AuthContext from '../AppContext/Auth.context';
+import OnlineUser from '../OnlineUser/OnlineUser';
 
 const Sidebar = () => {
     const {
@@ -34,9 +35,16 @@ const Sidebar = () => {
                 </ul>
                 {/* <button className="sidebarButton">Show More</button> */}
                 <hr className="sidebarHr" />
-                <ul className="sidebarFriendList">
+                {/* <ul className="sidebarFriendList">
                     {Friends.map((friend) => (
                         <CloseFriend key={friend.id} friend={friend} />
+                    ))}
+                </ul> */}
+
+                <h4 className="sidebarTitle">Contacts</h4>
+                <ul className="sidebarFriendList">
+                    {Users.map((user) => (
+                        <OnlineUser key={user.id} user={user} />
                     ))}
                 </ul>
             </div>

@@ -14,12 +14,12 @@ const Rightbar = ({ profile }: any) => {
                 </span>
             </div>
             <img src={Ad} alt="ad" className="rightbarAd" />
-            <h4 className="rightbarTitle">Online Friends</h4>
+            {/* <h4 className="rightbarTitle">Online Friends</h4>
             <ul className="rightbarFriendList">
                 {Users.map((user) => (
                     <OnlineUser key={user.id} user={user} />
                 ))}
-            </ul>
+            </ul> */}
         </>
     );
 
