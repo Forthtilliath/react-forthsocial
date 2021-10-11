@@ -1,11 +1,7 @@
 import express from 'express';
 const router = express.Router();
 import * as usersCtrl from '../controllers/users-ctrl';
-// import auth from '../middleware/auth';
 import * as authMdw from '../middleware/auth-mdw';
-
-// auth
-// router.post('/login', usersCtrl.connectUser);
 
 // users
 router.get('/', usersCtrl.getUsers);

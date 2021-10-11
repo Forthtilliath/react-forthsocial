@@ -3,7 +3,7 @@ import Rightbar from '../../components/Rightbar/Rightbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { loadImage } from '../../components/utils';
 
-const Profile = () => {
+const Profile = ({ username}:{username?:string}) => {
     return (
         <div className="profileContainer">
             <Sidebar />
@@ -19,7 +19,7 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className="profileRightBottom">
-                    <Feed />
+                    <Feed username={username} />
                     <Rightbar profile />
                 </div>
             </div>

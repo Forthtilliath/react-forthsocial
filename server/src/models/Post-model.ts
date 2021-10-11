@@ -53,6 +53,21 @@ class Post {
 
         return await pool.query<RowDataPacket[]>(query).then((res) => res[0]);
     }
+
+    /** Récupère l'ensemble des posts d'un utilisateur à partir de son username */
+    static async getPostsUser(username: string): Promise<RowDataPacket[]> {
+        const query = ` SELECT p.*, u.username, u.profilePicture, COUNT(c.postId) AS nbComments, COUNT(lp.postId) AS nbLikes
+                        FROM ${Post._table} p
+                            INNER JOIN ${User._table} u ON u.id = p.userId
+                            LEFT JOIN comment c ON p.id = c.postId
+                            LEFT JOIN likepost lp ON p.id = lp.postId
+                        WHERE u.username = ?
+                        GROUP BY p.id`;
+        console.log(query);
+        const datas = [username];
+
+        return await pool.query<RowDataPacket[]>(query, datas).then((res) => res[0]);
+    }
 }
 
 export default Post;

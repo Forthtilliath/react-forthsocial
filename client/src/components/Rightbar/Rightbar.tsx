@@ -1,7 +1,5 @@
 import BirthdayImg from '../../images/gift.png';
 import Ad from '../../images/ad.png';
-import { Users } from '../../dummyData';
-import OnlineUser from '../OnlineUser/OnlineUser';
 import { loadImage } from '../utils';
 
 const Rightbar = ({ profile }: any) => {

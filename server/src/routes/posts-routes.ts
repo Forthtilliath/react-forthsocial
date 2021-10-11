@@ -6,7 +6,7 @@ import * as postsCtrl from '../controllers/posts-ctrl';
 router.get('/', postsCtrl.getPosts);
 
 router.get('/timeline/', postsCtrl.getPosts);
-router.get('/timeline/:id', postsCtrl.getPosts);
+router.get('/timeline/:username', postsCtrl.getPostsUser);
 
 // crud
 router.post('/', postsCtrl.createPost);

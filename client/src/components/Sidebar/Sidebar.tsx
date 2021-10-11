@@ -1,6 +1,5 @@
 import sidebarData from './sidebarData';
-import CloseFriend from '../CloseFriend/CloseFriend';
-import { Users as Friends, Users } from '../../dummyData';
+import { Users } from '../../dummyData';
 import Avatar from '../Avatar/Avatar';
 import { NavLink } from 'react-router-dom';
 import { useContext } from 'react';

@@ -52,10 +52,10 @@ const Topbar = () => {
 
             <div className="topbarCenter">
                 <div className="topbarIcons main">
-                    <NavLink to="home" className="topbarIconItem" activeClassName="active" data-name="Accueil">
+                    <NavLink to="/home" className="topbarIconItem" activeClassName="active" data-name="Accueil">
                         <Home />
                     </NavLink>
-                    <NavLink to="friends" className="topbarIconItem" activeClassName="active" data-name="Amis">
+                    <NavLink to="/friends" className="topbarIconItem" activeClassName="active" data-name="Amis">
                         <Group />
                     </NavLink>
                 </div>
@@ -63,15 +63,15 @@ const Topbar = () => {
 
             <div className="topbarRight">
                 <div className="topbarIcons second">
-                    <Link to="profile" className="topbarProfileItem">
+                    <Link to="/profile" className="topbarProfileItem">
                         <Avatar image={user?.profilePicture} />
                         <div className="topbarName">{user?.username}</div>
                     </Link>
-                    <Link to="chat" className="topbarIconItem" data-name="Messagerie">
+                    <Link to="/chat" className="topbarIconItem" data-name="Messagerie">
                         <Chat />
                         <span className="topbarIconBadge">2</span>
                     </Link>
-                    <Link to="notifications" className="topbarIconItem" data-name="Notifications">
+                    <Link to="/notifications" className="topbarIconItem" data-name="Notifications">
                         <Notifications />
                         <span className="topbarIconBadge">5</span>
                     </Link>

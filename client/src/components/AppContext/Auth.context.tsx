@@ -1,15 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
-interface IConnexionContext {
-  loggedIn: boolean | undefined,
-  user?: {
-    userId: string,
-    username: string,
-    profilePicture: string
-  }
-}
-
 const initialContext:IConnexionContext = { loggedIn: undefined };
 const AuthContext = createContext({ connexion: initialContext, getConnexion: () => {} });
 

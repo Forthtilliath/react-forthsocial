@@ -12,6 +12,16 @@ export const getPosts = (_req: Request, res: Response) => {
         .catch((err) => res.status(404).json(err.sqlMessage));
 };
 
+export const getPostsUser = (req: Request, res: Response) => {
+    // console.log('getPosts', await publicIp.v4());
+    // NOTE IP
+    // publicIp.v4().then(console.log);
+
+    Post.getPostsUser(req.params.username)
+        .then((results) => res.status(200).json(results))
+        .catch((err) => res.status(404).json(err.sqlMessage));
+};
+
 export const createPost = (req: Request, res: Response) => {
     //
 };
