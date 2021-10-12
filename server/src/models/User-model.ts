@@ -148,7 +148,6 @@ class User {
                         FROM ${User._table}`;
 
         return await pool.query<RowDataPacket[]>(query).then((res) => res[0]);
-        // return await pool.query(query).then((res) => res[0]);
     }
 
     /** Vérifie si le username est disponible */

@@ -1,5 +1,33 @@
 /// <reference types="react-scripts" />
 
+/************************
+ * Register + Login
+ */
+interface ILogin {
+    username: string;
+    password: string;
+}
+
+interface IRegister extends ILogin {
+    email: string;
+    passwordConfirm: string;
+}
+
+/*********************************
+ * Actions
+ */
+// interface IPayloadLogin {
+//     userId: string;
+//     token: string;
+// }
+interface IAction {
+    type: string;
+    payload: {
+        userId: string;
+        token: string;
+    };
+}
+
 interface IUser {
     // userId: string;
     id: string;
@@ -25,3 +53,23 @@ interface IProps {
 // interface IProfile {
 //     userId?: string;
 // }
+
+/*************************************
+ * Posts
+ */
+interface IPost {
+    id: number;
+    description: string;
+    image: string;
+    date: string;
+    userId: string;
+    like: number;
+    comment?: number;
+    createdAt?: number;
+    updatedAt?: number;
+    // user
+    username?: string;
+    profilePicture?: string;
+    nbComments: number;
+    nbLikes: number;
+}

@@ -63,7 +63,6 @@ class Post {
                             LEFT JOIN likepost lp ON p.id = lp.postId
                         WHERE u.username = ?
                         GROUP BY p.id`;
-        console.log(query);
         const datas = [username];
 
         return await pool.query<RowDataPacket[]>(query, datas).then((res) => res[0]);

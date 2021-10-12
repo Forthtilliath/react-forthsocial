@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ILogin, IPost, IRegister } from '../interfaces';
+// import { ILogin, IPost, IRegister } from '../interfaces';
 // import { COOKIE_NAME } from '../_constants/app.const';
 
 const API = axios.create();

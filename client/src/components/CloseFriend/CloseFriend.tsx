@@ -1,4 +1,3 @@
-import { IUser } from '../../interfaces';
 import { loadImage } from '../utils';
 
 const CloseFriend = (props: { friend: IUser }) => {

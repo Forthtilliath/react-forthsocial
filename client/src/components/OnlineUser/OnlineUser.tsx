@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import { IUser } from '../../interfaces';
 import Avatar from '../Avatar/Avatar';
 
 const OnlineUser = (props: { user: IUser }) => {

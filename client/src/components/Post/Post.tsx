@@ -4,7 +4,6 @@ import Moment from 'react-moment';
 import { loadImage } from '../utils';
 import Heart from '../../images/heart.png';
 import Like from '../../images/like.png';
-import { IPost } from '../../interfaces';
 import 'moment/locale/fr';
 
 const Post = (props: { post: IPost }) => {
