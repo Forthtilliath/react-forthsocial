@@ -1,12 +1,10 @@
 import axios, { AxiosResponse } from 'axios';
-// import { ILogin, IPost, IRegister } from '../interfaces';
-// import { COOKIE_NAME } from '../_constants/app.const';
 
 const API = axios.create();
 API.interceptors.response.use((res: AxiosResponse<any>) => res, function (error) {
-    if (401 === error.response.status) {
+    // Si l'utilisateur n'a pas les droits pour accéder à la page, on le redirige vers la page de connexion
+    if (error.response.status === 401 ) {
         window.location.href = '/login';
-        // console.log('401!!!!!!!');
     } else {
         return Promise.reject(error);
     }

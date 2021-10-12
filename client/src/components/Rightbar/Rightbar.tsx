@@ -26,15 +26,15 @@ const Rightbar = ({ profile }: any) => {
             <h4 className="rightbarTitle">User information</h4>
             <div className="rightbarInfo">
                 <div className="rightbarInfoItem">
-                    <span className="rightBarInfoKey">City:</span>
+                    <span className="rightBarInfoKey">Ville :</span>
                     <span className="rightBarInfoValue">New York</span>
                 </div>
                 <div className="rightbarInfoItem">
-                    <span className="rightBarInfoKey">From:</span>
+                    <span className="rightBarInfoKey">De :</span>
                     <span className="rightBarInfoValue">Madrid</span>
                 </div>
                 <div className="rightbarInfoItem">
-                    <span className="rightBarInfoKey">Relationship:</span>
+                    <span className="rightBarInfoKey">Relation :</span>
                     <span className="rightBarInfoValue">Couple</span>
                 </div>
             </div>

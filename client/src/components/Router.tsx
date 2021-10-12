@@ -35,7 +35,6 @@ const Router = () => {
                             <Route exact path="/friends/" component={Friends}></Route>
 
                             {/* Second menu links */}
-                            {/* <Route exact path="/profile/" component={Profile}></Route> */}
                             <Route
                                 exact
                                 path="/profile"
