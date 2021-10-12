@@ -13,6 +13,7 @@ export const getPosts = (_req: Request, res: Response) => {
 };
 
 export const getPostsUser = (req: Request, res: Response) => {
+    console.log('localcs',res.locals);
     // console.log('getPosts', await publicIp.v4());
     // NOTE IP
     // publicIp.v4().then(console.log);

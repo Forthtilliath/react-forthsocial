@@ -6,10 +6,10 @@ import { History } from 'history';
 export const signon =
     (formData: IRegister, getConnexion: () => void, history: History<unknown>) =>
     async (dispatch: (arg0: IAction) => void) => {
-        api.login(formData)
+        api.register(formData)
             .then(({ data }) => dispatch({ type: REGISTER, payload: data }))
-            .then(() => {
-                getConnexion();
+            .then(async() => {
+                await getConnexion();
                 history.push('/profile');
             })
             .catch((err) => console.log(err));

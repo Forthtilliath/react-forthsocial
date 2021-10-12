@@ -34,7 +34,7 @@ app.all('*', auth.checkUser);
 
 app.use('/api/auth', authRoutes);
 app.use('/api/user', usersRoutes);
-app.use('/api/posts', postsRoutes);
+app.use('/api/posts', auth.checkAuth, postsRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import User, { IUser } from '../models/User-model';
 import dotenv from 'dotenv';
+import { getToken } from '../utils/connexion';
 dotenv.config();
 
 export const createUser = (req: Request, res: Response) => {
@@ -16,7 +17,17 @@ export const createUser = (req: Request, res: Response) => {
             newUser
                 .createUser()
                 .then((_results) => {
-                    return res.status(201).json({ message: 'User created !', user: newUser.getUser() });
+                    const token = getToken(newUser.getUser());
+                    return res.cookie(process.env.COOKIE_NAME as string, token, {
+                        maxAge: 15 * 60 * 1000,
+                        httpOnly: true,
+                    }).status(201).json({ message: 'User created !', user: newUser.getUser() });
+
+            
+                    // res.cookie(process.env.COOKIE_NAME as string, token, {
+                    //     maxAge: 15 * 60 * 1000,
+                    //     httpOnly: true,
+                    // }).send(user.getUser());
                 })
                 .catch((error) => {
                     return res.status(400).json({ error: error.sqlMessage });

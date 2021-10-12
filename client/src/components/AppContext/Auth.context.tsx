@@ -14,6 +14,7 @@ export const AuthContextProvider = ({
       .get("/auth/jwt")
       .then((res) => res.data)
       .then(setConnexion)
+    .catch(console.log)
   };
 
   useEffect(() => {

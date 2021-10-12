@@ -1,8 +1,16 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 // import { ILogin, IPost, IRegister } from '../interfaces';
 // import { COOKIE_NAME } from '../_constants/app.const';
 
 const API = axios.create();
+API.interceptors.response.use((res: AxiosResponse<any>) => res, function (error) {
+    if (401 === error.response.status) {
+        window.location.href = '/login';
+        // console.log('401!!!!!!!');
+    } else {
+        return Promise.reject(error);
+    }
+})
 
 // API.interceptors.request.use((req) => {
 //     if (localStorage.getItem(COOKIE_NAME) !== null) {

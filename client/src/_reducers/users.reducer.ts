@@ -3,6 +3,8 @@ import * as actionType from '../_constants/actionTypes';
 
 const authReducer = (state = { authData: null }, action: { type: string; data: any; payload: any }) => {
     switch (action.type) {
+        case actionType.REGISTER:
+            return { ...state, authData: action.payload };
         case actionType.AUTH:
             // localStorage.setItem(COOKIE_NAME, JSON.stringify(action.payload));
 

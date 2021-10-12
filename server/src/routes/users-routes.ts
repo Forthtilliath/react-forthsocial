@@ -4,16 +4,16 @@ import * as usersCtrl from '../controllers/users-ctrl';
 import * as authMdw from '../middleware/auth-mdw';
 
 // users
-router.get('/', usersCtrl.getUsers);
+router.get('/', authMdw.checkAuth, usersCtrl.getUsers);
 
 // crud
 router.post('/register', usersCtrl.createUser);
 router.get('/:id', authMdw.checkAuth, usersCtrl.getUser);
 router.put('/:id', authMdw.checkAuth, usersCtrl.editUser);
-router.delete('/:id', usersCtrl.deleteUser);
+router.delete('/:id', authMdw.checkAuth, usersCtrl.deleteUser);
 
 // follows
-router.post('/follow/:id', usersCtrl.followUser);
-router.delete('/unfollow/:id', usersCtrl.unfollowUser);
+router.post('/follow/:id', authMdw.checkAuth, usersCtrl.followUser);
+router.delete('/unfollow/:id', authMdw.checkAuth, usersCtrl.unfollowUser);
 
 export default router;
