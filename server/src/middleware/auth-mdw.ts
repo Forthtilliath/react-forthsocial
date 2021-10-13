@@ -10,7 +10,6 @@ import { getToken } from '../utils/connexion';
 export const checkUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const token = req.cookies[process.env.COOKIE_NAME as string];
-        // if (!token) res.locals.user = null;
         if (!token) throw "Non authorisé";
 
         // S'il n'y a pas de token, le catch est proc
@@ -32,11 +31,6 @@ export const checkUser = async (req: Request, res: Response, next: NextFunction)
             });
         } else {
             throw "Non authorisé";
-            // res.locals.user = null;
-            // res.cookie(process.env.COOKIE_NAME as string, '', {
-            //     maxAge: 0,
-            //     httpOnly: true,
-            // });
         }
     } catch (err) {
         res.locals.user = null;

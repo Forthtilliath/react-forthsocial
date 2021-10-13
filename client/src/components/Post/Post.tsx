@@ -6,7 +6,17 @@ import Heart from '../../images/heart.png';
 import Like from '../../images/like.png';
 import 'moment/locale/fr';
 
-const Post = (props: { post: IPost }) => {
+export const NoPost = () => (
+    <div className="post">
+        <div className="postWrapper">
+            <div className="postCenter" style={{textAlign:'center'}}>
+                <span className="postText">Postez dès maintenant votre premier message</span>
+            </div>
+        </div>
+    </div>
+)
+
+export const Post = (props: { post: IPost }) => {
     const { description, image, createdAt, username, profilePicture, nbComments, nbLikes } = props.post;
     // const user = Users.find((User) => User.id === userId);
 

@@ -39,7 +39,7 @@ const Router = () => {
                                 exact
                                 path="/profile"
                                 render={() => (
-                                    <Profile key={user?.username} username={user?.username} />
+                                    <Profile key={user!.username} username={user!.username} />
                                 )}
                             />
                             <Route

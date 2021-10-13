@@ -6,7 +6,7 @@ const OnlineUser = (props: { user: IUser }) => {
 
     return (
         <li>
-            <NavLink to={`/profile/${user.username}`} className="rightbarFriend">
+            <NavLink to={`/profile/${user.username.toLowerCase()}`} className="rightbarFriend">
                 <div className="rightbarProfileImgContainer">
                     <Avatar image={user?.profilePicture} size={40} />
                     <span className="rightbarOnline"></span>

@@ -20,7 +20,7 @@ const Sidebar = () => {
                             <span className="sidebarIcon">
                                 <Avatar image={user?.profilePicture} size={30} />
                             </span>
-                            <span className="sidebarListItemText">{'Jean'}</span>
+                            <span className="sidebarListItemText">{user?.username}</span>
                         </NavLink>
                     </li>
                     {sidebarData.map((el, i) => (
