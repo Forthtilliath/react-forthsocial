@@ -19,7 +19,7 @@ API.interceptors.response.use((res: AxiosResponse<any>) => res, function (error)
 // });
 
 export const fetchPost     = (id:string)                => API.get(`/posts/${id}`);
-export const fetchPosts    = (id:string)                => API.get(`/posts/timeline/${id}`);
+export const fetchPosts    = (id:string)                => API.get(`/posts/timeline/${id.toLowerCase()}`);
 export const fetchPostsAll = ()                         => API.get(`/posts/timeline`);
 // export const fetchPostsBySearch = (searchQuery)     =>
     // API.get(`/posts/search?${searchQuery.search && `searchQuery=${searchQuery.search}&`}tags=${searchQuery.tags}`);

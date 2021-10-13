@@ -19,9 +19,9 @@ interface MatchParams {
 interface MatchProps extends RouteComponentProps<MatchParams> {}
 
 const Router = () => {
-    const {
-        connexion: { loggedIn, user },
-    } = useContext(AuthContext);
+    const { connexion } = useContext(AuthContext);
+    const loggedIn = connexion.loggedIn;
+    const user = connexion.user!;
 
     return (
         <BrowserRouter>
@@ -39,7 +39,7 @@ const Router = () => {
                                 exact
                                 path="/profile"
                                 render={() => (
-                                    <Profile key={user!.username} username={user!.username} />
+                                    <Profile key={user!.username} username={user.username} />
                                 )}
                             />
                             <Route

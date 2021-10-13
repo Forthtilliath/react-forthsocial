@@ -66,7 +66,7 @@ export const getUsers = (_req: Request, res: Response) => {
 };
 
 export const getUser = (req: Request, res: Response) => {
-    User.getUserById(req.params.id)
+    User.getUserByUsername(req.params.username)
         .then((result) => res.status(200).json(result))
         .catch((err) => res.status(404).json(err.sqlMessage));
 };

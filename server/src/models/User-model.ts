@@ -113,6 +113,17 @@ class User {
         return await pool.query<RowDataPacket[]>(query, datas).then((res) => res[0]);
     }
 
+    /** Récupère les données d'un utilisateur */
+    static async getUserByUsername(username: string) {
+        const query = ` SELECT id, username, email, profilePicture, coverPicture, isAdmin, createdAt, updatedAt
+                        FROM ${User._table}
+                        WHERE username = ?`;
+        const datas = [username];
+        console.log(query);
+
+        return await pool.query<RowDataPacket[]>(query, datas).then((res) => res[0]);
+    }
+
     /** Récupère un utilisateur pour vérifier les identifiants */
     public async isValidPassword(username: string, password: string): Promise<boolean> {
         const query = ` SELECT id, password, username, profilePicture, coverPicture, isAdmin

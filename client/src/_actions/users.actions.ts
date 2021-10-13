@@ -1,5 +1,5 @@
 import * as api from '../_api';
-import { AUTH, REGISTER } from '../_constants/actionTypes';
+import { AUTH, GET_USER, REGISTER } from '../_constants/actionTypes';
 import { History } from 'history';
 
 // Register
@@ -8,7 +8,7 @@ export const signon =
     async (dispatch: (arg0: IAction) => void) => {
         api.register(formData)
             .then(({ data }) => dispatch({ type: REGISTER, payload: data }))
-            .then(async() => {
+            .then(async () => {
                 await getConnexion();
                 history.push('/profile');
             })
@@ -21,13 +21,19 @@ export const signin =
     async (dispatch: (arg0: IAction) => void) => {
         api.login(formData)
             .then(({ data }) => dispatch({ type: AUTH, payload: data }))
-            .then(() => {
-                getConnexion();
+            .then(async () => {
+                await getConnexion();
                 history.push('/');
             })
             .catch((err) => console.log(err));
     };
-
+ 
 export const signout = () => {
     // () => a
+};
+
+export const getUser = (username: string) => async (dispatch: (arg0: IAction) => void) => {
+    api.getUser(username)
+        .then(({ data }) => dispatch({ type: GET_USER, payload: data[0] }))
+        .catch((err) => console.log(err));
 };

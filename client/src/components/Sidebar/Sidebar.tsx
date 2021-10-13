@@ -7,18 +7,17 @@ import AuthContext from '../AppContext/Auth.context';
 import OnlineUser from '../OnlineUser/OnlineUser';
 
 const Sidebar = () => {
-    const {
-        connexion: { user },
-    } = useContext(AuthContext);
+    const { connexion } = useContext(AuthContext);
+    const user = connexion.user!;
 
     return (
         <div className="sidebar">
             <div className="sidebarWrapper">
                 <ul className="sidebarList">
                     <li className="sidebarListItem">
-                        <NavLink to="profile" activeClassName="active">
+                        <NavLink to="/profile" activeClassName="active">
                             <span className="sidebarIcon">
-                                <Avatar image={user?.profilePicture} size={30} />
+                                <Avatar image={user.profilePicture} size={30} />
                             </span>
                             <span className="sidebarListItemText">{user?.username}</span>
                         </NavLink>

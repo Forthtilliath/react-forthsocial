@@ -8,7 +8,7 @@ router.get('/', authMdw.checkAuth, usersCtrl.getUsers);
 
 // crud
 router.post('/register', usersCtrl.createUser);
-router.get('/:id', authMdw.checkAuth, usersCtrl.getUser);
+router.get('/:username', authMdw.checkAuth, usersCtrl.getUser);
 router.put('/:id', authMdw.checkAuth, usersCtrl.editUser);
 router.delete('/:id', authMdw.checkAuth, usersCtrl.deleteUser);
 

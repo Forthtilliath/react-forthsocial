@@ -15,10 +15,10 @@ const Logout = ({ children }: ILogout) => {
     const dispatch = useDispatch();
 
     const disconnect = () => {
-        axios.get('/auth/logout').then(() => {
+        axios.get('/auth/logout').then(async () => {
             dispatch({ type: LOGOUT });
-            getConnexion();
-            history.push('/');
+            await getConnexion();
+            history.push('/login');
         });
     };
 

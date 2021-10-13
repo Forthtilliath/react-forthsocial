@@ -3,7 +3,7 @@ import { loadImage } from '../utils';
 const Avatar = ({ image, size, mr }: IProps) => {
     return (
         <img
-            src={loadImage(image)}
+            src={loadImage(image,'person')}
             alt="avatar"
             className="avatar"
             style={{ width: size, height: size, marginRight: mr }}

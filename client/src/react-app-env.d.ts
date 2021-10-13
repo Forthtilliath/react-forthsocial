@@ -73,3 +73,10 @@ interface IPost {
     nbComments: number;
     nbLikes: number;
 }
+
+/********************************************
+ * Profil
+ */
+interface ProfileState {
+    users: { profile: IUser };
+}
