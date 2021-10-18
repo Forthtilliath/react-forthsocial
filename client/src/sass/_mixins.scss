@@ -19,7 +19,6 @@
 }
 
 @mixin scroll-divFix($top) {
-    // max-width: 360px;
     width: clamp(250px, 25%, 360px);
     overflow-y: scroll;
     height: calc(100vh - #{$top});

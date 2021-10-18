@@ -15,7 +15,7 @@ const Sidebar = () => {
             <div className="sidebarWrapper">
                 <ul className="sidebarList">
                     <li className="sidebarListItem">
-                        <NavLink to="/profile" activeClassName="active">
+                        <NavLink exact to="/profile" activeClassName="active">
                             <span className="sidebarIcon">
                                 <Avatar image={user.profilePicture} size={30} />
                             </span>
@@ -24,7 +24,7 @@ const Sidebar = () => {
                     </li>
                     {sidebarData.map((el, i) => (
                         <li className="sidebarListItem" key={i}>
-                            <NavLink to={el.link} activeClassName="active">
+                            <NavLink exact to={el.link} activeClassName="active">
                                 <span children={el.icon} className="sidebarIcon" />
                                 <span children={el.text} className="sidebarListItemText" />
                             </NavLink>

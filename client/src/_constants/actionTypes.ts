@@ -16,4 +16,5 @@ export const AUTH = 'AUTH';
 export const LOGOUT = 'LOGOUT';
 
 // Profil
+export const NO_USER = 'NO_USER';
 export const GET_USER = 'GET_USER';

@@ -2,6 +2,8 @@
     // flex: 3;
     @include scroll-divFix($headerHeight);
     box-shadow: 2px 0px 10px darkgrey;
+    // pour faire passer le shadow au dessus de la page
+    z-index: 1;
 
     &::-webkit-scrollbar {
         display: none;

@@ -8,7 +8,7 @@ export const loadImage = (fileName: string = '', categImage: string = '') => {
                 image_path = require(`../images/person/no-avatar.jpeg`).default;
                 break;
             default:
-                image_path = require(`../images/defaultCover.webp`).default;
+                image_path = require(`../images/defaultCover.jpg`).default;
         }
     }
     return image_path;

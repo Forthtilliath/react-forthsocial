@@ -9,8 +9,11 @@ export interface IUser {
     username: string;
     email: string;
     password: string;
+    firstname?: string;
+    lastname?: string;
     profilePicture?: string;
     coverPicture?: string;
+    description?: string;
     isAdmin?: boolean;
     createdAt?: number;
     updatedAt?: number;
@@ -33,8 +36,11 @@ class User {
     private _username: string;
     private _email: string;
     private _password: string;
+    private _firstname?: string;
+    private _lastname?: string;
     private _profilePicture?: string;
     private _coverPicture?: string;
+    private _description?: string;
     private _isAdmin?: boolean;
     private _createdAt?: number;
     private _updatedAt?: number;
@@ -44,8 +50,11 @@ class User {
         this._username = aUser.username;
         this._email = aUser.email;
         this._password = aUser.password;
+        this._firstname = aUser.firstname;
+        this._lastname = aUser.lastname;
         this._profilePicture = aUser.profilePicture;
         this._coverPicture = aUser.coverPicture;
+        this._description = aUser.description;
         this._isAdmin = aUser.isAdmin;
         this._createdAt = aUser.createdAt;
         this._updatedAt = aUser.updatedAt;
@@ -64,6 +73,7 @@ class User {
             email: this._email,
             profilePicture: this._profilePicture,
             coverPicture: this._coverPicture,
+            description: this._description,
             isAdmin: this._isAdmin,
             createdAt: this._createdAt,
             updatedAt: this._updatedAt,
@@ -105,7 +115,7 @@ class User {
 
     /** Récupère les données d'un utilisateur */
     static async getUserById(id: string) {
-        const query = ` SELECT id, username, email, profilePicture, coverPicture, isAdmin, createdAt, updatedAt
+        const query = ` SELECT id, username, email, firstname, lastname, profilePicture, coverPicture, isAdmin, createdAt, updatedAt
                         FROM ${User._table}
                         WHERE id = ?`;
         const datas = [id];
@@ -115,18 +125,17 @@ class User {
 
     /** Récupère les données d'un utilisateur */
     static async getUserByUsername(username: string) {
-        const query = ` SELECT id, username, email, profilePicture, coverPicture, isAdmin, createdAt, updatedAt
+        const query = ` SELECT id, username, email, firstname, lastname, profilePicture, coverPicture, isAdmin, description, createdAt, updatedAt
                         FROM ${User._table}
                         WHERE username = ?`;
         const datas = [username];
-        console.log(query);
 
         return await pool.query<RowDataPacket[]>(query, datas).then((res) => res[0]);
     }
 
     /** Récupère un utilisateur pour vérifier les identifiants */
     public async isValidPassword(username: string, password: string): Promise<boolean> {
-        const query = ` SELECT id, password, username, profilePicture, coverPicture, isAdmin
+        const query = ` SELECT id, password, username, firstname, lastname, profilePicture, coverPicture, isAdmin
                         FROM ${User._table}
                         WHERE username = ?`;
         const datas = [username];
@@ -142,7 +151,10 @@ class User {
             if (isValid) {
                 this._id = user[0].id;
                 this._username = user[0].username;
+                this._firstname = user[0].firstname;
+                this._lastname = user[0].lastname;
                 this._profilePicture = user[0].profilePicture;
+                this._description = user[0].description;
                 this._coverPicture = user[0].coverPicture;
                 this._isAdmin = user[0].isAdmin;
                 // this._password = ''; //TODO Check

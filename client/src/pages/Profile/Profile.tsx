@@ -5,46 +5,60 @@ import Feed from '../../components/Feed/Feed';
 import Rightbar from '../../components/Rightbar/Rightbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { loadImage } from '../../components/utils';
-import { getUser } from '../../_actions/users.actions';
+import { getUser, noUser } from '../../_actions/users.actions';
 
 const Profile = ({ username }: { username: string }) => {
-    // const [isLoading, setIsLoading] = useState(true)
     const { connexion } = useContext(AuthContext);
     const user = connexion.user!;
-    const [pageUser, setPageUser] = useState<IUser>();
+    const [pageUser, setPageUser] = useState<IUser | undefined>();
     const dispatch = useDispatch();
-    const profileUser = useSelector((state: ProfileState) => state.users.profile);
-    console.log('Profile', profileUser);
+    const profileUser: IUser | undefined = useSelector((state: ProfileState) => state.users.profile);
 
     useEffect(() => {
-        if (user.username === username) setPageUser(user);
-        else {
-            dispatch(getUser(username));
+        // Initialise à 0 le profile pour éviter d'avoir le profil précédent sur une page sans profile
+        dispatch(noUser());
+        if (!pageUser) {
+            // Si c'est la page de profil de l'utilisateur connecté
+            if (user.username === username) setPageUser(user);
+            // Si c'est la page de profil d'un autre utilisateur
+            else {
+                // Met à jour les données du profil
+                dispatch(getUser(username));
+                if (profileUser === undefined) setPageUser(undefined);
+                else setPageUser(profileUser);
+            }
         }
-    }, []);
-
-    // useEffect(() => {
-    //     setIsLoading(false);
-    // }, [pageUser])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [profileUser]);
 
     return (
         <div className="profileContainer">
             <Sidebar />
             <div className="profileRight">
-                <div className="profileRightTop">
-                    <div className="profileCover">
-                        <img className="profileCoverImg" src={loadImage('post/3.jpeg')} alt="cover" />
-                        <img className="profileUserImg" src={loadImage('post/7.jpeg')} alt="avatar" />
-                    </div>
-                    <div className="profileInfo">
-                        <h4 className="profileInfoName">Name</h4>
-                        <span className="profileInfoDesc">Desc</span>
-                    </div>
-                </div>
-                <div className="profileRightBottom">
-                    <Feed username={username} />
-                    <Rightbar profile />
-                </div>
+                {pageUser ? (
+                    <>
+                        <div className="profileRightTop">
+                            <div className="profileCover">
+                                <img className="profileCoverImg" src={loadImage(pageUser?.coverPicture)} alt="cover" />
+                                <img
+                                    className="profileUserImg"
+                                    src={loadImage(pageUser?.profilePicture)}
+                                    alt="avatar"
+                                />
+                            </div>
+                            <div className="profileInfo">
+                                <h4 className="profileInfoName">{pageUser?.username}</h4>
+                                <span className="profileInfoDesc">{pageUser?.description}</span>
+                            </div>
+                        </div>
+                        <div className="profileRightBottom">
+                            <Feed username={pageUser?.username} />
+                            <Rightbar profile />
+                        </div>
+                    </>
+                ) : (
+                    <div>Profil non trouvé</div>
+                )}
             </div>
         </div>
     );

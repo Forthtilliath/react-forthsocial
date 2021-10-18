@@ -1,5 +1,7 @@
 /// <reference types="react-scripts" />
 
+declare module 'react-loadingg';
+
 /************************
  * Register + Login
  */
@@ -20,11 +22,17 @@ interface IRegister extends ILogin {
 //     userId: string;
 //     token: string;
 // }
-interface IAction {
+interface IActionAuth {
     type: string;
     payload: {
         userId: string;
         token: string;
+    };
+}
+interface IActionUser {
+    type: string;
+    payload?: {
+        profile?: IUser;
     };
 }
 
@@ -33,6 +41,8 @@ interface IUser {
     id: string;
     username: string;
     profilePicture: string;
+    coverPicture?: string;
+    description?: string;
 }
 
 interface IConnexionContext {
