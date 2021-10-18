@@ -8,15 +8,15 @@ import { loadImage } from '../../components/utils';
 import { getUser, noUser } from '../../_actions/users.actions';
 
 const Profile = ({ username }: { username: string }) => {
+    const dispatch = useDispatch();
     const { connexion } = useContext(AuthContext);
     const user = connexion.user!;
     const [pageUser, setPageUser] = useState<IUser | undefined>();
-    const dispatch = useDispatch();
     const profileUser: IUser | undefined = useSelector((state: ProfileState) => state.users.profile);
 
     useEffect(() => {
-        // Initialise à 0 le profile pour éviter d'avoir le profil précédent sur une page sans profile
-        dispatch(noUser());
+        // Reset le profil pour éviter d'avoir le profil précédent sur une page sans profil
+        dispatch(noUser())
         if (!pageUser) {
             // Si c'est la page de profil de l'utilisateur connecté
             if (user.username === username) setPageUser(user);
@@ -24,10 +24,9 @@ const Profile = ({ username }: { username: string }) => {
             else {
                 // Met à jour les données du profil
                 dispatch(getUser(username));
-                if (profileUser === undefined) setPageUser(undefined);
-                else setPageUser(profileUser);
+                setPageUser(profileUser);
             }
-        }
+        } 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [profileUser]);
 

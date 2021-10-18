@@ -38,6 +38,6 @@ export const getUser = (username: string) => async (dispatch: (arg0: IActionUser
         .catch((err) => console.log(err));
 };
 
-export const noUser = () => async (dispatch: (arg0: IActionUser) => void) => {
+export const noUser = () => (dispatch: (arg0: IActionUser) => void) => {
     dispatch({ type: NO_USER })
 };

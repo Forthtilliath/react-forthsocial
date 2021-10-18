@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { Post, NoPost } from '../Post/Post';
 import Share from '../Share/Share';
 import * as api from '../../_api';
@@ -6,24 +6,25 @@ import AuthContext from '../AppContext/Auth.context';
 import { CoffeeLoading } from 'react-loadingg';
 
 const Feed = ({ username }: { username?: string }) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const {
         connexion: { user },
     } = useContext(AuthContext);
 
-    const getPosts = () => {
+    const getPosts = useCallback(() => {
         api.fetchPosts(username ?? user!.username)
             .then(({ data }) => {
                 setPosts(data);
-                setIsLoading(false);
+                setIsLoading(false); 
             })
             .catch((err) => console.log(err));
-    };
+    }, [user, username]);
 
     useEffect(() => {
         getPosts();
+        // Bloque le display si le component est démonté
+        return () => setIsLoading(true);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
