@@ -35,20 +35,14 @@ const Router = () => {
                             <Route exact path="/friends/" component={Friends}></Route>
 
                             {/* Second menu links */}
-                            <Route
+                            {/* <Route
                                 exact
                                 path="/profile"
                                 render={() => (
                                     <Profile username={user.username} />
                                 )}
-                            />
-                            <Route
-                                exact
-                                path="/profile/:username"
-                                render={({ match }: MatchProps) => (
-                                    <Profile username={match.params.username} />
-                                )}
-                            />
+                            /> */}
+                            <Route path="/profile/:username" component={Profile} />
 
                             <Route exact path="/chat" component={Chat}></Route>
                             <Route exact path="/notifications" component={Notifications}></Route>

@@ -33,7 +33,6 @@ export const signout = () => {
 };
 
 export const getUser = (username: string) => (dispatch: (arg0: IActionUser) => void) => {
-    console.log('action getUser');
     api.getUser(username)
         .then(({ data }) => {
             if (data.length) {

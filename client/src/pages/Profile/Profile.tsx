@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 import AuthContext from '../../components/AppContext/Auth.context';
 import Feed from '../../components/Feed/Feed';
 import Rightbar from '../../components/Rightbar/Rightbar';
@@ -7,29 +8,19 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import { isEmpty, loadImage } from '../../components/utils';
 import { getUser } from '../../_actions/users.actions';
 
-const Profile = ({ username }: { username: string }) => {
+const Profile = () => {
     const { connexion } = useContext(AuthContext);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const user = connexion.user!;
     const [pageUser, setPageUser] = useState<IUser | undefined>(undefined);
     const { profile } = useSelector((state: ProfileState) => state.users);
     const dispatch = useDispatch();
+    const { username }: { username: string } = useParams();
 
-    // Récupère les données du user à partir du username
-    // useEffect(() => {
-    //     console.log('before dispatch');
-    //     dispatch(getUser(username));
-    //     console.log('after dispatch', profile);
-    //     setPageUser(profile);
-    //     console.log('après setter user');
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [dispatch, username]);
-
-    
     // Récupère les données du user à partir du username
     useEffect(() => {
         dispatch(getUser(username));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [username]);
 
     // Met à jour le state du user

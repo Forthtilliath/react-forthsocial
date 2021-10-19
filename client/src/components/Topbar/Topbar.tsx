@@ -8,9 +8,8 @@ import Avatar from '../Avatar/Avatar';
 import { BoxMenuAccount, BoxMenuSearch } from './BoxMenu';
 
 const Topbar = () => {
-    const {
-        connexion: { user },
-    } = useContext(AuthContext);
+    const { connexion } = useContext(AuthContext);
+    const user = connexion.user!;
 
     const [isOpenAccountMenu, setIsOpenAccountMenu] = useState(false);
     const [isOpenSearch, setIsOpenSearch] = useState(false);
@@ -63,9 +62,9 @@ const Topbar = () => {
 
             <div className="topbarRight">
                 <div className="topbarIcons second">
-                    <Link to="/profile" className="topbarProfileItem">
-                        <Avatar image={user?.profilePicture} />
-                        <div className="topbarName">{user?.username}</div>
+                    <Link to={`/profile/${user.username.toLowerCase()}`} className="topbarProfileItem">
+                        <Avatar image={user.profilePicture} />
+                        <div className="topbarName">{user.username}</div>
                     </Link>
                     <Link to="/chat" className="topbarIconItem" data-name="Messagerie">
                         <Chat />
