@@ -2,6 +2,7 @@
     height: $headerHeight;
     width: 100%;
     background-color: var(--base-blue);
+    box-shadow: 0 3px 10px #2d2d2d;
     @include center(space-between);
     position: sticky;
     top: 0;
