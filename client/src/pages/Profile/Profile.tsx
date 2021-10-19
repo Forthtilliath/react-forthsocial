@@ -7,25 +7,33 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import { isEmpty, loadImage } from '../../components/utils';
 import { getUser } from '../../_actions/users.actions';
 
-const Profile = (props: { username: string }) => {
+const Profile = ({ username }: { username: string }) => {
     const { connexion } = useContext(AuthContext);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const user = connexion.user!;
-    const [username, setUsername] = useState(props.username);
     const [pageUser, setPageUser] = useState<IUser | undefined>(undefined);
-    const users = useSelector((state: ProfileState) => state.users);
+    const { profile } = useSelector((state: ProfileState) => state.users);
     const dispatch = useDispatch();
 
-    // Met à jour le username
-    useEffect(() => setUsername(props.username), [props]);
+    // Récupère les données du user à partir du username
+    // useEffect(() => {
+    //     console.log('before dispatch');
+    //     dispatch(getUser(username));
+    //     console.log('after dispatch', profile);
+    //     setPageUser(profile);
+    //     console.log('après setter user');
+    // // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [dispatch, username]);
 
+    
     // Récupère les données du user à partir du username
     useEffect(() => {
         dispatch(getUser(username));
-    }, [dispatch, username]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [username]);
 
     // Met à jour le state du user
-    useEffect(() => setPageUser(users.profile), [users]);
+    useEffect(() => setPageUser(profile), [profile]);
 
     return (
         <div className="profileContainer">
