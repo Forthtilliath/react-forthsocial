@@ -39,14 +39,14 @@ const Router = () => {
                                 exact
                                 path="/profile"
                                 render={() => (
-                                    <Profile key={user!.username} username={user.username} />
+                                    <Profile username={user.username} />
                                 )}
                             />
                             <Route
                                 exact
                                 path="/profile/:username"
                                 render={({ match }: MatchProps) => (
-                                    <Profile key={match.params.username} username={match.params.username} />
+                                    <Profile username={match.params.username} />
                                 )}
                             />
 

@@ -4,37 +4,34 @@ import AuthContext from '../../components/AppContext/Auth.context';
 import Feed from '../../components/Feed/Feed';
 import Rightbar from '../../components/Rightbar/Rightbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
-import { loadImage } from '../../components/utils';
-import { getUser, noUser } from '../../_actions/users.actions';
+import { isEmpty, loadImage } from '../../components/utils';
+import { getUser } from '../../_actions/users.actions';
 
-const Profile = ({ username }: { username: string }) => {
-    const dispatch = useDispatch();
+const Profile = (props: { username: string }) => {
     const { connexion } = useContext(AuthContext);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const user = connexion.user!;
-    const [pageUser, setPageUser] = useState<IUser | undefined>();
-    const profileUser: IUser | undefined = useSelector((state: ProfileState) => state.users.profile);
+    const [username, setUsername] = useState(props.username);
+    const [pageUser, setPageUser] = useState<IUser | undefined>(undefined);
+    const users = useSelector((state: ProfileState) => state.users);
+    const dispatch = useDispatch();
 
+    // Met à jour le username
+    useEffect(() => setUsername(props.username), [props]);
+
+    // Récupère les données du user à partir du username
     useEffect(() => {
-        // Reset le profil pour éviter d'avoir le profil précédent sur une page sans profil
-        dispatch(noUser())
-        if (!pageUser) {
-            // Si c'est la page de profil de l'utilisateur connecté
-            if (user.username === username) setPageUser(user);
-            // Si c'est la page de profil d'un autre utilisateur
-            else {
-                // Met à jour les données du profil
-                dispatch(getUser(username));
-                setPageUser(profileUser);
-            }
-        } 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [profileUser]);
+        dispatch(getUser(username));
+    }, [dispatch, username]);
+
+    // Met à jour le state du user
+    useEffect(() => setPageUser(users.profile), [users]);
 
     return (
         <div className="profileContainer">
             <Sidebar />
             <div className="profileRight">
-                {pageUser ? (
+                {!isEmpty(pageUser) ? (
                     <>
                         <div className="profileRightTop">
                             <div className="profileCover">

@@ -27,17 +27,23 @@ export const signin =
             })
             .catch((err) => console.log(err));
     };
- 
+
 export const signout = () => {
     // () => a
 };
 
-export const getUser = (username: string) => async (dispatch: (arg0: IActionUser) => void) => {
+export const getUser = (username: string) => (dispatch: (arg0: IActionUser) => void) => {
     api.getUser(username)
-        .then(({ data }) => dispatch({ type: GET_USER, payload: data }))
+        .then(({ data }) => {
+            if (data.length) {
+                dispatch({ type: GET_USER, payload: data });
+            } else {
+                dispatch({ type: NO_USER });
+            }
+        })
         .catch((err) => console.log(err));
 };
 
 export const noUser = () => (dispatch: (arg0: IActionUser) => void) => {
-    dispatch({ type: NO_USER })
+    dispatch({ type: NO_USER });
 };

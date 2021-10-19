@@ -90,3 +90,6 @@ interface IPost {
 interface ProfileState {
     users: { profile: IUser };
 }
+interface UsersState {
+    users: { profile: IUser | {} };
+}

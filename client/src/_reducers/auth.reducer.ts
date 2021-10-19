@@ -1,6 +1,7 @@
 import * as actionType from '../_constants/actionTypes';
 // import { COOKIE_NAME } from '../_constants/app.const';
 
+// TODO : https://levelup.gitconnected.com/react-redux-hooks-useselector-and-usedispatch-f7d8c7f75cdd
 const authReducer = (state = { authData: null }, action: { type: string; data: any; payload: any }) => {
     switch (action.type) {
         case actionType.REGISTER:

@@ -13,3 +13,12 @@ export const loadImage = (fileName: string = '', categImage: string = '') => {
     }
     return image_path;
 };
+
+export const isEmpty = (value:unknown) => {
+    return (
+        value === null ||
+        typeof value == 'undefined' ||
+        (typeof value === 'object' && Object.keys(value!).length === 0) ||
+        (typeof value === 'string' && value.trim().length === 0)
+    );
+};
