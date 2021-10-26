@@ -8,12 +8,11 @@ import { CoffeeLoading } from 'react-loadingg';
 const Feed = ({ username }: { username?: string }) => {
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const {
-        connexion: { user },
-    } = useContext(AuthContext);
+    const { connexion } = useContext(AuthContext);
+    const user = connexion.user!;
 
     const getPosts = useCallback(() => {
-        api.fetchPosts(username ?? user!.username)
+        api.fetchPosts(username ?? user.username)
             .then(({ data }) => {
                 setPosts(data);
                 setIsLoading(false); 

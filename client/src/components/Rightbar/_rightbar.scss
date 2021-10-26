@@ -1,6 +1,8 @@
 .rightbar {
     // flex: 3.5; 
     @include scroll-divFix($headerHeight);
+    // cancel height of sticky because of cover
+    height: 100%;
     
     &::-webkit-scrollbar {
         display: none;

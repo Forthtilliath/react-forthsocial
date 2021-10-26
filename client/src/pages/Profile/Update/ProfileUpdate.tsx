@@ -3,13 +3,44 @@ import AuthContext from '../../../components/AppContext/Auth.context';
 import Sidebar from '../../../components/Sidebar/Sidebar';
 import { loadImage } from '../../../components/utils';
 
-const Text = ({ userForm, name }: { userForm: IUser; name: InputProp }) => <>{userForm[name]}</>;
+// const Bloc = ({ edit, ...props }: BoxInput) => (edit ? <Input {...props} /> : <Text {...props} />);
+const Bloc2 = ({ edit, toggleEditForm, name,label, ...props }: BoxInput) => (
+    <div className="profileUpdate--itemWrapper">
+        <div className="profileUpdate--titleWrapper">
+            <h4 className="profileUpdate--titleWrapper__title">{label}</h4>
+            <div className="profileUpdate--titleWrapper__button" onClick={() => toggleEditForm(name)}>
+                {edit ? 'Annuler' : 'Modifier'}
+            </div>
+        </div>
+        <div className="profileUpdate--textWrapper">
+            {/* <Bloc
+        type="input"
+        name="username"
+        label="Pseudo"
+        userForm={userForm}
+        toggleEditForm={toggleEditForm}
+        update={update}
+        onChange={handleChange}
+            /> */}
+            {edit ? <Input toggleEditForm={toggleEditForm} name={name} {...props} /> : <Text name={name} {...props} />}
+        </div>
+    </div>
+);
+
+const Text = ({ userForm, name }: TextProfil) => (
+    <>
+        {/* <label htmlFor={name}>{label}</label> */}
+        <div id={name}>{userForm[name]}</div>
+    </>
+);
+
 const Input = ({ userForm, type, toggleEditForm, update, onChange, name }: Input) => (
     <>
+        {/* <label htmlFor={name}>{label}</label> */}
         {type === 'textarea' ? (
-            <textarea style={{ width: '100%' }} name={name} value={userForm[name]} onChange={onChange} />
+            <textarea style={{ width: '100%' }} name={name} id={name} value={userForm[name]} onChange={onChange} />
         ) : (
-            <input type="text" name={name} value={userForm[name]} onChange={onChange} />
+            <input type="text" name={name} id={name} value={userForm[name]} onChange={onChange} />
         )}
         <div className="profileUpdate--buttonsWrapper">
             <button className="profileUpdate--buttonsWrapper__cancel" onClick={() => toggleEditForm(name)}>
@@ -21,8 +52,6 @@ const Input = ({ userForm, type, toggleEditForm, update, onChange, name }: Input
         </div>
     </>
 );
-
-const Bloc = ({ edit, ...props }: BoxInput) => (edit ? <Input {...props} /> : <Text {...props} />);
 
 const ProfileUpdate = () => {
     const { connexion } = useContext(AuthContext);
@@ -64,10 +93,10 @@ const ProfileUpdate = () => {
         <div className="profileUpdate--container">
             <Sidebar />
             <div className="profileUpdate--right">
-                <div className="profileUpdate--right__title">Modifier le profil</div>
+                <h2 className="profileUpdate--right__title">Modifier le profil</h2>
                 <div className="profileUpdate--itemWrapper">
                     <div className="profileUpdate--titleWrapper">
-                        <div className="profileUpdate--titleWrapper__title">Photo de profil</div>
+                        <h3 className="profileUpdate--titleWrapper__title">Photo de profil</h3>
                         <div className="profileUpdate--titleWrapper__button">Modifier</div>
                     </div>
                     <div className="profileUpdate--imageWrapper">
@@ -80,7 +109,7 @@ const ProfileUpdate = () => {
                 </div>
                 <div className="profileUpdate--itemWrapper">
                     <div className="profileUpdate--titleWrapper">
-                        <div className="profileUpdate--titleWrapper__title">Photo de couverture</div>
+                        <h3 className="profileUpdate--titleWrapper__title">Photo de couverture</h3>
                         <div className="profileUpdate--titleWrapper__button">Modifier</div>
                     </div>
                     <div className="profileUpdate--imageWrapper">
@@ -91,7 +120,8 @@ const ProfileUpdate = () => {
                         />
                     </div>
                 </div>
-                <div className="profileUpdate--itemWrapper">
+                {/* Version 1 */}
+                {/* <div className="profileUpdate--itemWrapper">
                     <div className="profileUpdate--titleWrapper">
                         <div className="profileUpdate--titleWrapper__title">A propos</div>
                         <div className="profileUpdate--titleWrapper__button" onClick={() => toggleEditForm('username')}>
@@ -102,6 +132,7 @@ const ProfileUpdate = () => {
                         <Bloc
                             type="input"
                             name="username"
+                            label="Pseudo"
                             userForm={userForm}
                             toggleEditForm={toggleEditForm}
                             update={update}
@@ -109,8 +140,34 @@ const ProfileUpdate = () => {
                             onChange={handleChange}
                         />
                     </div>
-                </div>
+                </div> */}
+                {/* Version 2 */}
                 <div className="profileUpdate--itemWrapper">
+                    <div className="profileUpdate--titleWrapper">
+                        <h3 className="profileUpdate--titleWrapper__title">A propos</h3>
+                    </div>
+                </div>
+                <Bloc2
+                    type="input"
+                    name="username"
+                    label="Pseudo"
+                    userForm={userForm}
+                    toggleEditForm={toggleEditForm}
+                    update={update}
+                    edit={editForm.username}
+                    onChange={handleChange}
+                />
+                <Bloc2
+                    type="textarea"
+                    name="description"
+                    label="Description"
+                    userForm={userForm}
+                    toggleEditForm={toggleEditForm}
+                    update={update}
+                    edit={editForm.description}
+                    onChange={handleChange}
+                />
+                {/* <div className="profileUpdate--itemWrapper">
                     <div className="profileUpdate--titleWrapper">
                         <div className="profileUpdate--titleWrapper__title">Description</div>
                         <div
@@ -124,6 +181,7 @@ const ProfileUpdate = () => {
                         <Bloc
                             type="textarea"
                             name="description"
+                            label="Description"
                             userForm={userForm}
                             toggleEditForm={toggleEditForm}
                             update={update}
@@ -131,7 +189,7 @@ const ProfileUpdate = () => {
                             onChange={handleChange}
                         />
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     );

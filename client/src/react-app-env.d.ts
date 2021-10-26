@@ -102,18 +102,27 @@ interface UsersState {
 /********************************************
  * Elements
  */
-/** Input (edit profil) */
 
+/** Input (edit profil) */
 type Input = {
     name: InputProp;
-    // value: string;
     type: string;
-    // onCancel: () => void;
-    // onConfirm: () => void;
     userForm: IUser;
     toggleEditForm: (propName: InputProp, value?: boolean | undefined) => void;
-    update: (propName: InputProp) => void
+    update: (propName: InputProp) => void;
     onChange: ({ target: { name, value } }: { target: { name: string; value: string } }) => void;
+};
+
+type BoxInput = Input & {
+    // isEditing: boolean
+    edit: boolean;
+    label: string;
+};
+
+type TextProfil = {
+    userForm: IUser;
+    name: InputProp;
+    // label: string
 };
 
 // prettier-ignore
@@ -128,9 +137,4 @@ type EditForm = {
     currentCity: boolean;
     fromCity: boolean;
     description: boolean;
-};
-
-type BoxInput = Input & {
-    // isEditing: boolean
-    edit: boolean;
 };
