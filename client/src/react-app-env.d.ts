@@ -94,21 +94,35 @@ interface UsersState {
     users: { profile: IUser | {} };
 }
 
-
 /********************************************
  * Elements
  */
-/** Input (edit profil) */ 
+/** Input (edit profil) */
 
 type Input = {
-    content: string;
+    name: InputProp;
+    value: string;
     type: string;
     onCancel: () => void;
     onConfirm: () => void;
     onChange: ({ target: { name, value } }: { target: { name: string; value: string } }) => void;
-    formValues: any;
-}
+};
 
-type BoxInput  = Input & {
-    isEditing: boolean
-}
+// prettier-ignore
+type InputProp = 'username' | 'email' | 'firstname' | 'lastname' | 'currentCity' | 'fromCity' | 'description' | 'profilePicture' | 'coverPicture';
+type EditForm = {
+    coverPicture: boolean;
+    currentCity: boolean;
+    description: boolean;
+    email: boolean;
+    firstname: boolean;
+    fromCity: boolean;
+    lastname: boolean;
+    profilePicture: boolean;
+    username: boolean;
+};
+
+type BoxInput = Input & {
+    // isEditing: boolean
+    edit: boolean;
+};
