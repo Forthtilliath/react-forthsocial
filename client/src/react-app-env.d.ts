@@ -93,3 +93,22 @@ interface ProfileState {
 interface UsersState {
     users: { profile: IUser | {} };
 }
+
+
+/********************************************
+ * Elements
+ */
+/** Input (edit profil) */ 
+
+type Input = {
+    content: string;
+    type: string;
+    onCancel: () => void;
+    onConfirm: () => void;
+    onChange: ({ target: { name, value } }: { target: { name: string; value: string } }) => void;
+    formValues: any;
+}
+
+type BoxInput  = Input & {
+    isEditing: boolean
+}

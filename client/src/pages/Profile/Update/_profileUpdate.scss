@@ -1,0 +1,87 @@
+.profileUpdate {
+    &--container {
+        display: flex;
+    }
+
+    &--right {
+        flex: 9;
+        margin: 10px 0;
+        padding: 20px;
+
+        &__title {
+            font-size: 1.5rem;
+        }
+    }
+
+    // &--itemWrapper {
+    // }
+
+    &--titleWrapper {
+        @include center(space-between);
+        margin-top: 20px;
+
+        &__title {
+            font-size: 1.2rem;
+        }
+
+        &__button {
+            color: $blue;
+            cursor: pointer;
+            user-select: none;
+            padding: 5px 10px;
+
+            &:hover {
+                background-color: darken(aliceblue, 5%);
+                border-radius: 5px;
+            }
+        }
+    }
+
+    &--imageWrapper {
+        @include center(center);
+        margin-top: 20px;
+
+        &__avatar {
+            @include circle(300);
+            border: 2px solid $white;
+        }
+
+        &__cover {
+            border-radius: 20px;
+            height: 300px;
+        }
+    }
+
+    &--textWrapper {
+        margin-top: 20px;
+
+        textarea {
+            padding: 5px;
+            font-size: 1rem;
+            outline: none;
+        }
+    }
+
+    &--buttonsWrapper {
+        @include center(flex-end);
+        gap: 10px;
+
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+        &__cancel {
+        }
+        &__confirm {
+        }
+    }
+
+    &--blocsWrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 10px 10px;
+    }
+}

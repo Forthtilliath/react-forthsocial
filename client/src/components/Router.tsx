@@ -11,6 +11,7 @@ import Chat from '../pages/Chat/Chat';
 import Notifications from '../pages/Notifications/Notifications';
 import Settings from '../pages/Settings/Settings';
 import Remember from '../pages/Remember/Remember';
+import ProfileUpdate from '../pages/Profile/Update/ProfileUpdate';
 
 const Router = () => {
     const { connexion } = useContext(AuthContext);
@@ -29,7 +30,8 @@ const Router = () => {
                             <Route exact path="/friends/" component={Friends} />
 
                             {/* Second menu links */}
-                            <Route path="/profile/:username" component={Profile} />
+                            <Route exact path="/profile/:username" component={Profile} />
+                            <Route exact path="/profile/:username/edit" component={ProfileUpdate} />
                             <Route exact path="/chat" component={Chat} />
                             <Route exact path="/notifications" component={Notifications} />
                             <Route exact path="/settings" component={Settings} />

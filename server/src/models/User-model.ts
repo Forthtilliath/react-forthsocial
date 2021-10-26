@@ -11,9 +11,11 @@ export interface IUser {
     password: string;
     firstname?: string;
     lastname?: string;
+    currentCity?: string;
+    fromCity?: string;
+    description?: string;
     profilePicture?: string;
     coverPicture?: string;
-    description?: string;
     isAdmin?: boolean;
     createdAt?: number;
     updatedAt?: number;
@@ -38,9 +40,11 @@ class User {
     private _password: string;
     private _firstname?: string;
     private _lastname?: string;
+    private _currentCity?: string;
+    private _fromCity?: string;
+    private _description?: string;
     private _profilePicture?: string;
     private _coverPicture?: string;
-    private _description?: string;
     private _isAdmin?: boolean;
     private _createdAt?: number;
     private _updatedAt?: number;
@@ -52,9 +56,11 @@ class User {
         this._password = aUser.password;
         this._firstname = aUser.firstname;
         this._lastname = aUser.lastname;
+        this._currentCity = aUser.currentCity;
+        this._fromCity = aUser.fromCity;
+        this._description = aUser.description;
         this._profilePicture = aUser.profilePicture;
         this._coverPicture = aUser.coverPicture;
-        this._description = aUser.description;
         this._isAdmin = aUser.isAdmin;
         this._createdAt = aUser.createdAt;
         this._updatedAt = aUser.updatedAt;
@@ -71,9 +77,13 @@ class User {
             id: this._id,
             username: this._username,
             email: this._email,
+            firstname:this._firstname,
+            lastname:this._lastname,
+            currentCity:this._currentCity,
+            fromCity:this._fromCity,
+            description: this._description,
             profilePicture: this._profilePicture,
             coverPicture: this._coverPicture,
-            description: this._description,
             isAdmin: this._isAdmin,
             createdAt: this._createdAt,
             updatedAt: this._updatedAt,
@@ -135,7 +145,7 @@ class User {
 
     /** Récupère un utilisateur pour vérifier les identifiants */
     public async isValidPassword(username: string, password: string): Promise<boolean> {
-        const query = ` SELECT id, password, username, firstname, lastname, profilePicture, coverPicture, isAdmin
+        const query = ` SELECT *
                         FROM ${User._table}
                         WHERE username = ?`;
         const datas = [username];
@@ -151,13 +161,16 @@ class User {
             if (isValid) {
                 this._id = user[0].id;
                 this._username = user[0].username;
+                this._email = user[0].email;
+                this._password = '';
                 this._firstname = user[0].firstname;
                 this._lastname = user[0].lastname;
-                this._profilePicture = user[0].profilePicture;
+                this._currentCity = user[0].currentCity;
+                this._fromCity = user[0].fromCity;
                 this._description = user[0].description;
+                this._profilePicture = user[0].profilePicture;
                 this._coverPicture = user[0].coverPicture;
                 this._isAdmin = user[0].isAdmin;
-                // this._password = ''; //TODO Check
                 return true;
             }
         }
@@ -167,7 +180,7 @@ class User {
 
     /** Récupère l'ensemble des utilisateurs */
     static async getUsers(): Promise<RowDataPacket[]> {
-        const query = ` SELECT id, username, email, profilePicture, coverPicture, isAdmin, createdAt, updatedAt
+        const query = ` SELECT id, username, email, description, profilePicture, coverPicture, isAdmin, createdAt, updatedAt
                         FROM ${User._table}`;
 
         return await pool.query<RowDataPacket[]>(query).then((res) => res[0]);

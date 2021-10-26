@@ -1,5 +1,5 @@
 import { Search, Chat, Notifications, Home, Group, KeyboardArrowDownRounded } from '@material-ui/icons';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import AuthContext from '../AppContext/Auth.context';
 import Logo from '../../images/logo/logo.png';
@@ -15,13 +15,25 @@ const Topbar = () => {
     const [isOpenSearch, setIsOpenSearch] = useState(false);
 
     const toggleAccountMenu = () => {
-        setIsOpenSearch(false);
-        setIsOpenAccountMenu(!isOpenAccountMenu);
+        setTimeout(() => {
+            setIsOpenAccountMenu(!isOpenAccountMenu);
+        }, 100);
     };
     const toggleSearch = () => {
-        setIsOpenAccountMenu(false);
-        setIsOpenSearch(!isOpenSearch);
+        setTimeout(() => {
+            setIsOpenSearch(!isOpenSearch);
+        }, 100);
     };
+
+    const closeAll = () => {
+        setIsOpenSearch(false);
+        setIsOpenAccountMenu(false);
+    };
+
+    useEffect(() => {
+        window.addEventListener('click', closeAll);
+        return () => window.removeEventListener('click', closeAll);
+    }, []);
 
     // const closeModals = () => {
     //     setIsOpenAccountMenu(false);
@@ -42,7 +54,9 @@ const Topbar = () => {
                 <div className="topbarIcons second" style={{ position: 'relative' }}>
                     <div
                         className={isOpenSearch ? 'topbarIconItem l0 open' : 'topbarIconItem l0'}
-                        data-name="Rechercher" onClick={toggleSearch}>
+                        data-name="Rechercher"
+                        onClick={toggleSearch}
+                    >
                         <Search />
                     </div>
                     {isOpenSearch && <BoxMenuSearch />}
