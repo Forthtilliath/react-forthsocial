@@ -40,9 +40,14 @@ interface IUser {
     // userId: string;
     id: string;
     username: string;
+    email?: string;
     profilePicture: string;
     coverPicture?: string;
     description?: string;
+    firstname?: string;
+    lastname?: string;
+    currentCity?: string;
+    fromCity?: string;
 }
 
 interface IConnexionContext {
@@ -101,25 +106,28 @@ interface UsersState {
 
 type Input = {
     name: InputProp;
-    value: string;
+    // value: string;
     type: string;
-    onCancel: () => void;
-    onConfirm: () => void;
+    // onCancel: () => void;
+    // onConfirm: () => void;
+    userForm: IUser;
+    toggleEditForm: (propName: InputProp, value?: boolean | undefined) => void;
+    update: (propName: InputProp) => void
     onChange: ({ target: { name, value } }: { target: { name: string; value: string } }) => void;
 };
 
 // prettier-ignore
 type InputProp = 'username' | 'email' | 'firstname' | 'lastname' | 'currentCity' | 'fromCity' | 'description' | 'profilePicture' | 'coverPicture';
 type EditForm = {
-    coverPicture: boolean;
-    currentCity: boolean;
-    description: boolean;
+    username: boolean;
     email: boolean;
     firstname: boolean;
-    fromCity: boolean;
     lastname: boolean;
     profilePicture: boolean;
-    username: boolean;
+    coverPicture: boolean;
+    currentCity: boolean;
+    fromCity: boolean;
+    description: boolean;
 };
 
 type BoxInput = Input & {

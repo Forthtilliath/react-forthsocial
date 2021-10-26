@@ -3,27 +3,26 @@ import AuthContext from '../../../components/AppContext/Auth.context';
 import Sidebar from '../../../components/Sidebar/Sidebar';
 import { loadImage } from '../../../components/utils';
 
-const Text = ({ value }: { value: string }) => <>{value}</>;
-const Input = ({ value, type, onCancel, onConfirm, onChange, name }: Input) => (
+const Text = ({ userForm, name }: { userForm: IUser; name: InputProp }) => <>{userForm[name]}</>;
+const Input = ({ userForm, type, toggleEditForm, update, onChange, name }: Input) => (
     <>
         {type === 'textarea' ? (
-            <textarea style={{ width: '100%' }} defaultValue={value} />
+            <textarea style={{ width: '100%' }} name={name} value={userForm[name]} onChange={onChange} />
         ) : (
-            <input type="text" name={name} value={value} onChange={onChange} />
+            <input type="text" name={name} value={userForm[name]} onChange={onChange} />
         )}
         <div className="profileUpdate--buttonsWrapper">
-            <button className="profileUpdate--buttonsWrapper__cancel" onClick={onCancel}>
+            <button className="profileUpdate--buttonsWrapper__cancel" onClick={() => toggleEditForm(name)}>
                 Annuler
             </button>
-            <button className="profileUpdate--buttonsWrapper__confirm" onClick={onConfirm}>
+            <button className="profileUpdate--buttonsWrapper__confirm" onClick={() => update(name)}>
                 Enregistrer
             </button>
-        </div>  
+        </div>
     </>
 );
 
-const Bloc = ({ edit, ...props }: BoxInput) =>
-    edit ? <Input {...props} /> : <Text {...props} />;
+const Bloc = ({ edit, ...props }: BoxInput) => (edit ? <Input {...props} /> : <Text {...props} />);
 
 const ProfileUpdate = () => {
     const { connexion } = useContext(AuthContext);
@@ -32,7 +31,7 @@ const ProfileUpdate = () => {
     const [userForm, setUserForm] = useState(user);
 
     // Contient des booleans pour dire si le bloc est en mode édition ou pas
-   const [editForm, setEditForm] = useState({
+    const [editForm, setEditForm] = useState({
         coverPicture: false,
         currentCity: false,
         description: false,
@@ -49,20 +48,17 @@ const ProfileUpdate = () => {
 
     // Met à jour la valeur du form
     const handleChange = ({ target: { name, value } }: { target: { name: string; value: string } }) => {
-        console.log(name, value);
-        console.log(userForm);
         setUserForm({
             ...userForm,
             [name]: value,
         });
-        console.log(userForm);
     };
 
-    const update = (propName:InputProp) => {
-            console.log('Contenu modifié');
+    const update = (propName: InputProp) => {
+        console.log('Contenu modifié');
         // dispatch sur userForm
         toggleEditForm(propName, false);
-    }
+    };
 
     return (
         <div className="profileUpdate--container">
@@ -106,33 +102,36 @@ const ProfileUpdate = () => {
                         <Bloc
                             type="input"
                             name="username"
+                            userForm={userForm}
+                            toggleEditForm={toggleEditForm}
+                            update={update}
                             edit={editForm.username}
-                            value={userForm.username ?? ''}
                             onChange={handleChange}
-                            onCancel={() => toggleEditForm('username', false)}
-                            onConfirm={() => update('username')}
                         />
                     </div>
                 </div>
-                {/* <div className="profileUpdate--itemWrapper">
+                <div className="profileUpdate--itemWrapper">
                     <div className="profileUpdate--titleWrapper">
                         <div className="profileUpdate--titleWrapper__title">Description</div>
-                        <div className="profileUpdate--titleWrapper__button" onClick={toggleDescription}>
-                            {description ? 'Annuler' : 'Modifier'}
+                        <div
+                            className="profileUpdate--titleWrapper__button"
+                            onClick={() => toggleEditForm('description')}
+                        >
+                            {editForm.description ? 'Annuler' : 'Modifier'}
                         </div>
                     </div>
                     <div className="profileUpdate--textWrapper">
                         <Bloc
-                            isEditing={description}
-                            content={user.description ?? ''}
                             type="textarea"
-                            onCancel={toggleDescription}
-                            onConfirm={updateDescription}
+                            name="description"
+                            userForm={userForm}
+                            toggleEditForm={toggleEditForm}
+                            update={update}
+                            edit={editForm.description}
                             onChange={handleChange}
-                            formValues={userForm}
                         />
                     </div>
-                </div> */}
+                </div>
             </div>
         </div>
     );
